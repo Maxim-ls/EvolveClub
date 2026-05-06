@@ -24,7 +24,7 @@ jobs:
           server: vh450.timeweb.ru
           username: cg26964
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: Test/
+          local-dir: Test/public_html
           server-dir: /
           exclude: |
             **/.git*
