@@ -11,7 +11,10 @@ window.addEventListener('scroll', setHeaderState, { passive: true });
 
 // --- Снэп-скролл секций (Vertical Snapping) ---
 let snapLocked = false;
-const shouldUseSectionSnap = () => window.matchMedia('(min-width: 761px) and (pointer: fine)').matches;
+const shouldUseSectionSnap = () => (
+  window.matchMedia('(min-width: 1061px) and (hover: hover) and (pointer: fine)').matches
+  && navigator.maxTouchPoints === 0
+);
 
 // Расчет позиции для скролла к секции с учетом шапки
 const getSnapTop = (section) => {
@@ -71,6 +74,8 @@ const initCarousels = () => {
     const shouldSyncBackground = container.hasAttribute('data-background-carousel') && parent?.hasAttribute('data-overview-section');
     let activeIndex = Math.max(0, cards.findIndex(c => c.classList.contains('is-active')));
     let scrollFrame = null;
+    let scrollSyncFrame = 0;
+    let isProgrammaticScroll = false;
 
     const centerActiveCard = (card, smooth) => {
       if (scrollFrame) cancelAnimationFrame(scrollFrame);
@@ -90,7 +95,7 @@ const initCarousels = () => {
       });
     };
 
-    const update = (index, smooth = true) => {
+    const update = (index, smooth = true, shouldCenter = true) => {
       activeIndex = (index + cards.length) % cards.length;
       const activeCard = cards[activeIndex];
 
@@ -111,7 +116,33 @@ const initCarousels = () => {
         parent.style.backgroundImage = `${overlay}, ${img}`;
       }
 
-      centerActiveCard(activeCard, smooth);
+      if (!shouldCenter) return;
+
+      if (smooth) {
+        isProgrammaticScroll = true;
+        centerActiveCard(activeCard, true);
+        setTimeout(() => { isProgrammaticScroll = false; }, 420);
+      } else {
+        isProgrammaticScroll = true;
+        centerActiveCard(activeCard, false);
+        requestAnimationFrame(() => { isProgrammaticScroll = false; });
+      }
+    };
+
+    const setActiveFromScroll = () => {
+      scrollSyncFrame = 0;
+      if (isProgrammaticScroll || window.innerWidth > 760) return;
+
+      const containerRect = container.getBoundingClientRect();
+      const containerCenter = containerRect.left + (containerRect.width / 2);
+      const closestIndex = cards.reduce((closest, card, index) => {
+        const rect = card.getBoundingClientRect();
+        const center = rect.left + (rect.width / 2);
+        const distance = Math.abs(center - containerCenter);
+        return distance < closest.distance ? { index, distance } : closest;
+      }, { index: activeIndex, distance: Infinity }).index;
+
+      if (closestIndex !== activeIndex) update(closestIndex, false, false);
     };
 
     // Делегирование клика
@@ -121,6 +152,11 @@ const initCarousels = () => {
         update(cards.indexOf(card));
       }
     });
+
+    container.addEventListener('scroll', () => {
+      if (scrollSyncFrame) return;
+      scrollSyncFrame = requestAnimationFrame(setActiveFromScroll);
+    }, { passive: true });
 
     // Регистрация в глобальном реестре для кнопок-стрелок
     if (container.id) {

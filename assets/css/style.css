@@ -1074,6 +1074,10 @@ textarea {
 }
 
 @media (max-width: 760px) {
+  html {
+    scroll-behavior: auto;
+  }
+
   :root {
     --mobile-x: 24px;
   }
@@ -1280,6 +1284,35 @@ textarea {
   }
 
   .request-section {
+    height: auto;
     min-height: 0;
+    display: block;
+    overflow: visible;
+  }
+
+  .request-visual {
+    display: none;
+  }
+
+  .request-panel {
+    padding: 76px var(--mobile-x) 48px;
+  }
+
+  .request-form {
+    gap: 10px;
+    margin-top: 16px;
+  }
+
+  .request-form label {
+    gap: 6px;
+  }
+
+  .request-form input,
+  .request-form textarea {
+    padding: 12px 14px;
+  }
+
+  .messenger-row {
+    margin-top: 14px;
   }
 }
