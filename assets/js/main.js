@@ -11,6 +11,7 @@ window.addEventListener('scroll', setHeaderState, { passive: true });
 
 // --- Снэп-скролл секций (Vertical Snapping) ---
 let snapLocked = false;
+const shouldUseSectionSnap = () => window.matchMedia('(min-width: 761px) and (pointer: fine)').matches;
 
 // Расчет позиции для скролла к секции с учетом шапки
 const getSnapTop = (section) => {
@@ -30,6 +31,7 @@ const getCurrentSectionIndex = () => {
 
 if (snapSections.length) {
   window.addEventListener('wheel', (event) => {
+    if (!shouldUseSectionSnap()) return;
     if (event.ctrlKey || Math.abs(event.deltaX) > Math.abs(event.deltaY)) return;
 
     if (snapLocked) {
@@ -179,7 +181,7 @@ const updateDirectionLine = (count) => {
   const countRect = count.getBoundingClientRect();
   const buttonRect = activeButton.getBoundingClientRect();
   const isHorizontal = window.innerWidth <= 1060;
-  
+
   const lineSize = isHorizontal ? countRect.width : countRect.height;
   if (!lineSize) return; // Защита от деления на ноль, если секция скрыта
   const activeCenter = isHorizontal
@@ -187,7 +189,8 @@ const updateDirectionLine = (count) => {
     : buttonRect.top - countRect.top + (buttonRect.height / 2);
 
   const center = (activeCenter / lineSize) * 100;
-  const segment = ((isHorizontal ? buttonRect.width : buttonRect.height) / lineSize) * 100;
+  const segmentSize = isHorizontal && window.innerWidth <= 760 ? 12 : (isHorizontal ? buttonRect.width : buttonRect.height);
+  const segment = (segmentSize / lineSize) * 100;
   const start = Math.max(0, center - (segment / 2));
   const end = Math.min(100, center + (segment / 2));
 

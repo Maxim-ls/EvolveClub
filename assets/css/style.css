@@ -9,6 +9,8 @@
   --teal-bright: #00bfd0;
   --graphite: #242a28;
   --header-height: 98px;
+  --page-x: clamp(36px, 10vw, 112px);
+  --direction-content-offset: clamp(18px, 3vw, 48px);
   --font-ui: Manrope, Arial, sans-serif;
   --font-display: Montserrat, Manrope, Arial, sans-serif;
 }
@@ -50,7 +52,7 @@ textarea {
   align-items: center;
   justify-content: space-between;
   gap: 24px;
-  padding: 28px clamp(22px, 4.2vw, 64px);
+  padding: 28px var(--page-x);
   color: var(--ink);
   transition: background .25s ease, backdrop-filter .25s ease, padding .25s ease;
 }
@@ -127,9 +129,9 @@ textarea {
   height: 100svh;
   overflow: hidden;
   display: grid;
-  grid-template-columns: minmax(22px, 7vw) minmax(0, 1fr);
+  grid-template-columns: 1fr;
   align-items: center;
-  padding: 104px clamp(22px, 4vw, 64px) 72px 0;
+  padding: 104px var(--page-x) 72px;
 }
 
 .hero-bg,
@@ -297,7 +299,7 @@ textarea {
 
 .section {
   position: relative;
-  padding: clamp(76px, 9vw, 130px) clamp(22px, 5vw, 80px);
+  padding: clamp(76px, 9vw, 130px) var(--page-x);
   min-height: calc(100vh - var(--header-height));
   min-height: calc(100svh - var(--header-height));
   scroll-margin-top: var(--header-height);
@@ -309,7 +311,7 @@ textarea {
 }
 
 .directions-overview {
-  --overview-x: clamp(22px, 5vw, 80px);
+  --overview-x: var(--page-x);
   height: 100vh;
   height: 100svh;
   min-height: 0;
@@ -384,14 +386,13 @@ textarea {
 .direction-section {
   position: relative;
   display: grid;
-  grid-template-columns: minmax(44px, 8vw) minmax(0, 1fr);
-  gap: clamp(18px, 3vw, 42px);
+  grid-template-columns: 1fr;
   min-height: 100vh;
   min-height: 100svh;
   align-items: center;
   padding-top: var(--header-height);
   padding-bottom: 0;
-  padding-left: 0;
+  padding-left: calc(var(--page-x) + var(--direction-content-offset));
   padding-right: 0;
   overflow: hidden;
   background-position: center;
@@ -409,7 +410,7 @@ textarea {
 
 .direction-neighbor {
   position: absolute;
-  left: calc(max(44px, 8vw) + clamp(18px, 3vw, 42px));
+  left: calc(var(--page-x) + var(--direction-content-offset));
   z-index: 1;
   max-width: min(72vw, 980px);
   color: transparent;
@@ -436,9 +437,12 @@ textarea {
 }
 
 .direction-count {
-  position: relative;
+  position: absolute;
   z-index: 2;
-  align-self: stretch;
+  top: var(--header-height);
+  bottom: 0;
+  left: 0;
+  width: var(--page-x);
   display: grid;
   justify-items: center;
   align-content: center;
@@ -561,7 +565,7 @@ textarea {
 .direction-footer {
   position: absolute;
   z-index: 3;
-  right: clamp(22px, 4vw, 36px);
+  right: var(--page-x);
   bottom: 48px;
   display: flex;
   align-items: center;
@@ -732,51 +736,90 @@ textarea {
 
 .tour-grid {
   grid-template-columns: repeat(3, minmax(0, 1fr));
+  flex: 1;
+  align-content: stretch;
+}
+
+.tours-section {
+  min-height: calc(100vh);
+  min-height: calc(100svh);
+  display: flex;
+  flex-direction: column;
+  padding-top: clamp(100px, 6vw, 84px);
+  padding-bottom: clamp(54px, 6vw, 84px);
+}
+
+.tours-section .section-head {
+  margin-bottom: 24px;
 }
 
 .tour-card {
   position: relative;
-  min-height: 290px;
+  min-height: clamp(190px, 22vh, 240px);
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding: 24px;
+  padding: 20px;
   overflow: hidden;
 }
 
 .tour-card h3 {
   font-family: var(--font-display);
-  font-size: clamp(24px, 2.5vw, 36px);
+  font-size: clamp(20px, 2vw, 30px);
   line-height: 1.05;
 }
 
 .service-grid {
   grid-template-columns: repeat(3, minmax(0, 1fr));
+  flex: 1;
+  align-content: stretch;
+}
+
+.services-section {
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  padding-top: clamp(84px, 7vw, 104px);
+  padding-bottom: clamp(36px, 4vw, 56px);
+}
+
+.services-section .section-head {
+  margin-bottom: 24px;
 }
 
 .service-grid article {
-  min-height: 210px;
-  padding: 26px;
+  min-height: clamp(132px, 15vh, 170px);
+  padding: 18px;
 }
 
 .service-grid span {
   display: grid;
   place-items: center;
-  width: 44px;
-  height: 44px;
-  margin-bottom: 24px;
+  width: 40px;
+  height: 40px;
+  margin-bottom: 14px;
   border-radius: 50%;
   background: rgba(0, 191, 208, .12);
   color: var(--teal-bright);
   font-size: 22px;
 }
 
+.service-grid img {
+  width: 20px;
+  height: 20px;
+  filter: invert(59%) sepia(98%) saturate(2133%) hue-rotate(143deg) brightness(99%) contrast(101%);
+}
+
 .request-section {
   display: grid;
   grid-template-columns: minmax(0, .9fr) minmax(360px, 640px);
-  min-height: calc(100vh - var(--header-height));
-  min-height: calc(100svh - var(--header-height));
+  height: 100vh;
+  height: 100svh;
+  min-height: 0;
   scroll-margin-top: var(--header-height);
+  overflow: hidden;
   background: #111615;
 }
 
@@ -787,14 +830,19 @@ textarea {
 }
 
 .request-panel {
-  padding: clamp(52px, 7vw, 96px) clamp(22px, 5vw, 72px);
+  padding: var(--header-height) var(--page-x) clamp(34px, 4vw, 56px);
   align-self: center;
+}
+
+.request-panel h2 {
+  font-size: clamp(34px, 4.4vw, 58px);
+  line-height: .96;
 }
 
 .request-form {
   display: grid;
-  gap: 16px;
-  margin-top: 32px;
+  gap: 12px;
+  margin-top: 20px;
 }
 
 .request-form label {
@@ -816,7 +864,7 @@ textarea {
   background: rgba(246, 245, 239, .07);
   color: var(--ink);
   outline: none;
-  padding: 16px 18px;
+  padding: 13px 16px;
 }
 
 .request-form input:focus,
@@ -838,7 +886,7 @@ textarea {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
-  margin-top: 22px;
+  margin-top: 16px;
 }
 
 .messenger-row a {
@@ -855,7 +903,7 @@ textarea {
   grid-template-columns: minmax(160px, 240px) minmax(0, 1fr) auto;
   gap: 28px;
   align-items: center;
-  padding: 32px clamp(22px, 5vw, 80px);
+  padding: 32px var(--page-x);
   border-top: 1px solid var(--line);
   background: #0f1312;
 }
@@ -876,7 +924,6 @@ textarea {
 @media (max-width: 1060px) {
   .hero {
     grid-template-columns: 1fr;
-    padding-left: clamp(22px, 4vw, 64px);
   }
 
   .hero-rail {
@@ -890,19 +937,25 @@ textarea {
 
   .direction-section {
     grid-template-columns: 1fr;
-    padding-left: clamp(22px, 5vw, 80px);
-    padding-right: clamp(22px, 5vw, 80px);
+    padding-left: var(--page-x);
+    padding-right: var(--page-x);
     padding-bottom: 120px;
   }
 
+  .direction-count {
+    position: relative;
+    inset: auto;
+    width: auto;
+  }
+
   .directions-overview {
-    padding-left: clamp(22px, 5vw, 80px);
-    padding-right: clamp(22px, 5vw, 80px);
+    padding-left: var(--page-x);
+    padding-right: var(--page-x);
     padding-bottom: 88px;
   }
 
   .directions-overview .direction-footer {
-    left: clamp(22px, 5vw, 80px);
+    left: var(--page-x);
   }
 
   .direction-count {
@@ -936,7 +989,7 @@ textarea {
   }
 
   .direction-neighbor {
-    left: clamp(22px, 5vw, 80px);
+    left: var(--page-x);
     max-width: calc(100vw - clamp(44px, 10vw, 160px));
     font-size: 13px;
   }
@@ -967,8 +1020,8 @@ textarea {
   }
 
   .direction-footer {
-    left: clamp(22px, 5vw, 80px);
-    right: clamp(22px, 5vw, 80px);
+    left: var(--page-x);
+    right: var(--page-x);
     width: auto;
   }
 
@@ -982,6 +1035,11 @@ textarea {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .services-section {
+    min-height: 100vh;
+    min-height: 100svh;
+  }
+
   .request-visual {
     min-height: 360px;
   }
@@ -992,9 +1050,13 @@ textarea {
 }
 
 @media (max-width: 760px) {
+  :root {
+    --mobile-x: 24px;
+  }
+
   .site-header {
     align-items: flex-start;
-    padding: 18px;
+    padding: var(--mobile-x);
   }
 
   .main-nav {
@@ -1002,36 +1064,118 @@ textarea {
   }
 
   .hero {
-    height: 100vh;
-    height: 100svh;
-    padding-top: 118px;
+    height: auto;
+    min-height: 92vh;
+    min-height: 102svh;
+    padding: 98px var(--mobile-x) 56px;
+    grid-template-columns: 1fr;
   }
 
   .hero-content {
     padding-top: 0;
+    max-width: 100%;
+  }
+
+  .eyebrow {
+    margin-bottom: 12px;
+    font-size: 11px;
+    letter-spacing: .14em;
+  }
+
+  .hero h1 {
+    font-size: clamp(34px, 11.5vw, 52px);
+    line-height: .95;
+  }
+
+  .hero-copy {
+    max-width: 100%;
+    margin: 18px 0 22px;
+    font-size: 14px;
+    line-height: 1.55;
+  }
+
+  .hero-copy-secondary {
+    margin-top: -8px;
+  }
+
+  .primary-button,
+  .ghost-button {
+    min-height: 48px;
+    padding: 0 20px;
+    font-size: 13px;
   }
 
   .country-rail {
-    grid-auto-columns: minmax(220px, 78vw);
-    gap: 14px;
+    grid-auto-columns: minmax(150px, 54vw);
+    gap: 12px;
   }
 
   .direction-section {
     min-height: auto;
-    padding-top: 96px;
-    padding-bottom: 86px;
+    padding: 84px var(--mobile-x) 76px;
   }
 
   .directions-overview {
-    height: 100vh;
-    height: 100svh;
-    min-height: 0;
-    padding-top: 28px;
-    padding-bottom: 72px;
+    height: auto;
+    min-height: 82vh;
+    min-height: 82svh;
+    padding-top: 18px;
+    padding-left: var(--mobile-x);
+    padding-right: var(--mobile-x);
+    padding-bottom: 44px;
+  }
+
+  .direction-count {
+    width: 100%;
+    height: 36px;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0;
+    margin: 0 0 22px;
+  }
+
+  .direction-count::before {
+    top: 50%;
+    left: 0;
+    z-index: 0;
+    width: 100%;
+    height: 1px;
+    transform: translateY(-50%);
+  }
+
+  .direction-dot {
+    position: relative;
+    z-index: 1;
+    width: 24px;
+    height: 24px;
+    margin: 0;
+    transform: translateY(0);
+  }
+
+  .direction-dot::before {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 6px;
+    height: 6px;
+    transform: translate(-50%, -50%);
+  }
+
+  .direction-dot.is-active {
+    width: 36px;
+    height: 36px;
+    font-size: 12px;
   }
 
   .direction-copy h2 {
-    font-size: clamp(46px, 16vw, 72px);
+    font-size: clamp(34px, 11vw, 52px);
+    line-height: .98;
+  }
+
+  .direction-text {
+    margin: 16px 0 22px;
+    font-size: 13px;
+    line-height: 1.55;
   }
 
   .direction-neighbor {
@@ -1039,25 +1183,39 @@ textarea {
   }
 
   .overview-rail {
-    height: calc(100svh - 120px);
-    grid-auto-columns: minmax(220px, 78vw);
+    height: 360px;
+    grid-auto-columns: minmax(150px, 54vw);
   }
 
   .overview-rail .country-card,
   .overview-rail .country-card.is-active {
-    height: min(360px, calc(100svh - 170px));
+    height: 300px;
   }
 
   .direction-rail {
-    height: 350px;
+    height: 310px;
     padding-top: 24px;
     padding-bottom: 10px;
   }
 
   .direction-rail .country-card,
   .direction-rail .country-card.is-active {
-    flex-basis: 72vw;
-    height: 340px;
+    flex-basis: 54vw;
+    min-width: 150px;
+    height: 290px;
+  }
+
+  .country-card {
+    padding: 16px;
+  }
+
+  .country-card strong {
+    font-size: 22px;
+  }
+
+  .country-card span,
+  .country-card-link {
+    font-size: 12px;
   }
 
   .direction-footer {
@@ -1068,6 +1226,16 @@ textarea {
   .service-grid,
   .tour-grid {
     grid-template-columns: 1fr;
+  }
+
+  .services-section {
+    min-height: 0;
+    padding-top: 76px;
+    padding-bottom: 56px;
+  }
+
+  .service-grid article {
+    min-height: auto;
   }
 
   .section-controls {
