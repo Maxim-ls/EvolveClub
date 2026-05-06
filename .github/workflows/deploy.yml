@@ -1,0 +1,31 @@
+name: Deploy to Timeweb
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+jobs:
+  web-deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Get latest code
+        uses: actions/checkout@v4
+
+      - name: Sync public_html to FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: vh450.timeweb.ru
+          username: cg26964
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: Test/
+          server-dir: /
+          exclude: |
+            **/.git*
+            **/.git*/**
