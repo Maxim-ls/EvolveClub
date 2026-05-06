@@ -461,13 +461,13 @@ textarea {
   background: linear-gradient(
     180deg,
     transparent 0%,
-    var(--line) 8%,
-    var(--line) calc(var(--active-line-start, 50%) - 8%),
+    var(--line-before-active, var(--line)) 8%,
+    var(--line-before-active, var(--line)) calc(var(--active-line-start, 50%) - 8%),
     rgba(0, 191, 208, .55) var(--active-line-start, 50%),
     var(--teal-bright) var(--active-line-center, 50%),
     var(--teal-bright) var(--active-line-end, 50%),
-    var(--line) calc(var(--active-line-end, 50%) + 8%),
-    var(--line) 92%,
+    var(--line-after-active, var(--line)) calc(var(--active-line-end, 50%) + 8%),
+    var(--line-after-active, var(--line)) 92%,
     transparent 100%
   );
   content: "";
@@ -520,6 +520,21 @@ textarea {
 .direction-dot:focus-visible {
   outline: 2px solid var(--teal-bright);
   outline-offset: 3px;
+}
+
+.direction-count-fixed {
+  position: fixed;
+  z-index: 30;
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .2s ease, visibility .2s ease;
+}
+
+.direction-count-fixed.is-visible {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
 }
 
 .direction-content {
@@ -605,6 +620,7 @@ textarea {
   display: grid;
   grid-auto-flow: column;
   grid-auto-columns: minmax(230px, 290px);
+  align-items: end;
   gap: 18px;
   overflow-x: auto;
   overflow-y: visible;
@@ -642,6 +658,7 @@ textarea {
   cursor: pointer;
   scroll-snap-align: none !important;
   flex-shrink: 0; /* Гарантируем, что карточки не сжимаются меньше заданного flex-basis */
+  transform-origin: center bottom;
   transition: height .45s ease, opacity .35s ease, transform .35s ease, filter .35s ease;
 }
 
@@ -672,7 +689,7 @@ textarea {
   filter: saturate(1);
   border-color: transparent;
   box-shadow: 4px 4px 5px rgba(157, 157, 157, 0.1);
-  transform: translateY(-8px) scale(1.08);
+  transform: scale(1.08);
 }
 
 .country-card-link {
@@ -972,13 +989,13 @@ textarea {
     background: linear-gradient(
       90deg,
       transparent 0%,
-      var(--line) 8%,
-      var(--line) calc(var(--active-line-start, 50%) - 8%),
+      var(--line-before-active, var(--line)) 8%,
+      var(--line-before-active, var(--line)) calc(var(--active-line-start, 50%) - 8%),
       rgba(0, 191, 208, .55) var(--active-line-start, 50%),
       var(--teal-bright) var(--active-line-center, 50%),
       var(--teal-bright) var(--active-line-end, 50%),
-      var(--line) calc(var(--active-line-end, 50%) + 8%),
-      var(--line) 92%,
+      var(--line-after-active, var(--line)) calc(var(--active-line-end, 50%) + 8%),
+      var(--line-after-active, var(--line)) 92%,
       transparent 100%
     );
   }
@@ -1023,6 +1040,13 @@ textarea {
     left: var(--page-x);
     right: var(--page-x);
     width: auto;
+  }
+
+  .direction-count-fixed {
+    position: fixed;
+    inset: auto var(--page-x) 28px var(--page-x);
+    width: auto;
+    margin: 0;
   }
 
   .direction-rail .country-card.is-active {
@@ -1107,7 +1131,7 @@ textarea {
 
   .country-rail {
     grid-auto-columns: minmax(150px, 54vw);
-    gap: 12px;
+    gap: 22px;
   }
 
   .direction-section {
@@ -1146,8 +1170,8 @@ textarea {
   .direction-dot {
     position: relative;
     z-index: 1;
-    width: 24px;
-    height: 24px;
+    width: 36px;
+    height: 36px;
     margin: 0;
     transform: translateY(0);
   }
@@ -1162,9 +1186,14 @@ textarea {
   }
 
   .direction-dot.is-active {
-    width: 36px;
-    height: 36px;
     font-size: 12px;
+  }
+
+  .direction-count-fixed {
+    position: fixed;
+    inset: auto var(--mobile-x) 22px var(--mobile-x);
+    width: auto;
+    margin: 0;
   }
 
   .direction-copy h2 {
@@ -1184,10 +1213,13 @@ textarea {
 
   .overview-rail {
     height: 360px;
-    grid-auto-columns: minmax(150px, 54vw);
+    grid-auto-columns: minmax(132px, 46vw);
   }
 
-  .overview-rail .country-card,
+  .overview-rail .country-card {
+    height: 250px;
+  }
+
   .overview-rail .country-card.is-active {
     height: 300px;
   }
@@ -1198,10 +1230,15 @@ textarea {
     padding-bottom: 10px;
   }
 
-  .direction-rail .country-card,
+  .direction-rail .country-card {
+    flex-basis: 44vw;
+    min-width: 132px;
+    height: 240px;
+  }
+
   .direction-rail .country-card.is-active {
     flex-basis: 54vw;
-    min-width: 150px;
+    min-width: 158px;
     height: 290px;
   }
 

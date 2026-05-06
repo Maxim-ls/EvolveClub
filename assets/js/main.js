@@ -173,22 +173,30 @@ if (form && statusText) {
 // --- Индикаторы направлений (Direction Dots) ---
 const directionSections = document.querySelectorAll('[data-direction-section]');
 const directionNavButtons = document.querySelectorAll('[data-direction-nav]');
+const directionMap = document.querySelector('[data-direction-map]');
+let directionUpdateFrame = 0;
 
 const updateDirectionLine = (count) => {
   const activeButton = count.querySelector('[data-direction-nav].is-active') || count.querySelector('.direction-dot.is-active');
   if (!activeButton) return;
+  const buttons = Array.from(count.querySelectorAll('[data-direction-nav]'));
+  const activeIndex = buttons.indexOf(activeButton);
 
   const countRect = count.getBoundingClientRect();
   const buttonRect = activeButton.getBoundingClientRect();
   const isHorizontal = window.innerWidth <= 1060;
 
-  const lineSize = isHorizontal ? countRect.width : countRect.height;
+  const countSize = isHorizontal ? countRect.width : countRect.height;
+  const lineSize = isHorizontal
+    ? (window.innerWidth <= 760 ? countRect.width : Math.min(280, window.innerWidth * .66))
+    : Math.min(window.innerHeight * .52, 420);
   if (!lineSize) return; // Защита от деления на ноль, если секция скрыта
+  const lineOffset = Math.max(0, (countSize - lineSize) / 2);
   const activeCenter = isHorizontal
-    ? buttonRect.left - countRect.left + (buttonRect.width / 2)
-    : buttonRect.top - countRect.top + (buttonRect.height / 2);
+    ? buttonRect.left - countRect.left + (buttonRect.width / 2) - lineOffset
+    : buttonRect.top - countRect.top + (buttonRect.height / 2) - lineOffset;
 
-  const center = (activeCenter / lineSize) * 100;
+  const center = Math.max(0, Math.min(100, (activeCenter / lineSize) * 100));
   const segmentSize = isHorizontal && window.innerWidth <= 760 ? 12 : (isHorizontal ? buttonRect.width : buttonRect.height);
   const segment = (segmentSize / lineSize) * 100;
   const start = Math.max(0, center - (segment / 2));
@@ -197,10 +205,34 @@ const updateDirectionLine = (count) => {
   count.style.setProperty('--active-line-start', `${start}%`);
   count.style.setProperty('--active-line-end', `${end}%`);
   count.style.setProperty('--active-line-center', `${center}%`);
+  count.style.setProperty('--line-before-active', activeIndex === 0 ? 'rgba(0, 191, 208, .25)' : 'var(--line)');
+  count.style.setProperty('--line-after-active', activeIndex === buttons.length - 1 ? 'rgba(0, 191, 208, .25)' : 'var(--line)');
 };
 
 const updateDirectionLines = () => {
   document.querySelectorAll('.direction-count').forEach(updateDirectionLine);
+};
+
+const updateDirectionMapVisibility = () => {
+  if (!directionMap || !directionSections.length) return;
+
+  const viewportAnchor = window.innerHeight * .5;
+  const isDirectionVisible = Array.from(directionSections).some((section) => {
+    const rect = section.getBoundingClientRect();
+    return rect.top <= viewportAnchor && rect.bottom >= viewportAnchor;
+  });
+
+  directionMap.classList.toggle('is-visible', isDirectionVisible);
+};
+
+const getCurrentDirectionSection = () => {
+  if (!directionSections.length) return null;
+
+  const viewportAnchor = window.innerHeight * .5;
+  return Array.from(directionSections).find((section) => {
+    const rect = section.getBoundingClientRect();
+    return rect.top <= viewportAnchor && rect.bottom >= viewportAnchor;
+  });
 };
 
 const setActiveDirectionNav = (sectionId) => {
@@ -210,6 +242,20 @@ const setActiveDirectionNav = (sectionId) => {
     button.setAttribute('aria-current', isActive ? 'true' : 'false');
   });
   updateDirectionLines();
+};
+
+const updateActiveDirectionFromViewport = () => {
+  const currentSection = getCurrentDirectionSection();
+  if (currentSection) setActiveDirectionNav(currentSection.id);
+  updateDirectionMapVisibility();
+};
+
+const scheduleDirectionUpdate = () => {
+  if (directionUpdateFrame) return;
+  directionUpdateFrame = requestAnimationFrame(() => {
+    directionUpdateFrame = 0;
+    updateActiveDirectionFromViewport();
+  });
 };
 
 directionNavButtons.forEach((button) => {
@@ -232,18 +278,13 @@ document.querySelectorAll('a[href^="#"]').forEach((link) => {
 // --- Наблюдатель за секциями (Intersection Observer) ---
 if (directionNavButtons.length && directionSections.length) {
   const observer = new IntersectionObserver((entries) => {
-    const visible = entries
-      .filter((entry) => entry.isIntersecting)
-      .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-
-    if (visible) {
-      setActiveDirectionNav(visible.target.id);
-    }
+    if (entries.some((entry) => entry.isIntersecting)) scheduleDirectionUpdate();
   }, {
     threshold: [0.3, 0.5, 0.7]
   });
 
   directionSections.forEach((section) => observer.observe(section));
-  updateDirectionLines();
-  window.addEventListener('resize', updateDirectionLines);
+  updateActiveDirectionFromViewport();
+  window.addEventListener('scroll', scheduleDirectionUpdate, { passive: true });
+  window.addEventListener('resize', scheduleDirectionUpdate);
 }
