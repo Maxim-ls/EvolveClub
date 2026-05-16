@@ -1,10 +1,17 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="ru">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>EvolveClub - Искусство путешествий</title>
   <meta name="description" content="EvolveClub создает индивидуальные премиальные путешествия, сложные маршруты и консьерж-сопровождение 24/7.">
+  <script>
+    try {
+      if (sessionStorage.getItem('return-section')) {
+        document.documentElement.style.visibility = 'hidden';
+      }
+    } catch (error) {}
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
@@ -39,9 +46,9 @@
         <a class="primary-button" href="#tours">Подобрать тур <span aria-hidden="true">→</span></a>
       </div>
     </section>
-    <section class="section directions-overview" id="all-destinations" data-overview-section style="background-image: linear-gradient(90deg, rgba(17, 22, 21, .88), rgba(17, 22, 21, .58) 42%, rgba(17, 22, 21, .35)), linear-gradient(0deg, rgba(17, 22, 21, .86), rgba(17, 22, 21, .18) 55%, rgba(95, 100, 96, .4)), url('assets/img/destinations/travel-16.jpg');">
+    <section class="section directions-overview" id="all-destinations" data-overview-section style="background-image: linear-gradient(90deg, rgba(17, 22, 21, .96), rgba(17, 22, 21, .82) 42%, rgba(17, 22, 21, .68)), linear-gradient(0deg, rgba(17, 22, 21, .92), rgba(37, 45, 43, .72) 55%, rgba(95, 100, 96, .5));">
       <p class="eyebrow overview-title">Страны и направления</p>
-      <div class="country-rail direction-rail overview-rail" id="directionsRail" aria-label="Все направления" data-card-carousel data-background-carousel>
+      <div class="country-rail direction-rail overview-rail" id="directionsRail" aria-label="Все направления" data-card-carousel>
         <article class="country-card overview-card is-active" tabindex="0" data-carousel-card data-target-section="destinations" aria-current="true" style="background-image: url('assets/img/destinations/travel-16.jpg');">
           <span>01</span>
           <strong>Европа</strong>
@@ -96,35 +103,34 @@
       <button type="button" class="direction-dot" data-direction-nav="oceania" aria-label="Австралия и Океания">07</button>
     </aside>
 
-    <section class="section direction-section" id="destinations" data-direction-section data-direction-number="01" style="background-image: linear-gradient(90deg, rgba(17, 22, 21, .88), rgba(17, 22, 21, .58) 42%, rgba(17, 22, 21, .35)), linear-gradient(0deg, rgba(17, 22, 21, .86), rgba(17, 22, 21, .18) 55%, rgba(95, 100, 96, .4)), url('assets/img/destinations/travel-11.jpg');">
+    <section class="section direction-section" id="destinations" data-direction-section data-direction-number="01" style="background-image: linear-gradient(90deg, rgba(17, 22, 21, .88), rgba(17, 22, 21, .58) 42%, rgba(17, 22, 21, .35)), linear-gradient(0deg, rgba(17, 22, 21, .86), rgba(17, 22, 21, .18) 55%, rgba(95, 100, 96, .4)), url('assets/img/destinations/bg-europe.jpg');">
       <span class="direction-neighbor direction-neighbor-next" aria-hidden="true">Россия и СНГ</span>
       <div class="direction-content">
         <div class="direction-copy">
-          <p class="eyebrow">Направления</p>
           <h2>Европа</h2>
           <p class="direction-text">Классическая архитектура, гастрономия, отели с историей и маршруты, которые легко соединить в одну безупречную поездку.</p>
-          <a class="primary-button" href="#library">Смотреть страны <span aria-hidden="true">→</span></a>
+          <a class="primary-button" href="#library">Смотреть страну <span aria-hidden="true">→</span></a>
         </div>
         <div class="country-rail direction-rail" id="europeRail" aria-label="Страны Европы" data-card-carousel>
           <article class="country-card is-active" tabindex="0" data-carousel-card aria-current="true" style="background-image: url('assets/img/destinations/travel-15.jpg');">
             <span>Европа</span>
             <strong>Франция</strong>
-            <a class="country-card-link" href="#tours">Смотреть туры <span aria-hidden="true">→</span></a>
+            <a class="country-card-link" href="#tours">Подробнее <span aria-hidden="true">→</span></a>
           </article>
           <article class="country-card" tabindex="0" data-carousel-card style="background-image: url('assets/img/destinations/travel-24.jpg');">
             <span>Европа</span>
             <strong>Испания</strong>
-            <a class="country-card-link" href="#tours">Смотреть туры <span aria-hidden="true">→</span></a>
+            <a class="country-card-link" href="#tours">Подробнее <span aria-hidden="true">→</span></a>
           </article>
           <article class="country-card" tabindex="0" data-carousel-card style="background-image: url('assets/img/destinations/travel-26.jpg');">
             <span>Европа</span>
             <strong>Италия</strong>
-            <a class="country-card-link" href="#tours">Смотреть туры <span aria-hidden="true">→</span></a>
+            <a class="country-card-link" href="#tours">Подробнее <span aria-hidden="true">→</span></a>
           </article>
           <article class="country-card" tabindex="0" data-carousel-card style="background-image: url('assets/img/destinations/travel-17.jpg');">
             <span>Европа</span>
             <strong>Исландия</strong>
-            <a class="country-card-link" href="#tours">Смотреть туры <span aria-hidden="true">→</span></a>
+            <a class="country-card-link" href="#tours">Подробнее <span aria-hidden="true">→</span></a>
           </article>
         </div>
       </div>
@@ -136,31 +142,30 @@
       </div>
     </section>
 
-    <section class="section direction-section" id="russia-cis" data-direction-section data-direction-number="02" style="background-image: linear-gradient(90deg, rgba(17, 22, 21, .88), rgba(17, 22, 21, .58) 42%, rgba(17, 22, 21, .35)), linear-gradient(0deg, rgba(17, 22, 21, .86), rgba(17, 22, 21, .18) 55%, rgba(95, 100, 96, .4)), url('assets/img/destinations/travel-12.jpg');">
+    <section class="section direction-section" id="russia-cis" data-direction-section data-direction-number="02" style="background-image: linear-gradient(90deg, rgba(17, 22, 21, .88), rgba(17, 22, 21, .58) 42%, rgba(17, 22, 21, .35)), linear-gradient(0deg, rgba(17, 22, 21, .86), rgba(17, 22, 21, .18) 55%, rgba(95, 100, 96, .4)), url('assets/img/destinations/bg-russia-cis.jpg');">
       <span class="direction-neighbor direction-neighbor-prev" aria-hidden="true">Европа</span>
       <span class="direction-neighbor direction-neighbor-next" aria-hidden="true">Азия и Восток</span>
       <div class="direction-content">
         <div class="direction-copy">
-          <p class="eyebrow">Направления</p>
           <h2>Россия и СНГ</h2>
           <p class="direction-text">Большие природные маршруты, древние города, гастрономия и сильная культурная программа без лишней логистической сложности.</p>
-          <a class="primary-button" href="#library">Смотреть страны <span aria-hidden="true">→</span></a>
+          <a class="primary-button" href="#library">Смотреть страну <span aria-hidden="true">→</span></a>
         </div>
         <div class="country-rail direction-rail" id="russiaCisRail" aria-label="Страны России и СНГ" data-card-carousel>
           <article class="country-card is-active" tabindex="0" data-carousel-card aria-current="true" style="background-image: url('assets/img/destinations/travel-09.jpg');">
             <span>Россия и СНГ</span>
             <strong>Россия</strong>
-            <a class="country-card-link" href="#tours">Смотреть туры <span aria-hidden="true">→</span></a>
+            <a class="country-card-link" href="#tours">Подробнее <span aria-hidden="true">→</span></a>
           </article>
           <article class="country-card" tabindex="0" data-carousel-card style="background-image: url('assets/img/destinations/travel-03.jpg');">
             <span>Россия и СНГ</span>
             <strong>Армения</strong>
-            <a class="country-card-link" href="#tours">Смотреть туры <span aria-hidden="true">→</span></a>
+            <a class="country-card-link" href="#tours">Подробнее <span aria-hidden="true">→</span></a>
           </article>
           <article class="country-card" tabindex="0" data-carousel-card style="background-image: url('assets/img/destinations/travel-05.jpg');">
             <span>Россия и СНГ</span>
             <strong>Узбекистан</strong>
-            <a class="country-card-link" href="#tours">Смотреть туры <span aria-hidden="true">→</span></a>
+            <a class="country-card-link" href="#tours">Подробнее <span aria-hidden="true">→</span></a>
           </article>
         </div>
       </div>
@@ -172,46 +177,45 @@
       </div>
     </section>
 
-    <section class="section direction-section" id="asia-east" data-direction-section data-direction-number="03" style="background-image: linear-gradient(90deg, rgba(17, 22, 21, .88), rgba(17, 22, 21, .58) 42%, rgba(17, 22, 21, .35)), linear-gradient(0deg, rgba(17, 22, 21, .86), rgba(17, 22, 21, .18) 55%, rgba(95, 100, 96, .4)), url('assets/img/destinations/travel-20.jpg');">
+    <section class="section direction-section" id="asia-east" data-direction-section data-direction-number="03" style="background-image: linear-gradient(90deg, rgba(17, 22, 21, .88), rgba(17, 22, 21, .58) 42%, rgba(17, 22, 21, .35)), linear-gradient(0deg, rgba(17, 22, 21, .86), rgba(17, 22, 21, .18) 55%, rgba(95, 100, 96, .4)), url('assets/img/destinations/bg-asia-east.jpg');">
       <span class="direction-neighbor direction-neighbor-prev" aria-hidden="true">Россия и СНГ</span>
       <span class="direction-neighbor direction-neighbor-next" aria-hidden="true">Африка</span>
       <div class="direction-content">
         <div class="direction-copy">
-          <p class="eyebrow">Направления</p>
           <h2>Азия и Восток</h2>
           <p class="direction-text">Контрасты мегаполисов и островов, сильная культура, гастрономия, wellness-форматы и маршруты с насыщенной программой.</p>
-          <a class="primary-button" href="#library">Смотреть страны <span aria-hidden="true">→</span></a>
+          <a class="primary-button" href="#library">Смотреть страну <span aria-hidden="true">→</span></a>
         </div>
         <div class="country-rail direction-rail" id="asiaEastRail" aria-label="Страны Азии и Востока" data-card-carousel>
           <article class="country-card is-active" tabindex="0" data-carousel-card aria-current="true" style="background-image: url('assets/img/destinations/travel-23.jpg');">
             <span>Азия и Восток</span>
             <strong>Китай</strong>
-            <a class="country-card-link" href="#tours">Смотреть туры <span aria-hidden="true">→</span></a>
+            <a class="country-card-link" href="#tours">Подробнее <span aria-hidden="true">→</span></a>
           </article>
           <article class="country-card" tabindex="0" data-carousel-card style="background-image: url('assets/img/destinations/travel-22.jpg');">
             <span>Азия и Восток</span>
             <strong>Таиланд</strong>
-            <a class="country-card-link" href="#tours">Смотреть туры <span aria-hidden="true">→</span></a>
+            <a class="country-card-link" href="#tours">Подробнее <span aria-hidden="true">→</span></a>
           </article>
           <article class="country-card" tabindex="0" data-carousel-card style="background-image: url('assets/img/destinations/travel-31.jpg');">
             <span>Азия и Восток</span>
             <strong>Индонезия</strong>
-            <a class="country-card-link" href="#tours">Смотреть туры <span aria-hidden="true">→</span></a>
+            <a class="country-card-link" href="#tours">Подробнее <span aria-hidden="true">→</span></a>
           </article>
           <article class="country-card" tabindex="0" data-carousel-card style="background-image: url('assets/img/destinations/travel-30.jpg');">
             <span>Азия и Восток</span>
             <strong>Вьетнам</strong>
-            <a class="country-card-link" href="#tours">Смотреть туры <span aria-hidden="true">→</span></a>
+            <a class="country-card-link" href="#tours">Подробнее <span aria-hidden="true">→</span></a>
           </article>
           <article class="country-card" tabindex="0" data-carousel-card style="background-image: url('assets/img/destinations/travel-10.jpg');">
             <span>Азия и Восток</span>
             <strong>Япония</strong>
-            <a class="country-card-link" href="#tours">Смотреть туры <span aria-hidden="true">→</span></a>
+            <a class="country-card-link" href="#tours">Подробнее <span aria-hidden="true">→</span></a>
           </article>
           <article class="country-card" tabindex="0" data-carousel-card style="background-image: url('assets/img/destinations/travel-28.jpg');">
             <span>Азия и Восток</span>
             <strong>Турция</strong>
-            <a class="country-card-link" href="#tours">Смотреть туры <span aria-hidden="true">→</span></a>
+            <a class="country-card-link" href="#tours">Подробнее <span aria-hidden="true">→</span></a>
           </article>
         </div>
       </div>
@@ -223,36 +227,35 @@
       </div>
     </section>
 
-    <section class="section direction-section" id="africa" data-direction-section data-direction-number="04" style="background-image: linear-gradient(90deg, rgba(17, 22, 21, .88), rgba(17, 22, 21, .58) 42%, rgba(17, 22, 21, .35)), linear-gradient(0deg, rgba(17, 22, 21, .86), rgba(17, 22, 21, .18) 55%, rgba(95, 100, 96, .4)), url('assets/img/destinations/travel-27.jpg');">
+    <section class="section direction-section" id="africa" data-direction-section data-direction-number="04" style="background-image: linear-gradient(90deg, rgba(17, 22, 21, .88), rgba(17, 22, 21, .58) 42%, rgba(17, 22, 21, .35)), linear-gradient(0deg, rgba(17, 22, 21, .86), rgba(17, 22, 21, .18) 55%, rgba(95, 100, 96, .4)), url('assets/img/destinations/bg-africa.jpg');">
       <span class="direction-neighbor direction-neighbor-prev" aria-hidden="true">Азия и Восток</span>
       <span class="direction-neighbor direction-neighbor-next" aria-hidden="true">Америка и Карибы</span>
       <div class="direction-content">
         <div class="direction-copy">
-          <p class="eyebrow">Направления</p>
           <h2>Африка</h2>
           <p class="direction-text">Пустыни, океан, сафари, исторические города и маршруты, где впечатления начинаются уже с первой точки пути.</p>
-          <a class="primary-button" href="#library">Смотреть страны <span aria-hidden="true">→</span></a>
+          <a class="primary-button" href="#library">Смотреть страну <span aria-hidden="true">→</span></a>
         </div>
         <div class="country-rail direction-rail" id="africaRail" aria-label="Страны Африки" data-card-carousel>
           <article class="country-card is-active" tabindex="0" data-carousel-card aria-current="true" style="background-image: url('assets/img/destinations/travel-02.jpg');">
             <span>Африка</span>
             <strong>Египет</strong>
-            <a class="country-card-link" href="#tours">Смотреть туры <span aria-hidden="true">→</span></a>
+            <a class="country-card-link" href="#tours">Подробнее <span aria-hidden="true">→</span></a>
           </article>
           <article class="country-card" tabindex="0" data-carousel-card style="background-image: url('assets/img/destinations/travel-04.jpg');">
             <span>Африка</span>
             <strong>Марокко</strong>
-            <a class="country-card-link" href="#tours">Смотреть туры <span aria-hidden="true">→</span></a>
+            <a class="country-card-link" href="#tours">Подробнее <span aria-hidden="true">→</span></a>
           </article>
           <article class="country-card" tabindex="0" data-carousel-card style="background-image: url('assets/img/destinations/travel-35.jpg');">
             <span>Африка</span>
             <strong>Занзибар</strong>
-            <a class="country-card-link" href="#tours">Смотреть туры <span aria-hidden="true">→</span></a>
+            <a class="country-card-link" href="#tours">Подробнее <span aria-hidden="true">→</span></a>
           </article>
           <article class="country-card" tabindex="0" data-carousel-card style="background-image: url('assets/img/destinations/travel-01.jpg');">
             <span>Африка</span>
             <strong>ЮАР</strong>
-            <a class="country-card-link" href="#tours">Смотреть туры <span aria-hidden="true">→</span></a>
+            <a class="country-card-link" href="#tours">Подробнее <span aria-hidden="true">→</span></a>
           </article>
         </div>
       </div>
@@ -264,31 +267,30 @@
       </div>
     </section>
 
-    <section class="section direction-section" id="america-caribbean" data-direction-section data-direction-number="05" style="background-image: linear-gradient(90deg, rgba(17, 22, 21, .88), rgba(17, 22, 21, .58) 42%, rgba(17, 22, 21, .35)), linear-gradient(0deg, rgba(17, 22, 21, .86), rgba(17, 22, 21, .18) 55%, rgba(95, 100, 96, .4)), url('assets/img/destinations/travel-36.jpg');">
+    <section class="section direction-section" id="america-caribbean" data-direction-section data-direction-number="05" style="background-image: linear-gradient(90deg, rgba(17, 22, 21, .88), rgba(17, 22, 21, .58) 42%, rgba(17, 22, 21, .35)), linear-gradient(0deg, rgba(17, 22, 21, .86), rgba(17, 22, 21, .18) 55%, rgba(95, 100, 96, .4)), url('assets/img/destinations/bg-america-caribbean.jpg');">
       <span class="direction-neighbor direction-neighbor-prev" aria-hidden="true">Африка</span>
       <span class="direction-neighbor direction-neighbor-next" aria-hidden="true">Острова</span>
       <div class="direction-content">
         <div class="direction-copy">
-          <p class="eyebrow">Направления</p>
           <h2>Америка и Карибы</h2>
           <p class="direction-text">Большие города, пляжи, природные парки, гастрономические маршруты и путешествия с ярким ритмом.</p>
-          <a class="primary-button" href="#library">Смотреть страны <span aria-hidden="true">→</span></a>
+          <a class="primary-button" href="#library">Смотреть страну <span aria-hidden="true">→</span></a>
         </div>
         <div class="country-rail direction-rail" id="americaRail" aria-label="Страны Америки и Карибского бассейна" data-card-carousel>
           <article class="country-card is-active" tabindex="0" data-carousel-card aria-current="true" style="background-image: url('assets/img/destinations/travel-14.jpg');">
             <span>Америка и Карибы</span>
             <strong>США</strong>
-            <a class="country-card-link" href="#tours">Смотреть туры <span aria-hidden="true">→</span></a>
+            <a class="country-card-link" href="#tours">Подробнее <span aria-hidden="true">→</span></a>
           </article>
           <article class="country-card" tabindex="0" data-carousel-card style="background-image: url('assets/img/destinations/travel-25.jpg');">
             <span>Америка и Карибы</span>
             <strong>Мексика</strong>
-            <a class="country-card-link" href="#tours">Смотреть туры <span aria-hidden="true">→</span></a>
+            <a class="country-card-link" href="#tours">Подробнее <span aria-hidden="true">→</span></a>
           </article>
           <article class="country-card" tabindex="0" data-carousel-card style="background-image: url('assets/img/destinations/travel-07.jpg');">
             <span>Америка и Карибы</span>
             <strong>Бразилия</strong>
-            <a class="country-card-link" href="#tours">Смотреть туры <span aria-hidden="true">→</span></a>
+            <a class="country-card-link" href="#tours">Подробнее <span aria-hidden="true">→</span></a>
           </article>
         </div>
       </div>
@@ -300,26 +302,30 @@
       </div>
     </section>
 
-    <section class="section direction-section" id="islands" data-direction-section data-direction-number="06" style="background-image: linear-gradient(90deg, rgba(17, 22, 21, .88), rgba(17, 22, 21, .58) 42%, rgba(17, 22, 21, .35)), linear-gradient(0deg, rgba(17, 22, 21, .86), rgba(17, 22, 21, .18) 55%, rgba(95, 100, 96, .4)), url('assets/img/destinations/travel-32.jpg');">
+    <section class="section direction-section" id="islands" data-direction-section data-direction-number="06" style="background-image: linear-gradient(90deg, rgba(17, 22, 21, .88), rgba(17, 22, 21, .58) 42%, rgba(17, 22, 21, .35)), linear-gradient(0deg, rgba(17, 22, 21, .86), rgba(17, 22, 21, .18) 55%, rgba(95, 100, 96, .4)), url('assets/img/destinations/bg-islands.jpg');">
       <span class="direction-neighbor direction-neighbor-prev" aria-hidden="true">Америка и Карибы</span>
       <span class="direction-neighbor direction-neighbor-next" aria-hidden="true">Австралия и Океания</span>
       <div class="direction-content">
         <div class="direction-copy">
-          <p class="eyebrow">Направления</p>
           <h2>Острова</h2>
           <p class="direction-text">Приватные виллы, прозрачная вода, спокойный ритм и сервис, где каждая деталь работает на ощущение уединения.</p>
-          <a class="primary-button" href="#library">Смотреть страны <span aria-hidden="true">→</span></a>
+          <a class="primary-button" href="#library">Смотреть страну <span aria-hidden="true">→</span></a>
         </div>
         <div class="country-rail direction-rail" id="islandsRail" aria-label="Островные направления" data-card-carousel>
           <article class="country-card is-active" tabindex="0" data-carousel-card aria-current="true" style="background-image: url('assets/img/destinations/travel-35.jpg');">
             <span>Острова</span>
             <strong>Мальдивы</strong>
-            <a class="country-card-link" href="#tours">Смотреть туры <span aria-hidden="true">→</span></a>
+            <a class="country-card-link" href="countries/maldives.html">Подробнее <span aria-hidden="true">→</span></a>
           </article>
-          <article class="country-card" tabindex="0" data-carousel-card style="background-image: url('assets/img/destinations/travel-33.jpg');">
+          <article class="country-card" tabindex="0" data-carousel-card style="background-image: url('assets/img/destinations/seychelles-hero.jpg');">
             <span>Острова</span>
             <strong>Сейшелы</strong>
-            <a class="country-card-link" href="#tours">Смотреть туры <span aria-hidden="true">→</span></a>
+            <a class="country-card-link" href="countries/seychelles.html">Подробнее <span aria-hidden="true">→</span></a>
+          </article>
+          <article class="country-card" tabindex="0" data-carousel-card style="background-image: url('assets/img/destinations/mauritius-hero.jpg');">
+            <span>Острова</span>
+            <strong>Маврикий</strong>
+            <a class="country-card-link" href="countries/mauritius.html">Подробнее <span aria-hidden="true">→</span></a>
           </article>
         </div>
       </div>
@@ -331,25 +337,24 @@
       </div>
     </section>
 
-    <section class="section direction-section" id="oceania" data-direction-section data-direction-number="07" style="background-image: linear-gradient(90deg, rgba(17, 22, 21, .88), rgba(17, 22, 21, .58) 42%, rgba(17, 22, 21, .35)), linear-gradient(0deg, rgba(17, 22, 21, .86), rgba(17, 22, 21, .18) 55%, rgba(95, 100, 96, .4)), url('assets/img/destinations/travel-37.jpg');">
+    <section class="section direction-section" id="oceania" data-direction-section data-direction-number="07" style="background-image: linear-gradient(90deg, rgba(17, 22, 21, .88), rgba(17, 22, 21, .58) 42%, rgba(17, 22, 21, .35)), linear-gradient(0deg, rgba(17, 22, 21, .86), rgba(17, 22, 21, .18) 55%, rgba(95, 100, 96, .4)), url('assets/img/destinations/bg-oceania.jpg');">
       <span class="direction-neighbor direction-neighbor-prev" aria-hidden="true">Острова</span>
       <div class="direction-content">
         <div class="direction-copy">
-          <p class="eyebrow">Направления</p>
           <h2>Австралия и Океания</h2>
           <p class="direction-text">Дальние маршруты, океан, редкая природа, винные регионы и путешествия, которые требуют особенно точной подготовки.</p>
-          <a class="primary-button" href="#library">Смотреть страны <span aria-hidden="true">→</span></a>
+          <a class="primary-button" href="#library">Смотреть страну <span aria-hidden="true">→</span></a>
         </div>
         <div class="country-rail direction-rail" id="oceaniaRail" aria-label="Страны Австралии и Океании" data-card-carousel>
           <article class="country-card is-active" tabindex="0" data-carousel-card aria-current="true" style="background-image: url('assets/img/destinations/travel-19.jpg');">
             <span>Австралия и Океания</span>
             <strong>Австралия</strong>
-            <a class="country-card-link" href="#tours">Смотреть туры <span aria-hidden="true">→</span></a>
+            <a class="country-card-link" href="#tours">Подробнее <span aria-hidden="true">→</span></a>
           </article>
           <article class="country-card" tabindex="0" data-carousel-card style="background-image: url('assets/img/destinations/travel-06.jpg');">
             <span>Австралия и Океания</span>
             <strong>Новая Зеландия</strong>
-            <a class="country-card-link" href="#tours">Смотреть туры <span aria-hidden="true">→</span></a>
+            <a class="country-card-link" href="#tours">Подробнее <span aria-hidden="true">→</span></a>
           </article>
         </div>
       </div>
@@ -389,7 +394,7 @@
         </article>
         <article>
           <h3>Острова и Океания</h3>
-          <p>Мальдивы, Сейшеллы, Австралия, Новая Зеландия</p>
+          <p>Мальдивы, Сейшелы, Австралия, Новая Зеландия</p>
         </article>
       </div>
     </section>

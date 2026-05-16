@@ -14,6 +14,7 @@ let snapLocked = false;
 const shouldUseSectionSnap = () => (
   window.matchMedia('(min-width: 1061px) and (hover: hover) and (pointer: fine)').matches
   && navigator.maxTouchPoints === 0
+  && !document.body.classList.contains('country-page')
 );
 
 // Расчет позиции для скролла к секции с учетом шапки
@@ -31,6 +32,48 @@ const getCurrentSectionIndex = () => {
     return sectionDistance < closestDistance ? index : closestIndex;
   }, 0);
 };
+
+const restoreSectionAfterCountry = () => {
+  let targetId = null;
+
+  try {
+    targetId = sessionStorage.getItem('return-section');
+  } catch (error) {}
+
+  if (!targetId || document.body.classList.contains('country-page')) {
+    document.documentElement.style.visibility = '';
+    return;
+  }
+
+  const target = document.getElementById(targetId);
+  try {
+    sessionStorage.removeItem('return-section');
+  } catch (error) {}
+
+  if (!target) {
+    document.documentElement.style.visibility = '';
+    return;
+  }
+
+  const previousScrollBehavior = document.documentElement.style.scrollBehavior;
+  document.documentElement.style.scrollBehavior = 'auto';
+  window.scrollTo({ top: getSnapTop(target), behavior: 'auto' });
+  requestAnimationFrame(() => {
+    document.documentElement.style.visibility = '';
+    document.documentElement.style.scrollBehavior = previousScrollBehavior;
+    scheduleDirectionUpdate();
+  });
+};
+
+document.querySelectorAll('[data-return-section]').forEach((link) => {
+  link.addEventListener('click', () => {
+    try {
+      sessionStorage.setItem('return-section', link.dataset.returnSection);
+    } catch (error) {}
+  });
+});
+
+restoreSectionAfterCountry();
 
 if (snapSections.length) {
   window.addEventListener('wheel', (event) => {
@@ -71,7 +114,9 @@ const initCarousels = () => {
 
     const parent = container.closest('[data-direction-section], [data-overview-section]');
     const counter = parent?.querySelector('[data-carousel-current]');
-    const shouldSyncBackground = container.hasAttribute('data-background-carousel') && parent?.hasAttribute('data-overview-section');
+    const countryButton = parent?.matches('[data-direction-section]')
+      ? parent.querySelector('.direction-copy .primary-button')
+      : null;
     let activeIndex = Math.max(0, cards.findIndex(c => c.classList.contains('is-active')));
     let scrollFrame = null;
     let scrollSyncFrame = 0;
@@ -109,13 +154,12 @@ const initCarousels = () => {
       // Текст счетчика
       if (counter) counter.textContent = String(activeIndex + 1).padStart(2, '0');
 
-      // Фон секции
-      if (shouldSyncBackground) {
-        const img = activeCard.style.backgroundImage;
-        const overlay = `linear-gradient(90deg, rgba(17, 22, 21, .88), rgba(17, 22, 21, .58) 42%, rgba(17, 22, 21, .35)), linear-gradient(0deg, rgba(17, 22, 21, .86), rgba(17, 22, 21, .18) 55%, rgba(95, 100, 96, .4))`;
-        parent.style.backgroundImage = `${overlay}, ${img}`;
+      const activeLink = activeCard.querySelector('.country-card-link');
+      if (countryButton && activeLink) {
+        countryButton.href = activeLink.getAttribute('href');
       }
 
+      // Фон секции
       if (!shouldCenter) return;
 
       if (smooth) {
@@ -324,3 +368,61 @@ if (directionNavButtons.length && directionSections.length) {
   window.addEventListener('scroll', scheduleDirectionUpdate, { passive: true });
   window.addEventListener('resize', scheduleDirectionUpdate);
 }
+
+// --- Модальные окна ---
+const modalOpenButtons = document.querySelectorAll('[data-modal-open]');
+const modals = document.querySelectorAll('[data-modal]');
+let modalScrollY = 0;
+
+const closeModal = (modal) => {
+  if (!modal) return;
+  const wasOpen = modal.classList.contains('is-open');
+  const lockedTop = parseInt(document.body.style.top || '0', 10);
+  const restoreY = lockedTop ? Math.abs(lockedTop) : modalScrollY;
+  modal.classList.remove('is-open');
+  modal.setAttribute('aria-hidden', 'true');
+  if (wasOpen && !document.querySelector('[data-modal].is-open')) {
+    const previousScrollBehavior = document.documentElement.style.scrollBehavior;
+    document.body.classList.remove('is-modal-open');
+    document.documentElement.style.scrollBehavior = 'auto';
+    document.body.style.position = '';
+    document.body.style.top = '';
+    document.body.style.width = '';
+    window.scrollTo(0, restoreY);
+    requestAnimationFrame(() => {
+      document.documentElement.style.scrollBehavior = previousScrollBehavior;
+    });
+  }
+};
+
+const openModal = (modalId) => {
+  const modal = document.getElementById(modalId);
+  if (!modal) return;
+  modals.forEach(closeModal);
+  modalScrollY = window.scrollY || document.documentElement.scrollTop;
+  modal.classList.add('is-open');
+  modal.setAttribute('aria-hidden', 'false');
+  document.body.classList.add('is-modal-open');
+  document.body.style.position = 'fixed';
+  document.body.style.top = `-${modalScrollY}px`;
+  document.body.style.width = '100%';
+};
+
+modalOpenButtons.forEach((button) => {
+  button.addEventListener('click', () => openModal(button.dataset.modalOpen));
+  button.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      openModal(button.dataset.modalOpen);
+    }
+  });
+});
+
+document.querySelectorAll('[data-modal-close]').forEach((button) => {
+  button.addEventListener('click', () => closeModal(button.closest('[data-modal]')));
+});
+
+document.addEventListener('keydown', (event) => {
+  if (event.key !== 'Escape') return;
+  modals.forEach(closeModal);
+});

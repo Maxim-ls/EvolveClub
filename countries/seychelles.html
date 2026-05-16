@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Сейшелы - EvolveClub</title>
+  <meta name="description" content="Сейшелы с EvolveClub: природа, пляжи, практическая информация и подборка рекомендуемых отелей.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body class="country-page">
+  <header class="site-header" data-header>
+    <a class="brand" href="../index.html#top" aria-label="EvolveClub">
+      <span class="brand-mark">EC</span>
+      <span>EvolveClub</span>
+    </a>
+    <nav class="main-nav" aria-label="Основная навигация">
+      <a href="../index.html#top">О нас</a>
+      <a href="../index.html#destinations">Страны</a>
+      <a href="../index.html#tours">Туры</a>
+      <a href="../index.html#services">Услуги</a>
+      <a href="../index.html#contacts">Контакты</a>
+    </nav>
+    <a class="header-action" href="../index.html#request" aria-label="Оставить запрос">
+      <span>Запрос</span>
+    </a>
+  </header>
+
+  <main id="top">
+    <section class="country-hero" style="background-image: linear-gradient(90deg, rgba(17, 22, 21, .86), rgba(17, 22, 21, .54) 46%, rgba(17, 22, 21, .28)), linear-gradient(0deg, rgba(17, 22, 21, .88), rgba(17, 22, 21, .08) 58%), url('../assets/img/destinations/seychelles-hero.jpg');">
+      <div class="country-hero-inner">
+        <a class="country-back" href="../index.html" data-return-section="islands"><span aria-hidden="true">←</span> Назад</a>
+        <h1>Сейшелы</h1>
+        <p>Гранитные скалы, белоснежные пляжи, тропическая зелень и редкое ощущение тишины, где каждый день проходит в мягком островном ритме.</p>
+        <div class="country-actions" aria-label="Информация о направлении">
+          <button type="button" class="primary-button" data-modal-open="seychelles-why">Зачем ехать? <span aria-hidden="true">→</span></button>
+          <button type="button" class="ghost-button country-ghost-button" data-modal-open="seychelles-details">Подробнее <span aria-hidden="true">→</span></button>
+        </div>
+      </div>
+    </section>
+
+    <section class="country-hotels" id="hotels">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Наши рекомендации</p>
+        </div>
+      </div>
+
+      <div class="hotel-group">
+        <h2>Deluxe</h2>
+        <div class="hotel-grid">
+          <article class="hotel-card" tabindex="0" data-modal-open="hotel-north-island">
+            <div class="hotel-card-image" style="background-image: url('../assets/img/hotels/seychelles-north-island.jpg');"></div>
+            <div class="hotel-card-body">
+              <span>Приватный остров · Полное уединение</span>
+              <h3>North Island, Seychelles</h3>
+              <p>Один из самых закрытых форматов на Сейшелах: просторные виллы, персональный сервис и ощущение собственного острова.</p>
+            </div>
+          </article>
+          <article class="hotel-card" tabindex="0" data-modal-open="hotel-fregate">
+            <div class="hotel-card-image" style="background-image: url('../assets/img/hotels/seychelles-fregate-island.jpg');"></div>
+            <div class="hotel-card-body">
+              <span>Частный остров · Природа</span>
+              <h3>Fregate Island Private</h3>
+              <p>Редкий островной формат для гостей, которым нужны приватность, дикая природа и пляжи почти без посторонних.</p>
+            </div>
+          </article>
+          <article class="hotel-card" tabindex="0" data-modal-open="hotel-anantara-maia">
+            <div class="hotel-card-image" style="background-image: url('../assets/img/hotels/seychelles-anantara-maia.jpg');"></div>
+            <div class="hotel-card-body">
+              <span>Виллы с бассейнами · Маэ</span>
+              <h3>Anantara Maia Seychelles Villas</h3>
+              <p>Премиальные виллы на Маэ для пар и семей, которым важны приватность, панорамные виды и персональный ритм отдыха.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <div class="hotel-group">
+        <h2>Premium</h2>
+        <div class="hotel-grid">
+          <article class="hotel-card" tabindex="0" data-modal-open="hotel-four-seasons">
+            <div class="hotel-card-image" style="background-image: url('../assets/img/hotels/seychelles-four-seasons.jpg');"></div>
+            <div class="hotel-card-body">
+              <span>Маэ · Пляж и виллы</span>
+              <h3>Four Seasons Resort Seychelles</h3>
+              <p>Выразительный курорт на склоне у пляжа Petite Anse: океан, виллы с бассейнами и узнаваемый сервис Four Seasons.</p>
+            </div>
+          </article>
+          <article class="hotel-card" tabindex="0" data-modal-open="hotel-raffles">
+            <div class="hotel-card-image" style="background-image: url('../assets/img/hotels/seychelles-raffles.jpg');"></div>
+            <div class="hotel-card-body">
+              <span>Праслин · Виды на океан</span>
+              <h3>Raffles Seychelles</h3>
+              <p>Сильный вариант на Праслине: просторные виллы, виды на лагуну и удобная база для знакомства с Valle de Mai.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <div class="hotel-group">
+        <h2>Business</h2>
+        <div class="hotel-grid">
+          <article class="hotel-card" tabindex="0" data-modal-open="hotel-larchipel">
+            <div class="hotel-card-image" style="background-image: url('../assets/img/hotels/seychelles-larchipel.jpg');"></div>
+            <div class="hotel-card-body">
+              <span>Праслин · Спокойный пляж</span>
+              <h3>L'Archipel</h3>
+              <p>Камерный пляжный отель на Праслине для тех, кто выбирает спокойствие, зелень и мягкий классический формат отдыха.</p>
+            </div>
+          </article>
+          <article class="hotel-card" tabindex="0" data-modal-open="hotel-orangeraie">
+            <div class="hotel-card-image" style="background-image: url('../assets/img/hotels/seychelles-orangeraie.jpg');"></div>
+            <div class="hotel-card-body">
+              <span>Ла-Диг · Бутик-формат</span>
+              <h3>Le Domaine de L'Orangeraie</h3>
+              <p>Атмосферный бутик-курорт на Ла-Диге рядом с природой, гранитными скалами и самым узнаваемым ритмом Сейшел.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <div class="country-top-action">
+        <a class="ghost-button country-ghost-button" href="#top">Наверх <span aria-hidden="true">↑</span></a>
+      </div>
+    </section>
+  </main>
+
+  <div class="modal" id="seychelles-why" data-modal aria-hidden="true">
+    <div class="modal-backdrop" data-modal-close></div>
+    <section class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="seychelles-why-title">
+      <button type="button" class="modal-close" data-modal-close aria-label="Закрыть">×</button>
+      <p class="eyebrow">Сейшелы</p>
+      <h2 id="seychelles-why-title">Зачем ехать?</h2>
+      <div class="modal-copy">
+        <p><b>Пляжи.</b> Коралловые рифы защищают бухты от больших волн, а мягкий песок и прозрачная вода создают идеальный сценарий для спокойного купания.</p>
+        <p><b>Природа.</b> Valle de Mai на Праслине, гранитные скалы Ла-Дига, тропические леса и редкие эндемики делают маршрут насыщенным без ощущения суеты.</p>
+        <p><b>Яхтинг.</b> Можно арендовать яхту или катер и отправиться к соседним островам, выбирая собственный темп и приватные остановки.</p>
+        <p><b>Активности.</b> Дайвинг, снорклинг, виндсерфинг, парасейлинг, рыбалка и морские прогулки легко встроить в спокойный пляжный отдых.</p>
+      </div>
+    </section>
+  </div>
+
+  <div class="modal" id="seychelles-details" data-modal aria-hidden="true">
+    <div class="modal-backdrop" data-modal-close></div>
+    <section class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="seychelles-details-title">
+      <button type="button" class="modal-close" data-modal-close aria-label="Закрыть">×</button>
+      <p class="eyebrow">Практическая информация</p>
+      <h2 id="seychelles-details-title">Подробнее</h2>
+      <div class="modal-copy">
+        <p>Сейшельские острова расположены в западной части Индийского океана, к востоку от Африки. Главный остров Маэ - крупнейший в архипелаге: здесь находятся международный аэропорт и столица Виктория.</p>
+        <p>Праслин считается одним из самых живописных островов: здесь растет легендарная пальма coco de mer и находится национальный парк Valle de Mai. Ла-Диг известен гранитными скалами, камерной атмосферой и медленным островным ритмом.</p>
+        <ul class="modal-facts">
+          <li><b>Климат:</b> тропический, около +27...+29°C большую часть года.</li>
+          <li><b>Лучшее время:</b> май, октябрь - декабрь; комфортная погода возможна почти круглый год.</li>
+          <li><b>Перелет:</b> обычно с пересадкой, далее трансфер на катере, пароме, автомобиле или вертолете.</li>
+          <li><b>Виза:</b> гражданам России виза заранее не требуется, разрешение оформляется при въезде.</li>
+          <li><b>Валюта:</b> сейшельская рупия, но в отелях часто используют оплату картой.</li>
+          <li><b>Языки:</b> английский, французский и креольский.</li>
+        </ul>
+      </div>
+    </section>
+  </div>
+
+  <div class="modal" id="hotel-north-island" data-modal aria-hidden="true">
+    <div class="modal-backdrop" data-modal-close></div>
+    <section class="modal-panel hotel-modal-panel" role="dialog" aria-modal="true" aria-labelledby="hotel-north-island-title">
+      <button type="button" class="modal-close" data-modal-close aria-label="Закрыть">×</button>
+      <div class="hotel-modal-media">
+        <p class="eyebrow">Deluxe · North Island</p>
+        <h2 id="hotel-north-island-title">North Island, Seychelles</h2>
+        <img src="../assets/img/hotels/seychelles-north-island.jpg" alt="North Island Seychelles">
+        <a class="primary-button modal-action" href="../index.html#request">Выбрать отель <span aria-hidden="true">→</span></a>
+      </div>
+      <div class="hotel-modal-content">
+        <ol class="hotel-profile">
+          <li><b>Чем выделяется</b> один из самых приватных островов Сейшел, где отдых строится вокруг полной конфиденциальности и персонального сервиса.</li>
+          <li><b>Формат отеля</b> ультралюксовый частный остров с ограниченным числом вилл и индивидуальной настройкой каждого дня.</li>
+          <li><b>Расположение</b> остров North Island, трансфер обычно организуется вертолетом от Маэ.</li>
+          <li><b>Виллы и номера</b> просторные виллы с бассейнами, террасами, выходом к пляжу и видом на океан.</li>
+          <li><b>Инфраструктура</b> SPA, водные активности, дайвинг, прогулки по острову, приватные ужины и персональный сервис.</li>
+          <li><b>Гастрономия</b> индивидуальные меню, свежие морепродукты, креольские акценты и приватные ужины.</li>
+          <li><b>Кому подойдет</b> VIP-гостям, парам и семьям, которым нужна максимальная приватность и собственный островной ритм.</li>
+        </ol>
+      </div>
+    </section>
+  </div>
+
+  <div class="modal" id="hotel-fregate" data-modal aria-hidden="true">
+    <div class="modal-backdrop" data-modal-close></div>
+    <section class="modal-panel hotel-modal-panel" role="dialog" aria-modal="true" aria-labelledby="hotel-fregate-title">
+      <button type="button" class="modal-close" data-modal-close aria-label="Закрыть">×</button>
+      <div class="hotel-modal-media">
+        <p class="eyebrow">Deluxe · Fregate Island</p>
+        <h2 id="hotel-fregate-title">Fregate Island Private</h2>
+        <img src="../assets/img/hotels/seychelles-fregate-island.jpg" alt="Fregate Island Private">
+        <a class="primary-button modal-action" href="../index.html#request">Выбрать отель <span aria-hidden="true">→</span></a>
+      </div>
+      <div class="hotel-modal-content">
+        <ol class="hotel-profile">
+          <li><b>Чем выделяется</b> частный остров с редкой природой, розоватым песком, тропическими лесами и ощущением полного побега от внешнего мира.</li>
+          <li><b>Формат отеля</b> приватный островной курорт для уединенного отдыха, семейных поездок и эксклюзивных событий.</li>
+          <li><b>Расположение</b> остров Фрегат, примерно 40 минут перелета от Маэ.</li>
+          <li><b>Виллы и номера</b> виллы большого формата с частными бассейнами, террасами и панорамными видами.</li>
+          <li><b>Инфраструктура</b> пляжи, SPA, водные активности, прогулки по острову, природные маршруты и индивидуальная логистика.</li>
+          <li><b>Гастрономия</b> свежие продукты, островная кухня, приватные ужины и гибкий подход к меню.</li>
+          <li><b>Кому подойдет</b> гостям, которым важны природа, приватность, большой простор и камерный формат без массового туризма.</li>
+        </ol>
+      </div>
+    </section>
+  </div>
+
+  <div class="modal" id="hotel-anantara-maia" data-modal aria-hidden="true">
+    <div class="modal-backdrop" data-modal-close></div>
+    <section class="modal-panel hotel-modal-panel" role="dialog" aria-modal="true" aria-labelledby="hotel-anantara-maia-title">
+      <button type="button" class="modal-close" data-modal-close aria-label="Закрыть">×</button>
+      <div class="hotel-modal-media">
+        <p class="eyebrow">Deluxe · Mahe</p>
+        <h2 id="hotel-anantara-maia-title">Anantara Maia Seychelles Villas</h2>
+        <img src="../assets/img/hotels/seychelles-anantara-maia.jpg" alt="Anantara Maia Seychelles Villas">
+        <a class="primary-button modal-action" href="../index.html#request">Выбрать отель <span aria-hidden="true">→</span></a>
+      </div>
+      <div class="hotel-modal-content">
+        <ol class="hotel-profile">
+          <li><b>Чем выделяется</b> виллы на склоне у пляжа Anse Louis, где приватность сочетается с удобной логистикой главного острова.</li>
+          <li><b>Формат отеля</b> курорт 5* с виллами, персональным сервисом и мягкой атмосферой велнес-отдыха.</li>
+          <li><b>Расположение</b> западное побережье Маэ, около 25 минут от международного аэропорта.</li>
+          <li><b>Виллы и номера</b> виллы с бассейнами, открытыми террасами, видами на океан или тропическую зелень.</li>
+          <li><b>Инфраструктура</b> SPA, пляж, водные активности, йога, индивидуальные маршруты и сервис на вилле.</li>
+          <li><b>Гастрономия</b> гибкая концепция питания, приватные ужины и блюда с креольскими и международными акцентами.</li>
+          <li><b>Кому подойдет</b> парам, молодоженам и семьям, которым нужен приватный формат без сложного трансфера.</li>
+        </ol>
+      </div>
+    </section>
+  </div>
+
+  <div class="modal" id="hotel-four-seasons" data-modal aria-hidden="true">
+    <div class="modal-backdrop" data-modal-close></div>
+    <section class="modal-panel hotel-modal-panel" role="dialog" aria-modal="true" aria-labelledby="hotel-four-seasons-title">
+      <button type="button" class="modal-close" data-modal-close aria-label="Закрыть">×</button>
+      <div class="hotel-modal-media">
+        <p class="eyebrow">Premium · Mahe</p>
+        <h2 id="hotel-four-seasons-title">Four Seasons Resort Seychelles</h2>
+        <img src="../assets/img/hotels/seychelles-four-seasons.jpg" alt="Four Seasons Resort Seychelles">
+        <a class="primary-button modal-action" href="../index.html#request">Выбрать отель <span aria-hidden="true">→</span></a>
+      </div>
+      <div class="hotel-modal-content">
+        <ol class="hotel-profile">
+          <li><b>Чем выделяется</b> виллы на зеленом склоне над Petite Anse, один из самых фотогеничных пляжных сценариев на Маэ.</li>
+          <li><b>Формат отеля</b> курорт 5* под брендом Four Seasons с сильным сервисом и понятной инфраструктурой.</li>
+          <li><b>Расположение</b> остров Маэ, бухта Petite Anse, удобный автомобильный трансфер от аэропорта.</li>
+          <li><b>Виллы и номера</b> виллы и резиденции с бассейнами, террасами, видами на океан и тропическую зелень.</li>
+          <li><b>Инфраструктура</b> SPA, пляж, бассейн, фитнес, водные активности, детские сценарии и консьерж-сервис.</li>
+          <li><b>Гастрономия</b> рестораны с креольскими, азиатскими и международными акцентами, бары и приватные ужины.</li>
+          <li><b>Кому подойдет</b> парам и семьям, которым нужен премиальный сервис, красивый пляж и удобство Маэ.</li>
+        </ol>
+      </div>
+    </section>
+  </div>
+
+  <div class="modal" id="hotel-raffles" data-modal aria-hidden="true">
+    <div class="modal-backdrop" data-modal-close></div>
+    <section class="modal-panel hotel-modal-panel" role="dialog" aria-modal="true" aria-labelledby="hotel-raffles-title">
+      <button type="button" class="modal-close" data-modal-close aria-label="Закрыть">×</button>
+      <div class="hotel-modal-media">
+        <p class="eyebrow">Premium · Praslin</p>
+        <h2 id="hotel-raffles-title">Raffles Seychelles</h2>
+        <img src="../assets/img/hotels/seychelles-raffles.jpg" alt="Raffles Seychelles">
+        <a class="primary-button modal-action" href="../index.html#request">Выбрать отель <span aria-hidden="true">→</span></a>
+      </div>
+      <div class="hotel-modal-content">
+        <ol class="hotel-profile">
+          <li><b>Чем выделяется</b> просторные виллы на Праслине, панорамные виды и удобная база для знакомства с природой острова.</li>
+          <li><b>Формат отеля</b> курорт 5* с виллами, бассейнами и более живой курортной инфраструктурой.</li>
+          <li><b>Расположение</b> остров Праслин, рядом с пляжами, природными маршрутами и Valle de Mai.</li>
+          <li><b>Виллы и номера</b> виллы с частными бассейнами, террасами, видами на океан, сад или холмы.</li>
+          <li><b>Инфраструктура</b> SPA, бассейны, пляж, водные активности, детская инфраструктура и экскурсионные маршруты.</li>
+          <li><b>Гастрономия</b> рестораны и бары с международной кухней, морепродуктами и креольскими акцентами.</li>
+          <li><b>Кому подойдет</b> семьям, парам и гостям, которым важно совместить пляж, природу и хороший уровень сервиса.</li>
+        </ol>
+      </div>
+    </section>
+  </div>
+
+  <div class="modal" id="hotel-larchipel" data-modal aria-hidden="true">
+    <div class="modal-backdrop" data-modal-close></div>
+    <section class="modal-panel hotel-modal-panel" role="dialog" aria-modal="true" aria-labelledby="hotel-larchipel-title">
+      <button type="button" class="modal-close" data-modal-close aria-label="Закрыть">×</button>
+      <div class="hotel-modal-media">
+        <p class="eyebrow">Business · Praslin</p>
+        <h2 id="hotel-larchipel-title">L'Archipel</h2>
+        <img src="../assets/img/hotels/seychelles-larchipel.jpg" alt="L'Archipel Seychelles">
+        <a class="primary-button modal-action" href="../index.html#request">Выбрать отель <span aria-hidden="true">→</span></a>
+      </div>
+      <div class="hotel-modal-content">
+        <ol class="hotel-profile">
+          <li><b>Чем выделяется</b> спокойный пляжный отель на Праслине с камерной атмосферой и мягким островным характером.</li>
+          <li><b>Формат отеля</b> классический курортный формат для размеренного отдыха без чрезмерной формальности.</li>
+          <li><b>Расположение</b> остров Праслин, удобная база для пляжей, Valle de Mai и поездок на Ла-Диг.</li>
+          <li><b>Виллы и номера</b> номера и сьюты с террасами, видом на океан или сад, спокойная приватная территория.</li>
+          <li><b>Инфраструктура</b> пляж, бассейн, ресторан, водные активности, прогулки и островные экскурсии.</li>
+          <li><b>Гастрономия</b> международная и креольская кухня, свежие морепродукты и спокойные ужины у океана.</li>
+          <li><b>Кому подойдет</b> парам и семьям, которым нужен красивый Праслин, хороший пляж и сдержанный бюджет.</li>
+        </ol>
+      </div>
+    </section>
+  </div>
+
+  <div class="modal" id="hotel-orangeraie" data-modal aria-hidden="true">
+    <div class="modal-backdrop" data-modal-close></div>
+    <section class="modal-panel hotel-modal-panel" role="dialog" aria-modal="true" aria-labelledby="hotel-orangeraie-title">
+      <button type="button" class="modal-close" data-modal-close aria-label="Закрыть">×</button>
+      <div class="hotel-modal-media">
+        <p class="eyebrow">Business · La Digue</p>
+        <h2 id="hotel-orangeraie-title">Le Domaine de L'Orangeraie</h2>
+        <img src="../assets/img/hotels/seychelles-orangeraie.jpg" alt="Le Domaine de L'Orangeraie">
+        <a class="primary-button modal-action" href="../index.html#request">Выбрать отель <span aria-hidden="true">→</span></a>
+      </div>
+      <div class="hotel-modal-content">
+        <ol class="hotel-profile">
+          <li><b>Чем выделяется</b> атмосферный бутик-курорт на Ла-Диге, где особенно хорошо чувствуется медленный ритм Сейшел.</li>
+          <li><b>Формат отеля</b> камерный курорт с тропическим садом, виллами и близостью к самым узнаваемым пляжам архипелага.</li>
+          <li><b>Расположение</b> остров Ла-Диг, удобный доступ к пляжам, гранитным скалам и велосипедным маршрутам.</li>
+          <li><b>Виллы и номера</b> виллы и сьюты в тропической зелени, приватные террасы и мягкий природный дизайн.</li>
+          <li><b>Инфраструктура</b> SPA, бассейн, ресторан, прокат велосипедов, пляжи и маршруты по острову.</li>
+          <li><b>Гастрономия</b> креольская и международная кухня, морепродукты, ужины с видом на океан.</li>
+          <li><b>Кому подойдет</b> парам и гостям, которым важны атмосфера Ла-Дига, природа и неспешный островной формат.</li>
+        </ol>
+      </div>
+    </section>
+  </div>
+
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>
