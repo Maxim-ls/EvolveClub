@@ -355,6 +355,57 @@ document.querySelectorAll('a[href^="#"]').forEach((link) => {
   });
 });
 
+// --- Галерея в первом блоке страницы отеля ---
+document.querySelectorAll('[data-hotel-hero]').forEach((hero) => {
+  const images = (hero.dataset.heroImages || '')
+    .split('|')
+    .map((image) => image.trim())
+    .filter(Boolean);
+  const current = hero.querySelector('[data-hero-current]');
+  const total = hero.querySelector('[data-hero-total]');
+  const prev = hero.querySelector('[data-hero-prev]');
+  const next = hero.querySelector('[data-hero-next]');
+  let index = 0;
+
+  if (!images.length) return;
+
+  const updateHeroImage = (smooth = true) => {
+    const image = `url('${images[index]}')`;
+
+    if (!smooth) {
+      hero.style.backgroundImage = `linear-gradient(90deg, rgba(17,22,21,.58), rgba(17,22,21,.3)), linear-gradient(0deg, rgba(17,22,21,.56), rgba(17,22,21,.12)), ${image}`;
+      hero.style.setProperty('--hotel-hero-image', image);
+      hero.style.setProperty('--hotel-next-image', image);
+      if (current) current.textContent = String(index + 1).padStart(2, '0');
+      if (total) total.textContent = String(images.length).padStart(2, '0');
+      return;
+    }
+
+    hero.style.setProperty('--hotel-next-image', image);
+    hero.classList.add('is-fading');
+    window.setTimeout(() => {
+      hero.style.backgroundImage = `linear-gradient(90deg, rgba(17,22,21,.58), rgba(17,22,21,.3)), linear-gradient(0deg, rgba(17,22,21,.56), rgba(17,22,21,.12)), ${image}`;
+      hero.style.setProperty('--hotel-hero-image', image);
+      hero.classList.remove('is-fading');
+    }, 550);
+
+    if (current) current.textContent = String(index + 1).padStart(2, '0');
+    if (total) total.textContent = String(images.length).padStart(2, '0');
+  };
+
+  prev?.addEventListener('click', () => {
+    index = (index - 1 + images.length) % images.length;
+    updateHeroImage();
+  });
+
+  next?.addEventListener('click', () => {
+    index = (index + 1) % images.length;
+    updateHeroImage();
+  });
+
+  updateHeroImage(false);
+});
+
 // --- Наблюдатель за секциями (Intersection Observer) ---
 if (directionNavButtons.length && directionSections.length) {
   const observer = new IntersectionObserver((entries) => {
