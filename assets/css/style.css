@@ -1,4 +1,8 @@
-﻿:root {
+﻿/* ==========================================================================
+   Design Tokens
+   ========================================================================== */
+
+:root {
   --ink: #f6f5ef;
   --muted: rgba(246, 245, 239, .72);
   --soft: rgba(246, 245, 239, .1);
@@ -11,6 +15,7 @@
   --header-height: 98px;
   --page-x: clamp(36px, 10vw, 112px);
   --mobile-x: 24px;
+  --country-title-offset-y: clamp(56px, 10vh, 120px);
   --direction-content-offset: clamp(18px, 3vw, 48px);
   --section-block-space: clamp(76px, 9vw, 130px);
   --text-xs: 12px;
@@ -19,7 +24,12 @@
   --text-body: clamp(14px, 1.1vw, 16px);
   --font-ui: Manrope, Arial, sans-serif;
   --font-display: Montserrat, Manrope, Arial, sans-serif;
+  --room-card-pad: clamp(20px, 2.6vw, 30px);
 }
+
+/* ==========================================================================
+   Base
+   ========================================================================== */
 
 * {
   box-sizing: border-box;
@@ -47,6 +57,10 @@ input,
 textarea {
   font: inherit;
 }
+
+/* ==========================================================================
+   Header
+   ========================================================================== */
 
 .site-header {
   position: fixed;
@@ -129,6 +143,10 @@ textarea {
   font-size: var(--text-sm);
 }
 
+/* ==========================================================================
+   Home Hero
+   ========================================================================== */
+
 .hero {
   position: relative;
   height: 100vh;
@@ -199,6 +217,10 @@ textarea {
   margin-top: -14px;
 }
 
+/* ==========================================================================
+   Shared Controls And Cards
+   ========================================================================== */
+
 .primary-button,
 .ghost-button {
   display: inline-flex;
@@ -220,6 +242,21 @@ textarea {
 
 .primary-button:hover {
   background: var(--teal-bright);
+}
+
+.primary-button svg,
+.ghost-button svg,
+.country-card-link svg,
+.round-button svg,
+.country-back svg {
+  width: 22px;
+  height: 22px;
+  flex: 0 0 auto;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 .ghost-button {
@@ -283,6 +320,10 @@ textarea {
   background: rgba(246, 245, 239, .2);
   transform: translateY(-1px);
 }
+
+/* ==========================================================================
+   Home Sections
+   ========================================================================== */
 
 .section {
   position: relative;
@@ -527,7 +568,8 @@ textarea {
 .direction-copy {
   position: relative;
   max-width: 610px;
-  padding-top: 4vh;
+  padding-top: 0;
+  transform: translateY(clamp(24px, 7vh, 76px));
 }
 
 .direction-ghost {
@@ -651,6 +693,15 @@ textarea {
   transition: height .45s ease, opacity .35s ease, transform .35s ease, filter .35s ease, box-shadow .35s ease;
 }
 
+.direction-rail .country-card:hover,
+.direction-rail .country-card:focus-visible {
+  z-index: 3;
+  opacity: .96;
+  filter: saturate(1.04) brightness(1.03);
+  transform: scale(1.04);
+  box-shadow: 0 18px 48px rgba(0, 191, 208, .16);
+}
+
 .direction-rail .country-card.is-active {
   height: var(--rail-card-active-height);
   z-index: 2;
@@ -659,6 +710,11 @@ textarea {
   border-color: transparent;
   box-shadow: 4px 4px 5px rgba(157, 157, 157, 0.1);
   transform: scale(1.08);
+}
+
+.direction-rail .country-card.is-active:hover,
+.direction-rail .country-card.is-active:focus-visible {
+  transform: scale(1.12);
 }
 
 .country-card-link {
@@ -678,7 +734,7 @@ textarea {
 .country-card-link:hover {
   opacity: 1;
   color: var(--teal-bright);
-  transform: translateX(-3px);
+  transform: none;
 }
 
 .library-section {
@@ -909,6 +965,10 @@ textarea {
   font-size: var(--text-base);
 }
 
+/* ==========================================================================
+   Country Pages
+   ========================================================================== */
+
 .country-page {
   background: #101514;
 }
@@ -947,7 +1007,7 @@ textarea {
 }
 
 .country-hero h1 {
-  margin: 0;
+  margin: var(--country-title-offset-y) 0 0;
   font-family: var(--font-display);
   font-size: clamp(46px, 6.8vw, 104px);
   line-height: .95;
@@ -977,7 +1037,7 @@ textarea {
   align-items: center;
   justify-content: center;
   gap: 12px;
-  min-height: 52px;
+  min-height: 58px;
   padding: 0 24px;
   border-color: rgba(0, 191, 208, .58);
   background: rgba(0, 191, 208, .14);
@@ -985,8 +1045,19 @@ textarea {
   margin-top: 0;
 }
 
-.country-ghost-button span {
+.country-ghost-button span,
+.country-ghost-button svg {
   color: inherit;
+}
+
+.country-ghost-button svg {
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 .country-ghost-button:hover {
@@ -1110,6 +1181,10 @@ textarea {
   text-decoration: none;
 }
 
+/* ==========================================================================
+   Hotel Detail Pages
+   ========================================================================== */
+
 .hotel-detail-page {
   background: #101514;
 }
@@ -1120,7 +1195,7 @@ textarea {
   min-height: 100svh;
   display: grid;
   align-items: center;
-  padding: var(--header-height) var(--page-x) clamp(56px, 7vw, 92px);
+  padding: var(--header-height) var(--page-x) clamp(56px, 7vw, 120px);
   background-image: linear-gradient(90deg, rgba(17,22,21,.58), rgba(17,22,21,.3)), linear-gradient(0deg, rgba(17,22,21,.56), rgba(17,22,21,.12)), var(--hotel-hero-image);
   background-position: center;
   background-size: cover;
@@ -1180,11 +1255,15 @@ textarea {
 }
 
 .hotel-rating-label {
+  display: inline-flex;
+  align-items: center;
   margin-left: 8px;
   color: var(--muted);
   font-size: var(--text-xs);
+  line-height: 1;
   letter-spacing: .1em;
   text-transform: uppercase;
+  transform: translateY(1px);
 }
 
 .hotel-location {
@@ -1204,6 +1283,17 @@ textarea {
   height: 18px;
   color: var(--teal-bright);
   stroke-width: 1.9;
+}
+
+.hotel-hero-actions {
+  position: absolute;
+  left: var(--page-x);
+  bottom: clamp(56px, 7vw, 92px);
+  z-index: 4;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
 }
 
 .hotel-facts {
@@ -1256,15 +1346,28 @@ textarea {
 }
 
 .hotel-hero-controls button {
+  display: grid;
+  place-items: center;
   width: 48px;
   height: 48px;
+  padding: 0;
   border: 1px solid rgba(246, 245, 239, .32);
   border-radius: 50%;
   background: rgba(17, 22, 21, .42);
   color: var(--ink);
   cursor: pointer;
-  font-size: 20px;
   transition: background .2s ease, border-color .2s ease, color .2s ease, transform .2s ease;
+}
+
+.hotel-hero-controls button svg,
+.room-gallery button svg {
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 .hotel-hero-controls button:hover {
@@ -1389,7 +1492,70 @@ textarea {
 }
 
 .room-card {
-  padding: clamp(20px, 2.6vw, 30px);
+  display: flex;
+  flex-direction: column;
+  padding: var(--room-card-pad);
+}
+
+.room-gallery {
+  position: relative;
+  width: calc(100% + (var(--room-card-pad) * 2));
+  aspect-ratio: 16 / 10;
+  margin: calc(var(--room-card-pad) * -1) calc(var(--room-card-pad) * -1) 22px;
+  overflow: hidden;
+  background: rgba(246, 245, 239, .08);
+}
+
+.room-gallery img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.room-gallery button {
+  position: absolute;
+  top: 50%;
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  border: 1px solid rgba(246, 245, 239, .32);
+  border-radius: 50%;
+  background: rgba(17, 22, 21, .58);
+  color: var(--ink);
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(-50%);
+  transition: opacity .2s ease, background .2s ease, border-color .2s ease;
+}
+
+.room-gallery button:hover,
+.room-gallery button:focus-visible {
+  border-color: var(--teal-bright);
+  background: rgba(0, 191, 208, .22);
+}
+
+.room-gallery:hover button,
+.room-gallery:focus-within button {
+  opacity: 1;
+}
+
+.room-gallery [data-room-prev] {
+  left: 14px;
+}
+
+.room-gallery [data-room-next] {
+  right: 14px;
+}
+
+.room-grid-detailed {
+  margin-top: 22px;
+}
+
+.room-grid-detailed .room-card span {
+  min-height: 2.4em;
 }
 
 .room-card h3 {
@@ -1397,6 +1563,14 @@ textarea {
   font-family: var(--font-display);
   font-size: clamp(22px, 2.5vw, 34px);
   line-height: 1.04;
+}
+
+.room-grid-detailed .room-card h3 {
+  margin-bottom: 10px;
+}
+
+.room-grid-detailed .room-card p {
+  margin-top: 0;
 }
 
 .room-links {
@@ -1425,6 +1599,22 @@ textarea {
   background: rgba(0, 191, 208, .14);
   color: var(--ink);
 }
+
+.hotel-bottom-action {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: 16px;
+  margin-top: 28px;
+}
+
+.hotel-bottom-action .ghost-button {
+  justify-self: start;
+}
+
+/* ==========================================================================
+   Modals
+   ========================================================================== */
 
 .modal {
   position: fixed;
@@ -1598,9 +1788,50 @@ textarea {
   margin-top: 14px;
 }
 
+.request-modal-panel {
+  width: min(620px, 100%);
+  max-height: none;
+  overflow: visible;
+  padding: clamp(24px, 3.5vw, 38px);
+}
+
+.request-modal-lead {
+  margin: -10px 0 2px;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.request-modal-panel .request-form {
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.request-modal-panel .request-form input,
+.request-modal-panel .request-form textarea {
+  padding: 12px 14px;
+}
+
+.request-modal-panel .request-form textarea {
+  min-height: 96px;
+  resize: none;
+}
+
+.request-modal-panel .primary-button {
+  justify-self: start;
+  margin-top: 2px;
+}
+
+.request-modal-panel .form-status {
+  min-height: 18px;
+}
+
 body.is-modal-open {
   overflow: hidden;
 }
+
+/* ==========================================================================
+   Responsive: Tablet
+   ========================================================================== */
 
 @media (max-width: 1060px) {
   .hero {
@@ -1659,6 +1890,10 @@ body.is-modal-open {
   .direction-content {
     grid-template-columns: 1fr;
     gap: 34px;
+  }
+
+  .direction-copy {
+    transform: none;
   }
 
   .direction-neighbor {
@@ -1725,6 +1960,10 @@ body.is-modal-open {
     grid-template-columns: 1fr;
   }
 }
+
+/* ==========================================================================
+   Responsive: Mobile
+   ========================================================================== */
 
 @media (max-width: 760px) {
   html {
@@ -1969,6 +2208,14 @@ body.is-modal-open {
     left: var(--mobile-x);
   }
 
+  .hotel-hero-actions {
+    position: absolute;
+    left: var(--mobile-x);
+    bottom: 22px;
+    z-index: 4;
+    gap: 10px;
+  }
+
   .hotel-hero-controls {
     right: var(--mobile-x);
     bottom: 22px;
@@ -1981,6 +2228,11 @@ body.is-modal-open {
 
   .hotel-detail-main {
     padding: 64px var(--mobile-x);
+  }
+
+  .hotel-bottom-action {
+    grid-template-columns: 1fr;
+    justify-items: start;
   }
 
   .hotel-meta-grid {

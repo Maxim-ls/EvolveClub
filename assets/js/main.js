@@ -114,9 +114,6 @@ const initCarousels = () => {
 
     const parent = container.closest('[data-direction-section], [data-overview-section]');
     const counter = parent?.querySelector('[data-carousel-current]');
-    const countryButton = parent?.matches('[data-direction-section]')
-      ? parent.querySelector('.direction-copy .primary-button')
-      : null;
     let activeIndex = Math.max(0, cards.findIndex(c => c.classList.contains('is-active')));
     let scrollFrame = null;
     let scrollSyncFrame = 0;
@@ -154,11 +151,6 @@ const initCarousels = () => {
       // Текст счетчика
       if (counter) counter.textContent = String(activeIndex + 1).padStart(2, '0');
 
-      const activeLink = activeCard.querySelector('.country-card-link');
-      if (countryButton && activeLink) {
-        countryButton.href = activeLink.getAttribute('href');
-      }
-
       // Фон секции
       if (!shouldCenter) return;
 
@@ -171,6 +163,20 @@ const initCarousels = () => {
         centerActiveCard(activeCard, false);
         requestAnimationFrame(() => { isProgrammaticScroll = false; });
       }
+    };
+
+    const openCardLink = (card) => {
+      const link = card.querySelector('.country-card-link');
+      const href = link?.getAttribute('href');
+      if (!href) return;
+
+      if (href.startsWith('#')) {
+        const target = document.querySelector(href);
+        if (target) window.scrollTo({ top: getSnapTop(target), behavior: 'smooth' });
+        return;
+      }
+
+      window.location.href = href;
     };
 
     const setActiveFromScroll = () => {
@@ -193,7 +199,26 @@ const initCarousels = () => {
     container.addEventListener('click', (e) => {
       const card = e.target.closest('[data-carousel-card]');
       if (card && !e.target.closest('a')) {
-        update(cards.indexOf(card));
+        const cardIndex = cards.indexOf(card);
+        if (cardIndex === activeIndex) {
+          openCardLink(card);
+        } else {
+          update(cardIndex);
+        }
+      }
+    });
+
+    container.addEventListener('keydown', (e) => {
+      if (e.key !== 'Enter' && e.key !== ' ') return;
+      const card = e.target.closest('[data-carousel-card]');
+      if (!card) return;
+
+      e.preventDefault();
+      const cardIndex = cards.indexOf(card);
+      if (cardIndex === activeIndex) {
+        openCardLink(card);
+      } else {
+        update(cardIndex);
       }
     });
 
@@ -239,16 +264,16 @@ document.querySelectorAll('[data-scroll-next], [data-scroll-prev]').forEach((but
 });
 
 // --- Форма запроса ---
-const form = document.querySelector('[data-request-form]');
-const statusText = document.querySelector('[data-form-status]');
+document.querySelectorAll('[data-request-form]').forEach((form) => {
+  const statusText = form.querySelector('[data-form-status]');
+  if (!statusText) return;
 
-if (form && statusText) {
   form.addEventListener('submit', (event) => {
     event.preventDefault();
     statusText.textContent = 'Запрос подготовлен. На следующем этапе подключим отправку в Telegram, WhatsApp или CRM.';
     form.reset();
   });
-}
+});
 
 // --- Индикаторы направлений (Direction Dots) ---
 const directionSections = document.querySelectorAll('[data-direction-section]');
@@ -404,6 +429,40 @@ document.querySelectorAll('[data-hotel-hero]').forEach((hero) => {
   });
 
   updateHeroImage(false);
+});
+
+// --- Галереи в карточках вилл ---
+document.querySelectorAll('[data-room-gallery]').forEach((gallery) => {
+  const images = (gallery.dataset.roomImages || '')
+    .split('|')
+    .map((image) => image.trim())
+    .filter(Boolean);
+  const image = gallery.querySelector('img');
+  const prev = gallery.querySelector('[data-room-prev]');
+  const next = gallery.querySelector('[data-room-next]');
+  let index = 0;
+
+  if (!image || images.length < 2) {
+    prev?.remove();
+    next?.remove();
+    return;
+  }
+
+  const updateRoomImage = () => {
+    image.src = images[index];
+  };
+
+  prev?.addEventListener('click', (event) => {
+    event.preventDefault();
+    index = (index - 1 + images.length) % images.length;
+    updateRoomImage();
+  });
+
+  next?.addEventListener('click', (event) => {
+    event.preventDefault();
+    index = (index + 1) % images.length;
+    updateRoomImage();
+  });
 });
 
 // --- Наблюдатель за секциями (Intersection Observer) ---
