@@ -73,6 +73,21 @@ document.querySelectorAll('[data-return-section]').forEach((link) => {
   });
 });
 
+document.querySelectorAll('[data-history-back]').forEach((link) => {
+  link.addEventListener('click', (event) => {
+    let hasSameOriginReferrer = false;
+
+    try {
+      hasSameOriginReferrer = document.referrer
+        && new URL(document.referrer).origin === window.location.origin;
+    } catch (error) {}
+
+    if (window.history.length <= 1 || !hasSameOriginReferrer) return;
+    event.preventDefault();
+    window.history.back();
+  });
+});
+
 restoreSectionAfterCountry();
 
 if (snapSections.length) {

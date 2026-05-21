@@ -401,6 +401,14 @@ textarea {
   font-size: clamp(34px, 5vw, 74px);
 }
 
+.section-lead {
+  max-width: 680px;
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: var(--text-body);
+  line-height: 1.7;
+}
+
 .direction-section {
   position: relative;
   display: grid;
@@ -794,7 +802,8 @@ textarea {
 }
 
 .tours-section .section-head {
-  margin-bottom: 24px;
+  margin-bottom: clamp(28px, 4vw, 42px);
+  align-items: end;
 }
 
 .tour-card {
@@ -806,12 +815,28 @@ textarea {
   justify-content: flex-end;
   padding: 20px;
   overflow: hidden;
+  border: 1px solid var(--line);
+  transform: translateY(0);
+  transition: transform .28s ease, filter .28s ease, box-shadow .28s ease, border-color .28s ease;
 }
 
 .tour-card h3 {
   font-family: var(--font-display);
   font-size: clamp(20px, 2vw, 30px);
   line-height: 1.05;
+}
+
+.tour-card:hover,
+.tour-card:focus-visible {
+  filter: saturate(1.05) brightness(1.04);
+  transform: translateY(-8px);
+  box-shadow: 0 18px 52px rgba(0, 191, 208, .16);
+  border-color: rgba(0, 191, 208, .32);
+}
+
+.tour-card:focus-visible {
+  outline: 2px solid var(--teal-bright);
+  outline-offset: 4px;
 }
 
 .service-grid {
@@ -946,7 +971,7 @@ textarea {
   display: grid;
   grid-template-columns: minmax(160px, 240px) minmax(0, 1fr) auto;
   gap: 28px;
-  align-items: center;
+  align-items: start;
   padding: 32px var(--page-x);
   border-top: 1px solid var(--line);
   background: #0f1312;
@@ -955,6 +980,7 @@ textarea {
 .site-footer p {
   margin: 0;
   color: var(--muted);
+  padding-top: 8px;
 }
 
 .site-footer nav {
@@ -963,6 +989,7 @@ textarea {
   gap: 18px;
   color: var(--muted);
   font-size: var(--text-base);
+  padding-top: 8px;
 }
 
 /* ==========================================================================
@@ -989,19 +1016,30 @@ textarea {
 }
 
 .country-back {
+  position: fixed;
+  z-index: 30;
+  top: calc(var(--header-height) + 18px);
+  left: var(--page-x);
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
-  margin-bottom: 28px;
+  min-height: 22px;
+  padding: 0x;
+  margin-left: 0px;
+  border: 0;
+  background: rgba(17, 22, 21, .62);
   color: var(--muted);
   font-size: var(--text-sm);
   font-weight: 800;
   letter-spacing: .12em;
   text-transform: uppercase;
-  transition: color .2s ease, transform .2s ease;
+  backdrop-filter: blur(14px);
+  transition: color .2s ease, transform .2s ease, background .2s ease;
 }
 
 .country-back:hover {
+  background: rgba(17, 22, 21, .78);
   color: var(--teal-bright);
   transform: translateX(-3px);
 }
@@ -1226,13 +1264,6 @@ textarea {
 .hotel-detail-inner > :not(.country-back) {
   position: relative;
   z-index: 1;
-}
-
-.hotel-detail-inner .country-back {
-  position: absolute;
-  top: calc(var(--header-height) + 38px);
-  left: var(--page-x);
-  z-index: 2;
 }
 
 .hotel-detail-hero h1 {
@@ -1829,6 +1860,11 @@ body.is-modal-open {
   overflow: hidden;
 }
 
+
+/* ==========================================================================
+   Tour Detail Page
+   ========================================================================== */
+
 .tour-detail-page {
   background: #101514;
   --tour-meta-size: var(--text-sm);
@@ -1842,39 +1878,34 @@ body.is-modal-open {
   position: relative;
   min-height: 100svh;
   display: grid;
-  grid-template-columns: minmax(0, 1fr);
+  grid-template-columns: minmax(0, .98fr) minmax(320px, .45fr);
   gap: clamp(28px, 5vw, 72px);
   align-content: center;
   align-items: center;
-  padding: calc(var(--header-height) + 46px) var(--page-x) clamp(42px, 6vw, 78px);
-  background-position: center;
+  padding: var(--header-height) var(--page-x) clamp(56px, 7vw, 120px);
+  background-position: center 34%;
   background-size: cover;
   color: #fff;
-}
-
-.tour-page-hero .country-back {
-  position: absolute;
-  top: calc(var(--header-height) + 28px);
-  left: var(--page-x);
 }
 
 .tour-page-hero-copy {
   display: grid;
   gap: 18px;
-  justify-items: center;
-  max-width: 920px;
-  margin: 0 auto;
-  text-align: center;
-  transform: translateY(clamp(28px, 7vh, 86px));
+  justify-items: start;
+  max-width: 900px;
+  margin: 0;
+  text-align: left;
+  transform: none;
 }
 
 .tour-page-kicker,
 .tour-hero-facts span,
-.tour-intro-side span {
+.tour-intro-side span,
+.tour-route-line span {
   color: var(--teal-bright);
-  font-size: var(--tour-meta-size);
+  font-size: var(--tour-mini-title-size);
   font-weight: 800;
-  letter-spacing: .1em;
+  letter-spacing: .08em;
   text-transform: uppercase;
 }
 
@@ -1905,11 +1936,11 @@ body.is-modal-open {
 .tour-hero-location {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 10px;
   color: var(--muted);
   font-size: var(--tour-body-size);
-  font-weight: 800;
+  font-weight: 500;
 }
 
 .tour-hero-location svg {
@@ -1919,6 +1950,10 @@ body.is-modal-open {
 }
 
 .tour-page-actions {
+  position: absolute;
+  left: var(--page-x);
+  bottom: clamp(56px, 7vw, 92px);
+  z-index: 4;
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
@@ -1926,12 +1961,14 @@ body.is-modal-open {
 }
 
 .tour-hero-facts {
+  position: absolute;
+  right: var(--page-x);
+  bottom: clamp(56px, 7vw, 92px);
+  z-index: 3;
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 12px;
-  align-self: end;
-  width: min(1120px, 100%);
-  margin: clamp(48px, 8vw, 92px) auto 0;
+  width: min(350px, calc(100vw - (var(--page-x) * 2)));
+  margin: 0;
   text-align: left;
 }
 
@@ -1949,11 +1986,29 @@ body.is-modal-open {
   backdrop-filter: blur(12px);
 }
 
+.tour-hero-facts span {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.tour-hero-facts svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  flex: 0 0 auto;
+}
+
 .tour-hero-facts b {
   display: block;
   margin-top: 8px;
   color: rgba(255, 255, 255, .88);
   font-size: var(--tour-body-size);
+  font-weight: 400;
   line-height: 1.5;
 }
 
@@ -2063,24 +2118,37 @@ body.is-modal-open {
 .tour-day-list article {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 210px;
-  gap: 18px;
-  padding: 18px;
+  gap: 14px;
+  min-height: 148px;
+  padding: 20px;
 }
 
-.tour-day-copy p {
+.tour-day-copy {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(180px, .42fr);
+  column-gap: 18px;
+  align-items: start;
+}
+
+.tour-day-main {
+  display: grid;
+  gap: 8px;
+}
+
+.tour-day-main p {
   margin: 0;
 }
 
 .tour-day-copy dl {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 10px;
-  margin: 16px 0 0;
+  margin: 0;
+  padding-left: 14px;
+  border-left: 1px solid var(--line);
 }
 
 .tour-day-copy dl div {
-  border-top: 1px solid var(--line);
-  padding-top: 10px;
+  padding: 0;
 }
 
 .tour-day-copy dd {
@@ -2090,7 +2158,8 @@ body.is-modal-open {
 .tour-day-list img {
   width: 100%;
   height: 100%;
-  min-height: 160px;
+  min-height: 120px;
+  max-height: 120px;
   object-fit: cover;
 }
 
@@ -2126,11 +2195,8 @@ body.is-modal-open {
   padding: clamp(24px, 4vw, 40px);
 }
 
-/* ==========================================================================
-   Responsive: Tablet
-   ========================================================================== */
-
 @media (max-width: 1060px) {
+  .tour-page-hero,
   .tour-intro,
   .tour-standalone-grid,
   .tour-fit {
@@ -2138,12 +2204,80 @@ body.is-modal-open {
   }
 
   .tour-hero-facts {
+    position: static;
     grid-template-columns: 1fr;
+    width: 100%;
   }
 
   .tour-route-line {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
+}
+
+@media (max-width: 760px) {
+  .tour-page-hero {
+    min-height: auto;
+    padding: var(--header-height) var(--mobile-x) 104px;
+  }
+
+  .tour-page-hero-copy {
+    justify-items: start;
+    text-align: left;
+  }
+
+  .tour-page-actions {
+    left: var(--mobile-x);
+    bottom: 22px;
+    gap: 10px;
+  }
+
+  .tour-page-hero h1 {
+    font-size: clamp(32px, 12vw, 48px);
+  }
+
+  .tour-hero-facts {
+    position: static;
+    width: 100%;
+    gap: 8px;
+  }
+
+  .tour-page-main {
+    padding: 44px var(--mobile-x) 58px;
+  }
+
+  .tour-route-line,
+  .tour-day-list article,
+  .tour-day-copy dl {
+    grid-template-columns: 1fr;
+  }
+
+  .tour-day-copy {
+    grid-template-columns: 1fr;
+  }
+
+  .tour-day-copy dl {
+    padding-left: 0;
+    padding-top: 12px;
+    border-left: 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .tour-day-list article {
+    min-height: auto;
+    padding: 14px;
+  }
+
+  .tour-day-list img {
+    height: 190px;
+    max-height: none;
+  }
+}
+
+/* ==========================================================================
+   Responsive: Tablet
+   ========================================================================== */
+
+@media (max-width: 1060px) {
 
   .hero {
     grid-template-columns: 1fr;
@@ -2277,36 +2411,6 @@ body.is-modal-open {
    ========================================================================== */
 
 @media (max-width: 760px) {
-  .tour-page-hero {
-    min-height: auto;
-    padding: 118px var(--mobile-x) 36px;
-  }
-
-  .tour-page-hero h1 {
-    font-size: clamp(32px, 12vw, 48px);
-  }
-
-  .tour-hero-facts {
-    gap: 8px;
-  }
-
-  .tour-page-main {
-    padding: 44px var(--mobile-x) 58px;
-  }
-
-  .tour-route-line,
-  .tour-day-list article,
-  .tour-day-copy dl {
-    grid-template-columns: 1fr;
-  }
-
-  .tour-day-list article {
-    padding: 14px;
-  }
-
-  .tour-day-list img {
-    height: 190px;
-  }
 
   html {
     scroll-behavior: auto;
@@ -2511,7 +2615,11 @@ body.is-modal-open {
   }
 
   .country-back {
-    margin-bottom: 14px;
+    top: calc(var(--header-height) + 8px);
+    left: var(--mobile-x);
+    min-height: 32px;
+    padding: 0 9px;
+    margin-left: -9px;
     font-size: 11px;
   }
 
@@ -2543,11 +2651,6 @@ body.is-modal-open {
 
   .hotel-detail-hero h1 {
     font-size: clamp(24px, 7vw, 34px);
-  }
-
-  .hotel-detail-inner .country-back {
-    top: 106px;
-    left: var(--mobile-x);
   }
 
   .hotel-hero-actions {
@@ -2693,4 +2796,6 @@ body.is-modal-open {
   .messenger-row {
     margin-top: 14px;
   }
+
+
 }
