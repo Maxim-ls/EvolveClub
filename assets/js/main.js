@@ -1,6 +1,23 @@
 // --- Конфигурация и состояние ---
 const header = document.querySelector('[data-header]');
 const snapSections = Array.from(document.querySelectorAll('main > section'));
+
+if (header && !header.querySelector('.header-phone')) {
+  const headerAction = header.querySelector('.header-action');
+  const headerContactGroup = document.createElement('div');
+  const headerPhone = document.createElement('a');
+  headerContactGroup.className = 'header-contact-group';
+  headerPhone.className = 'header-phone';
+  headerPhone.href = 'tel:+79251415010';
+  headerPhone.textContent = '+7 (925) 141-50-10';
+  headerPhone.setAttribute('aria-label', 'Позвонить +7 (925) 141-50-10');
+
+  if (headerAction) {
+    headerAction.before(headerContactGroup);
+    headerContactGroup.append(headerPhone, headerAction);
+  }
+}
+
 const setHeaderState = () => {
   if (!header) return;
   header.classList.toggle('is-scrolled', window.scrollY > 24);
@@ -406,6 +423,9 @@ document.querySelectorAll('[data-hotel-hero]').forEach((hero) => {
   const prev = hero.querySelector('[data-hero-prev]');
   const next = hero.querySelector('[data-hero-next]');
   let index = 0;
+  let autoplayTimer = null;
+  let touchStartX = 0;
+  let touchStartY = 0;
 
   if (!images.length) return;
 
@@ -433,17 +453,57 @@ document.querySelectorAll('[data-hotel-hero]').forEach((hero) => {
     if (total) total.textContent = String(images.length).padStart(2, '0');
   };
 
-  prev?.addEventListener('click', () => {
+  const showPreviousImage = () => {
     index = (index - 1 + images.length) % images.length;
     updateHeroImage();
+  };
+
+  const showNextImage = () => {
+    index = (index + 1) % images.length;
+    updateHeroImage();
+  };
+
+  const restartAutoplay = () => {
+    if (autoplayTimer) window.clearInterval(autoplayTimer);
+    if (images.length < 2) return;
+    autoplayTimer = window.setInterval(showNextImage, 15000);
+  };
+
+  prev?.addEventListener('click', () => {
+    showPreviousImage();
+    restartAutoplay();
   });
 
   next?.addEventListener('click', () => {
-    index = (index + 1) % images.length;
-    updateHeroImage();
+    showNextImage();
+    restartAutoplay();
+  });
+
+  hero.addEventListener('touchstart', (event) => {
+    const touch = event.touches[0];
+    if (!touch) return;
+    touchStartX = touch.clientX;
+    touchStartY = touch.clientY;
+  }, { passive: true });
+
+  hero.addEventListener('touchend', (event) => {
+    const touch = event.changedTouches[0];
+    if (!touch) return;
+
+    const deltaX = touch.clientX - touchStartX;
+    const deltaY = touch.clientY - touchStartY;
+    if (Math.abs(deltaX) < 45 || Math.abs(deltaX) < Math.abs(deltaY) * 1.2) return;
+
+    if (deltaX < 0) {
+      showNextImage();
+    } else {
+      showPreviousImage();
+    }
+    restartAutoplay();
   });
 
   updateHeroImage(false);
+  restartAutoplay();
 });
 
 // --- Галереи в карточках вилл ---
@@ -455,7 +515,11 @@ document.querySelectorAll('[data-room-gallery]').forEach((gallery) => {
   const image = gallery.querySelector('img');
   const prev = gallery.querySelector('[data-room-prev]');
   const next = gallery.querySelector('[data-room-next]');
+  const counter = document.createElement('span');
   let index = 0;
+  let touchStartX = 0;
+  let touchStartY = 0;
+  let imageSwitchTimer = null;
 
   if (!image || images.length < 2) {
     prev?.remove();
@@ -463,21 +527,89 @@ document.querySelectorAll('[data-room-gallery]').forEach((gallery) => {
     return;
   }
 
-  const updateRoomImage = () => {
+  counter.className = 'room-gallery-counter';
+  gallery.append(counter);
+
+  const updateRoomImage = (smooth = true) => {
+    counter.textContent = `${index + 1} / ${images.length}`;
+
+    if (!smooth) {
+      image.src = images[index];
+      return;
+    }
+
+    if (imageSwitchTimer) window.clearTimeout(imageSwitchTimer);
+    gallery.classList.add('is-switching');
+    imageSwitchTimer = window.setTimeout(() => {
+      image.src = images[index];
+      gallery.classList.remove('is-switching');
+    }, 180);
+  };
+
+  image.addEventListener('load', () => {
+    gallery.classList.remove('is-switching');
+  });
+
+  const setRoomIndex = (nextIndex) => {
+    if (nextIndex === index) return;
+    index = nextIndex;
+    updateRoomImage();
+  };
+
+  const showPreviousRoomImage = () => {
+    setRoomIndex((index - 1 + images.length) % images.length);
+  };
+
+  const showNextRoomImage = () => {
+    setRoomIndex((index + 1) % images.length);
+  };
+
+  const preloadRoomImages = () => {
+    images.forEach((src) => {
+      const preloadedImage = new Image();
+      preloadedImage.src = src;
+    });
+  };
+
+  const initRoomImage = () => {
     image.src = images[index];
+    counter.textContent = `${index + 1} / ${images.length}`;
   };
 
   prev?.addEventListener('click', (event) => {
     event.preventDefault();
-    index = (index - 1 + images.length) % images.length;
-    updateRoomImage();
+    showPreviousRoomImage();
   });
 
   next?.addEventListener('click', (event) => {
     event.preventDefault();
-    index = (index + 1) % images.length;
-    updateRoomImage();
+    showNextRoomImage();
   });
+
+  gallery.addEventListener('touchstart', (event) => {
+    const touch = event.touches[0];
+    if (!touch) return;
+    touchStartX = touch.clientX;
+    touchStartY = touch.clientY;
+  }, { passive: true });
+
+  gallery.addEventListener('touchend', (event) => {
+    const touch = event.changedTouches[0];
+    if (!touch) return;
+
+    const deltaX = touch.clientX - touchStartX;
+    const deltaY = touch.clientY - touchStartY;
+    if (Math.abs(deltaX) < 40 || Math.abs(deltaX) < Math.abs(deltaY) * 1.2) return;
+
+    if (deltaX < 0) {
+      showNextRoomImage();
+    } else {
+      showPreviousRoomImage();
+    }
+  });
+
+  initRoomImage();
+  preloadRoomImages();
 });
 
 // --- Наблюдатель за секциями (Intersection Observer) ---
