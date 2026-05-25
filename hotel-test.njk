@@ -1,0 +1,43 @@
+---
+pagination:
+  data: collections.hotel
+  size: 1
+  alias: hotel
+permalink: "/hotel-test/{{ hotel.data.slug }}/"
+---
+
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <title>{{ hotel.data.title }}</title>
+  <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+  <main style="padding: 40px;">
+    <h1>{{ hotel.data.title }}</h1>
+    <p>{{ hotel.data.subtitle }}</p>
+
+    <p>
+      <strong>Страна:</strong> {{ hotel.data.country }}
+    </p>
+
+    <p>
+      <strong>Сегменты:</strong>
+      {% for segment in hotel.data.segments %}
+        {{ segment }}{% if not loop.last %}, {% endif %}
+      {% endfor %}
+    </p>
+
+    <img
+      src="{{ hotel.data.cover }}"
+      alt="{{ hotel.data.title }}"
+      style="max-width: 600px; width: 100%; height: auto;"
+    >
+
+    <div>
+      {{ hotel.templateContent | safe }}
+    </div>
+  </main>
+</body>
+</html>

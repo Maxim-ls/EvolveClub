@@ -1,0 +1,32 @@
+---
+pagination:
+  data: collections.country
+  size: 1
+  alias: country
+permalink: "/countries-test/{{ country.data.slug }}/"
+---
+
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <title>{{ country.data.title }}</title>
+  <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+  <main style="padding: 40px;">
+    <h1>{{ country.data.title }}</h1>
+    <p>{{ country.data.subtitle }}</p>
+
+    <img
+      src="{{ country.data.cover }}"
+      alt="{{ country.data.title }}"
+      style="max-width: 600px; width: 100%; height: auto;"
+    >
+
+    <div>
+      {{ country.templateContent | safe }}
+    </div>
+  </main>
+</body>
+</html>

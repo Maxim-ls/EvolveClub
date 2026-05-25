@@ -1,0 +1,91 @@
+# Для локальной проверки Decap CMS.
+backend:
+  name: test-repo
+
+# Для рабочего сайта на Beget позже заменим backend на GitHub:
+# backend:
+#   name: github
+#   repo: USERNAME/REPOSITORY
+#   branch: main
+#   base_url: https://YOUR-OAUTH-BACKEND.example.com
+#   auth_endpoint: auth
+
+media_folder: "assets/img/uploads"
+public_folder: "/assets/img/uploads"
+
+locale: "ru"
+
+collections:
+  - name: "countries"
+    label: "Направления"
+    folder: "content/countries"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Название", name: "title", widget: "string" }
+      - { label: "Адрес страницы", name: "slug", widget: "string" }
+      - { label: "Краткое описание", name: "subtitle", widget: "text" }
+      - { label: "Обложка", name: "cover", widget: "image" }
+      - { label: "Порядок", name: "order", widget: "number", default: 1 }
+      - { label: "Показывать", name: "featured", widget: "boolean", default: true }
+      - { label: "Тег", name: "tags", widget: "hidden", default: "country" }
+      - { label: "Описание", name: "body", widget: "markdown" }
+
+  - name: "hotels"
+    label: "Отели"
+    folder: "content/hotels"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Название", name: "title", widget: "string" }
+      - { label: "Адрес страницы", name: "slug", widget: "string" }
+      - label: "Страна"
+        name: "country"
+        widget: "relation"
+        collection: "countries"
+        search_fields: ["title", "slug"]
+        value_field: "slug"
+        display_fields: ["title"]
+      - label: "Сегменты"
+        name: "segments"
+        widget: "select"
+        multiple: true
+        options:
+          - { label: "Люкс", value: "luxury" }
+          - { label: "Семейный отдых", value: "family" }
+          - { label: "Романтика", value: "romantic" }
+          - { label: "Приватность", value: "private" }
+          - { label: "Wellness", value: "wellness" }
+      - { label: "Краткое описание", name: "subtitle", widget: "text" }
+      - { label: "Обложка", name: "cover", widget: "image" }
+      - label: "Галерея"
+        name: "gallery"
+        widget: "list"
+        required: false
+        field: { label: "Фото", name: "image", widget: "image" }
+      - { label: "Порядок", name: "order", widget: "number", default: 1 }
+      - { label: "Показывать", name: "featured", widget: "boolean", default: true }
+      - { label: "Тег", name: "tags", widget: "hidden", default: "hotel" }
+      - { label: "Описание", name: "body", widget: "markdown" }
+
+  - name: "tours"
+    label: "Туры"
+    folder: "content/tours"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Название", name: "title", widget: "string" }
+      - { label: "Адрес страницы", name: "slug", widget: "string" }
+      - { label: "Направление", name: "destination", widget: "string" }
+      - { label: "Длительность", name: "duration", widget: "string", required: false }
+      - { label: "Краткое описание", name: "subtitle", widget: "text" }
+      - { label: "Обложка", name: "cover", widget: "image" }
+      - label: "Галерея"
+        name: "gallery"
+        widget: "list"
+        required: false
+        field: { label: "Фото", name: "image", widget: "image" }
+      - { label: "Порядок", name: "order", widget: "number", default: 1 }
+      - { label: "Показывать", name: "featured", widget: "boolean", default: true }
+      - { label: "Тег", name: "tags", widget: "hidden", default: "tour" }
+      - { label: "Описание", name: "body", widget: "markdown" }
