@@ -2,8 +2,8 @@ backend:
   name: github
   repo: Tetr31/EvolveClub
   branch: main
-  base_url: https://tijayvpn.site/admin/auth
-  auth_endpoint: auth.php
+  base_url: https://tijayvpn.site
+  auth_endpoint: admin/auth/auth.php
 
 media_folder: "assets/img/uploads"
 public_folder: "/assets/img/uploads"
