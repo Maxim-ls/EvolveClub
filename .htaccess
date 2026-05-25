@@ -1,3 +1,6 @@
+AddType application/yaml .yml
+AddType application/yaml .yaml
+
 RewriteEngine On
 
 # 1. Убираем .php из видимого URL в браузере
