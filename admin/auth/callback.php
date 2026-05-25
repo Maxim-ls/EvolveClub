@@ -61,11 +61,18 @@ $token = json_encode([
 </head>
 <body>
 <script>
-  const message = 'authorization:github:success:<?php echo addslashes($token); ?>';
+  const content = <?php echo $token; ?>;
 
   if (window.opener) {
-    window.opener.postMessage(message, '*');
-    window.close();
+    window.addEventListener('message', function receiveMessage() {
+      window.opener.postMessage(
+        'authorization:github:success:' + JSON.stringify(content),
+        '*'
+      );
+      window.close();
+    }, false);
+
+    window.opener.postMessage('authorizing:github', '*');
   } else {
     window.location.href = '<?php echo addslashes($config['site_url']); ?>/admin/';
   }

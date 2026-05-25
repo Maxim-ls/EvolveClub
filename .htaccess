@@ -1,5 +1,7 @@
-AddType application/yaml .yml
-AddType application/yaml .yaml
+AddType text/yaml .yml
+AddType text/yaml .yaml
+AddCharset UTF-8 .yml
+AddCharset UTF-8 .yaml
 
 RewriteEngine On
 
