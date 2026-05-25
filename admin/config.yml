@@ -1,9 +1,5 @@
 backend:
-  name: github
-  repo: Tetr31/EvolveClub
-  branch: main
-  base_url: https://api.netlify.com
-  auth_endpoint: auth
+  name: test-repo
 
 media_folder: "assets/img/uploads"
 public_folder: "/assets/img/uploads"
