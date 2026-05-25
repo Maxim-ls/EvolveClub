@@ -1,5 +1,9 @@
 backend:
-  name: test-repo
+  name: github
+  repo: Tetr31/EvolveClub
+  branch: main
+  base_url: https://tijayvpn.site/admin/auth
+  auth_endpoint: auth.php
 
 media_folder: "assets/img/uploads"
 public_folder: "/assets/img/uploads"

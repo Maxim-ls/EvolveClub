@@ -3,3 +3,4 @@ _site/
 .cache/
 .DS_Store
 Thumbs.db
+admin/auth/config.php
