@@ -64,10 +64,10 @@ $token = json_encode([
   const message = 'authorization:github:success:<?php echo addslashes($token); ?>';
 
   if (window.opener) {
-    window.opener.postMessage(message, '<?php echo addslashes($config['site_url']); ?>');
+    window.opener.postMessage(message, '*');
     window.close();
   } else {
-    document.body.textContent = 'Authorization completed. You can close this window.';
+    window.location.href = '<?php echo addslashes($config['site_url']); ?>/admin/';
   }
 </script>
 </body>
