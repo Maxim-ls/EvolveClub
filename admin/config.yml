@@ -1,14 +1,9 @@
-# Для локальной проверки Decap CMS.
 backend:
-  name: test-repo
-
-# Для рабочего сайта на Beget позже заменим backend на GitHub:
-# backend:
-#   name: github
-#   repo: USERNAME/REPOSITORY
-#   branch: main
-#   base_url: https://YOUR-OAUTH-BACKEND.example.com
-#   auth_endpoint: auth
+  name: github
+  repo: Tetr31/EvolveClub
+  branch: main
+  base_url: https://api.netlify.com
+  auth_endpoint: auth
 
 media_folder: "assets/img/uploads"
 public_folder: "/assets/img/uploads"
