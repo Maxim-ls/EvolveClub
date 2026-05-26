@@ -464,9 +464,12 @@ document.querySelectorAll('[data-hotel-hero]').forEach((hero) => {
   };
 
   const restartAutoplay = () => {
-    if (autoplayTimer) window.clearInterval(autoplayTimer);
+    if (autoplayTimer) window.clearTimeout(autoplayTimer);
     if (images.length < 2) return;
-    autoplayTimer = window.setInterval(showNextImage, 15000);
+    autoplayTimer = window.setTimeout(() => {
+      showNextImage();
+      restartAutoplay();
+    }, 15000);
   };
 
   prev?.addEventListener('click', () => {
