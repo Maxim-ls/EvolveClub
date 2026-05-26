@@ -11,6 +11,7 @@ gallery:
   - image: "/assets/img/tours/baikal-winter-khoboy.jpg"
   - image: "/assets/img/tours/baikal-winter-ogoy.jpg"
 order: 3
+published: true
 featured: true
 tags: tour
 ---

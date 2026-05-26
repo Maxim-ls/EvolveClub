@@ -7,6 +7,7 @@ subtitle: "Маршрут по главным городам и культурн
 cover: "/assets/img/tours/classic-japan-hero.jpg"
 gallery: []
 order: 1
+published: true
 featured: true
 tags: tour
 ---

@@ -286,7 +286,7 @@
           <p class="direction-text">Приватные виллы, прозрачная вода, спокойный ритм и сервис, где каждая деталь работает на ощущение уединения.</p>
         </div>
         <div class="country-rail direction-rail" id="islandsRail" aria-label="Островные направления" data-card-carousel>
-          {% set islandCountries = collections.country | whereEquals("data.region", "islands") | whereTruthy("data.featured") | sortByOrder %}
+          {% set islandCountries = collections.country | whereEquals("data.region", "islands") | whereTruthy("data.published") | whereTruthy("data.featured") | sortByOrder %}
           {% for country in islandCountries %}
             <article class="country-card{% if loop.first %} is-active{% endif %}" tabindex="0" data-carousel-card{% if loop.first %} aria-current="true"{% endif %} style="background-image: url('{{ country.data.cover }}');">
               <strong>{{ country.data.title }}</strong>
@@ -337,7 +337,7 @@
         <p class="section-lead">Подборка маршрутов с понятной программой, логистикой и ритмом поездки.<br> Можно взять готовый тур или адаптировать его под даты, состав и уровень отелей.</p>
       </div>
       <div class="tour-grid">
-        {% set featuredTours = collections.tour | whereTruthy("data.featured") | sortByOrder %}
+        {% set featuredTours = collections.tour | whereTruthy("data.published") | whereTruthy("data.featured") | sortByOrder %}
         {% for tour in featuredTours %}
           <a class="tour-card" href="/tours/{{ tour.data.slug }}/" style="background-image: url('{{ tour.data.cover }}');">
             <span>{{ tour.data.destination }}</span>

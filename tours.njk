@@ -1,0 +1,30 @@
+---
+permalink: "/tours/"
+layout: layouts/base.njk
+title: "Туры - EvolveClub"
+description: "Опубликованные туры EvolveClub."
+bodyClass: "country-page tour-detail-page"
+---
+
+{% set tours = collections.tour | whereTruthy("data.published") | sortByOrder %}
+
+<main id="top">
+  <section class="tours-section">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">EvolveClub</p>
+        <h2>Туры</h2>
+      </div>
+      <p class="section-lead">Все опубликованные маршруты. Каждый тур можно адаптировать под даты, состав гостей и уровень отелей.</p>
+    </div>
+
+    <div class="tour-grid">
+      {% for tour in tours %}
+        <a class="tour-card" href="/tours/{{ tour.data.slug }}/" style="background-image: url('{{ tour.data.cover }}');">
+          <span>{{ tour.data.destination }}</span>
+          <h3>{{ tour.data.title }}</h3>
+        </a>
+      {% endfor %}
+    </div>
+  </section>
+</main>

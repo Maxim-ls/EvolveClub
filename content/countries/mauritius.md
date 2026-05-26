@@ -5,6 +5,7 @@ region: "islands"
 subtitle: "Пляжи, горы, гольф и отели для спокойного премиального отдыха"
 cover: "/assets/img/destinations/mauritius-hero.jpg"
 order: 2
+published: true
 featured: true
 tags: country
 ---

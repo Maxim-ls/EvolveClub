@@ -1,0 +1,34 @@
+---
+permalink: "/countries/"
+layout: layouts/base.njk
+title: "Направления - EvolveClub"
+description: "Опубликованные направления EvolveClub."
+bodyClass: "country-page"
+---
+
+{% set countries = collections.country | whereTruthy("data.published") | sortByOrder %}
+
+<main id="top">
+  <section class="country-hotels">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">EvolveClub</p>
+        <h2>Направления</h2>
+      </div>
+      <p class="section-lead">Все опубликованные направления, доступные для подбора путешествия.</p>
+    </div>
+
+    <div class="hotel-grid">
+      {% for country in countries %}
+        <a class="hotel-card hotel-card-link" href="/countries/{{ country.data.slug }}/">
+          <div class="hotel-card-image" style="background-image: url('{{ country.data.cover }}');"></div>
+          <div class="hotel-card-body">
+            <span>{{ country.data.region }}</span>
+            <h3>{{ country.data.title }}</h3>
+            <p>{{ country.data.subtitle }}</p>
+          </div>
+        </a>
+      {% endfor %}
+    </div>
+  </section>
+</main>

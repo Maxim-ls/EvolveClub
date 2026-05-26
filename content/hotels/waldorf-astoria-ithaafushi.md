@@ -29,6 +29,7 @@ rooms:
       - image: "/assets/img/hotels/gallery/hilton-villa.jpg"
       - image: "/assets/img/hotels/waldorf-ithaafushi.jpg"
 order: 1
+published: true
 featured: true
 tags: hotel
 ---

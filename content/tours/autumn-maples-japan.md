@@ -11,6 +11,7 @@ gallery:
   - image: "/assets/img/tours/autumn-japan-tokyo.jpg"
   - image: "/assets/img/tours/autumn-japan-nagano.jpg"
 order: 2
+published: true
 featured: true
 tags: tour
 ---
