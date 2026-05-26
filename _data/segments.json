@@ -1,0 +1,24 @@
+{
+  "segments": [
+    {
+      "label": "Люкс",
+      "value": "luxury"
+    },
+    {
+      "label": "Семейный отдых",
+      "value": "family"
+    },
+    {
+      "label": "Романтика",
+      "value": "romantic"
+    },
+    {
+      "label": "Приватность",
+      "value": "private"
+    },
+    {
+      "label": "Wellness",
+      "value": "wellness"
+    }
+  ]
+}

@@ -39,7 +39,11 @@ bodyClass: "country-page"
           <a class="hotel-card hotel-card-link" href="/hotel-test/{{ hotel.data.slug }}/">
             <div class="hotel-card-image" style="background-image: url('{{ hotel.data.cover }}');"></div>
             <div class="hotel-card-body">
-              <span>{{ hotel.data.segments | join(", ") }}</span>
+              <span>
+                {% for segment in hotel.data.segments %}
+                  {{ segmentLabels[segment] or segment }}{% if not loop.last %}, {% endif %}
+                {% endfor %}
+              </span>
               <h3>{{ hotel.data.title }}</h3>
               <p>{{ hotel.data.subtitle }}</p>
             </div>

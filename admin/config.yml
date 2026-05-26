@@ -85,6 +85,17 @@ collections:
               - { label: "Камчатка", name: "kamchatka", widget: "image" }
               - { label: "Бьюти-туры", name: "beautyTours", widget: "image" }
           - { label: "Фон формы запроса", name: "request", widget: "image" }
+      - name: "segments"
+        label: "Сегменты отелей"
+        file: "_data/segments.json"
+        fields:
+          - label: "Сегменты"
+            name: "segments"
+            widget: "list"
+            summary: "{{fields.label}}"
+            fields:
+              - { label: "Название", name: "label", widget: "string" }
+              - { label: "Код", name: "value", widget: "string", hint: "Латиницей, например luxury или family" }
 
   - name: "countries"
     label: "Направления"

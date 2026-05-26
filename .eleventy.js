@@ -3,6 +3,11 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy(".htaccess");
   eleventyConfig.addPassthroughCopy("admin");
 
+  eleventyConfig.addGlobalData("segmentLabels", () => {
+    const data = require("./_data/segments.json");
+    return Object.fromEntries(data.segments.map((segment) => [segment.value, segment.label]));
+  });
+
   return {
     dir: {
       input: ".",

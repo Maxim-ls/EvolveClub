@@ -14,7 +14,11 @@ bodyClass: "country-page hotel-detail-page"
   <section class="hotel-detail-hero" style="--hotel-hero-image: url('{{ hotel.data.cover }}'); --hotel-next-image: url('{{ hotel.data.cover }}');">
     <div class="hotel-detail-inner">
       <a class="country-back" data-history-back href="/countries-test/{{ hotel.data.country }}/#hotels"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg> Назад к отелям</a>
-      <span class="hotel-stars" aria-label="Отель"><span class="hotel-rating-label">{{ hotel.data.segments | join(" / ") }}</span></span>
+      <span class="hotel-stars" aria-label="Отель"><span class="hotel-rating-label">
+        {% for segment in hotel.data.segments %}
+          {{ segmentLabels[segment] or segment }}{% if not loop.last %} / {% endif %}
+        {% endfor %}
+      </span></span>
       <h1>{{ hotel.data.title }}</h1>
       <span class="hotel-location"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>{{ hotel.data.country }}</span>
     </div>
@@ -31,7 +35,11 @@ bodyClass: "country-page hotel-detail-page"
       </div>
       <div class="hotel-info-box">
         <span>Сегменты</span>
-        <p>{{ hotel.data.segments | join(", ") }}</p>
+        <p>
+          {% for segment in hotel.data.segments %}
+            {{ segmentLabels[segment] or segment }}{% if not loop.last %}, {% endif %}
+          {% endfor %}
+        </p>
       </div>
     </div>
 
@@ -44,7 +52,7 @@ bodyClass: "country-page hotel-detail-page"
       <ul class="hotel-facts">
         {% for segment in hotel.data.segments %}
           <li>
-            <span>{{ segment }}</span>
+            <span>{{ segmentLabels[segment] or segment }}</span>
             <p>Сегмент отеля</p>
           </li>
         {% endfor %}
