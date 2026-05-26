@@ -3,7 +3,7 @@ pagination:
   data: collections.hotel
   size: 1
   alias: hotel
-permalink: "/hotel-test/{{ hotel.data.slug }}/"
+permalink: "/hotels/{{ hotel.data.country }}/{{ hotel.data.slug }}/"
 layout: layouts/base.njk
 title: "{{ hotel.data.seo_title or hotel.data.title + ' - EvolveClub' }}"
 description: "{{ hotel.data.seo_description or hotel.data.subtitle }}"

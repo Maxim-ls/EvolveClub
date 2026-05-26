@@ -71,6 +71,8 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy(".htaccess");
   eleventyConfig.addPassthroughCopy("admin");
   eleventyConfig.ignores.add("countries/**");
+  eleventyConfig.ignores.add("tours/**");
+  eleventyConfig.ignores.add("hotels/maldives/waldorf-astoria-ithaafushi.html");
 
   eleventyConfig.addGlobalData("segmentLabels", () => {
     const data = require("./_data/segments.json");
@@ -103,6 +105,8 @@ module.exports = function (eleventyConfig) {
       ".git/**",
       ".github/**",
       "countries/**",
+      "tours/**",
+      "hotels/maldives/waldorf-astoria-ithaafushi.html",
       "package.json",
       "package-lock.json"
     ]

@@ -36,7 +36,7 @@ bodyClass: "country-page"
       {% for hotel in collections.hotel %}
         {% if hotel.data.country == country.data.slug %}
           {% set hasHotels = true %}
-          <a class="hotel-card hotel-card-link" href="/hotel-test/{{ hotel.data.slug }}/">
+          <a class="hotel-card hotel-card-link" href="/hotels/{{ hotel.data.country }}/{{ hotel.data.slug }}/">
             <div class="hotel-card-image" style="background-image: url('{{ hotel.data.cover }}');"></div>
             <div class="hotel-card-body">
               <span>

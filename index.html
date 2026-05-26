@@ -339,7 +339,7 @@
       <div class="tour-grid">
         {% set featuredTours = collections.tour | whereTruthy("data.featured") | sortByOrder %}
         {% for tour in featuredTours %}
-          <a class="tour-card" href="/tour-test/{{ tour.data.slug }}/" style="background-image: url('{{ tour.data.cover }}');">
+          <a class="tour-card" href="/tours/{{ tour.data.slug }}/" style="background-image: url('{{ tour.data.cover }}');">
             <span>{{ tour.data.destination }}</span>
             <h3>{{ tour.data.title }}</h3>
           </a>
