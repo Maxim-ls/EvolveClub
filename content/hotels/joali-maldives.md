@@ -4,18 +4,18 @@ slug: "joali-maldives"
 country: "maldives"
 tier: "deluxe"
 tierLabel: "Deluxe"
-stars: "?????"
+stars: "★★★★★"
 location: "Raa Atoll"
 segments:
   - luxury
 subtitle: "Арт-курорт с живой островной эстетикой"
-cover: "https://www.sodis.ru/imageservlet?id=697945626"
+cover: "/assets/img/hotels/optimized/31-imageservlet-39bc2821.webp"
 gallery:
-  - image: "https://www.sodis.ru/imageservlet?id=697945626"
-  - image: "https://www.sodis.ru/imageservlet?id=697945473"
-  - image: "https://www.sodis.ru/imageservlet?id=697945629"
-  - image: "https://www.sodis.ru/imageservlet?id=697945500"
-  - image: "https://www.sodis.ru/imageservlet?id=437739137"
+  - image: "/assets/img/hotels/optimized/31-imageservlet-39bc2821.webp"
+  - image: "/assets/img/hotels/optimized/29-imageservlet-d15a54ad.webp"
+  - image: "/assets/img/hotels/optimized/32-imageservlet-0f00c12c.webp"
+  - image: "/assets/img/hotels/optimized/30-imageservlet-0c6ed758.webp"
+  - image: "/assets/img/hotels/optimized/23-imageservlet-ef260ff3.webp"
 facts:
   - label: "Адрес"
     text: "Muravandhoo Island, Raa Atoll"
@@ -32,23 +32,23 @@ rooms:
     type: "680-865 м²"
     description: "Виллы у песка с бассейном, открытой террасой, зоной отдыха и прямым выходом к берегу. Подходят тем, кто хочет жить ближе к зелени, пляжу и дневному островному ритму, но сохранить ощущение приватной резиденции."
     images:
-      - image: "https://www.sodis.ru/imageservlet?id=697945626"
-      - image: "https://www.sodis.ru/imageservlet?id=697945473"
-      - image: "https://www.sodis.ru/imageservlet?id=697945629"
+      - image: "/assets/img/hotels/optimized/31-imageservlet-39bc2821.webp"
+      - image: "/assets/img/hotels/optimized/29-imageservlet-d15a54ad.webp"
+      - image: "/assets/img/hotels/optimized/32-imageservlet-0f00c12c.webp"
   - title: "Водные виллы"
     type: "240-280 м²"
     description: "Виллы над водой с прямым спуском в лагуну, бассейном и просторной зоной отдыха на террасе. Формат для гостей, которым важны вид, приватность, закаты и близость океана в течение всего дня."
     images:
-      - image: "https://www.sodis.ru/imageservlet?id=697945473"
-      - image: "https://www.sodis.ru/imageservlet?id=697945629"
-      - image: "https://www.sodis.ru/imageservlet?id=437739137"
+      - image: "/assets/img/hotels/optimized/29-imageservlet-d15a54ad.webp"
+      - image: "/assets/img/hotels/optimized/32-imageservlet-0f00c12c.webp"
+      - image: "/assets/img/hotels/optimized/23-imageservlet-ef260ff3.webp"
   - title: "Резиденции"
     type: "940-1113 м²"
     description: "Крупные виллы и резиденции для гостей, которым нужны несколько спален, общий салон, приватные открытые зоны, бассейн и больше пространства для семейного или дружеского отдыха без потери приватности."
     images:
-      - image: "https://www.sodis.ru/imageservlet?id=697945629"
-      - image: "https://www.sodis.ru/imageservlet?id=697945500"
-      - image: "https://www.sodis.ru/imageservlet?id=437739137"
+      - image: "/assets/img/hotels/optimized/32-imageservlet-0f00c12c.webp"
+      - image: "/assets/img/hotels/optimized/30-imageservlet-0c6ed758.webp"
+      - image: "/assets/img/hotels/optimized/23-imageservlet-ef260ff3.webp"
 sections:
   - title: "Рестораны и бары"
     body: "JOALI предлагает несколько гастрономических направлений: азиатские, итальянские, ближневосточные и международные акценты, легкие форматы у воды и приватные ужины. Рестораны работают как часть общего впечатления от острова, а не просто как инфраструктура. Для пары можно собрать романтический вечер, для семьи - спокойный ужин без формальности, для компании - более насыщенный сценарий с дегустацией и винным сопровождением."
@@ -71,11 +71,3 @@ tags: hotel
 JOALI Maldives - выразительный deluxe-курорт на острове Muravandhoo, где пляжный отдых соединен с искусством, дизайном, гастрономией и мягким персональным сервисом. Это не просто вилла у океана, а цельный визуальный и эмоциональный сценарий.
 
 Отель хорошо подходит гостям, которым важна красота деталей: арт-объекты на острове, выразительные интерьеры, просторные виллы с бассейнами, сильные рестораны и спокойный ритм без ощущения перегруженности.
-
-Muravandhoo Island, Raa Atoll
-
-+960 658 4444
-
-около 45 минут на гидросамолете от Velana
-
-73 виллы и резиденции с бассейнами

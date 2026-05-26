@@ -4,7 +4,7 @@ slug: "le-domaine-de-lorangeraie"
 country: "seychelles"
 tier: "business"
 tierLabel: "Business"
-stars: "?????"
+stars: "★★★★★"
 location: "Ла-Диг"
 segments:
   - luxury
@@ -70,11 +70,3 @@ tags: hotel
 Le Domaine de L'Orangeraie - атмосферный бутик-курорт на Ла-Диге рядом с природой, гранитными скалами и самым узнаваемым ритмом Сейшел.
 
 Отель подходит гостям, которые хотят меньше формальности, больше островной атмосферы и удобную базу для пляжей Ла-Дига.
-
-La Digue Island
-
-по запросу
-
-паром до Ла-Дига и короткий трансфер
-
-виллы и сьюты

@@ -4,18 +4,18 @@ slug: "velaa-private-island"
 country: "maldives"
 tier: "deluxe"
 tierLabel: "Deluxe"
-stars: "?????"
+stars: "★★★★★"
 location: "Noonu Atoll"
 segments:
   - luxury
 subtitle: "Закрытый остров для приватного отдыха"
-cover: "https://www.sodis.ru/imageservlet?id=555514905"
+cover: "/assets/img/hotels/optimized/24-imageservlet-54ee6022.webp"
 gallery:
-  - image: "https://www.sodis.ru/imageservlet?id=555514905"
-  - image: "https://www.sodis.ru/imageservlet?id=555514908"
-  - image: "https://www.sodis.ru/imageservlet?id=555514914"
-  - image: "https://www.sodis.ru/imageservlet?id=555514923"
-  - image: "https://www.sodis.ru/imageservlet?id=555514986"
+  - image: "/assets/img/hotels/optimized/24-imageservlet-54ee6022.webp"
+  - image: "/assets/img/hotels/optimized/25-imageservlet-fe769734.webp"
+  - image: "/assets/img/hotels/optimized/26-imageservlet-a531aed2.webp"
+  - image: "/assets/img/hotels/optimized/27-imageservlet-30bc92dd.webp"
+  - image: "/assets/img/hotels/optimized/28-imageservlet-8de51ae6.webp"
 facts:
   - label: "Адрес"
     text: "Velaa Private Island, Noonu Atoll"
@@ -32,23 +32,23 @@ rooms:
     type: "287-313 м²"
     description: "Виллы с прямым выходом к песку, собственным бассейном, садом, террасой, дневной кроватью и обеденной зоной на открытом воздухе. Подходят гостям, которым важны приватность у берега, тень зелени и простой ритм между виллой и океаном."
     images:
-      - image: "https://www.sodis.ru/imageservlet?id=555514905"
-      - image: "https://www.sodis.ru/imageservlet?id=555514908"
-      - image: "https://www.sodis.ru/imageservlet?id=555514914"
+      - image: "/assets/img/hotels/optimized/24-imageservlet-54ee6022.webp"
+      - image: "/assets/img/hotels/optimized/25-imageservlet-fe769734.webp"
+      - image: "/assets/img/hotels/optimized/26-imageservlet-a531aed2.webp"
   - title: "Водные виллы"
     type: "223-245 м²"
     description: "Формат над водой с приватным бассейном, террасой над лагуной, зоной отдыха и прямым спуском к воде. Хороший выбор для пары и спокойного отдыха без лишних перемещений по острову."
     images:
-      - image: "https://www.sodis.ru/imageservlet?id=555514908"
-      - image: "https://www.sodis.ru/imageservlet?id=555514914"
-      - image: "https://www.sodis.ru/imageservlet?id=555514923"
+      - image: "/assets/img/hotels/optimized/25-imageservlet-fe769734.webp"
+      - image: "/assets/img/hotels/optimized/26-imageservlet-a531aed2.webp"
+      - image: "/assets/img/hotels/optimized/27-imageservlet-30bc92dd.webp"
   - title: "Дома и резиденции"
     type: "493-1324 м²"
     description: "Более просторные категории для семей и компаний: несколько спален, крупные жилые зоны, бассейн, приватные террасы и возможность выстроить отдых вокруг собственного расписания, персонального сервиса и ужинов на вилле."
     images:
-      - image: "https://www.sodis.ru/imageservlet?id=555514914"
-      - image: "https://www.sodis.ru/imageservlet?id=555514986"
-      - image: "https://www.sodis.ru/imageservlet?id=555514923"
+      - image: "/assets/img/hotels/optimized/26-imageservlet-a531aed2.webp"
+      - image: "/assets/img/hotels/optimized/28-imageservlet-8de51ae6.webp"
+      - image: "/assets/img/hotels/optimized/27-imageservlet-30bc92dd.webp"
 sections:
   - title: "Рестораны и бары"
     body: "Гастрономия Velaa строится вокруг ресторанов Aragu, Athiri, Tavaru и приватных сценариев на вилле. Можно выбрать авторский ужин, азиатские акценты, легкий пляжный формат или дегустацию с винным сопровождением. Отдельный акцент - Tavaru с винной башней и атмосферой вечернего клуба. Для семей и компаний удобно то, что ужины легко переносить в приватное пространство резиденции."
@@ -71,11 +71,3 @@ tags: hotel
 Velaa Private Island - ультраприватный курорт в Noonu Atoll, где атмосфера ближе к закрытому клубу, чем к классическому отелю. Просторные виллы, резиденции, персональный сервис и сильная спортивная инфраструктура делают его удобным для гостей, которым важны свобода и конфиденциальность.
 
 Здесь легко совместить спокойный пляжный ритм с активным отдыхом: утром тренировка или водный спорт, днем SPA и океан, вечером авторская гастрономия или приватный ужин на вилле. Отель особенно хорошо работает для семей, компаний и гостей, которые хотят максимум пространства.
-
-Velaa Private Island, Noonu Atoll
-
-+960 656 5000
-
-около 45 минут на гидросамолете от Velana
-
-47 вилл, домов и резиденций

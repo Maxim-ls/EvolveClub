@@ -4,7 +4,7 @@ slug: "lux-grand-baie"
 country: "mauritius"
 tier: "premium"
 tierLabel: "Premium"
-stars: "?????"
+stars: "★★★★★"
 location: "Grand Baie"
 segments:
   - luxury
@@ -70,11 +70,3 @@ tags: hotel
 LUX* Grand Baie Resort & Residences - современный курорт на северном побережье с выразительным дизайном, пляжем, ресторанами и более живым курортным ритмом.
 
 Подходит гостям, которым важны стиль, гастрономия, пляж, wellness и возможность выйти за пределы отеля в район Grand Baie.
-
-Grand Baie
-
-по запросу
-
-автомобиль от аэропорта
-
-сьюты, резиденции и виллы

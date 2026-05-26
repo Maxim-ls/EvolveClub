@@ -4,7 +4,7 @@ slug: "hilton-amingiri"
 country: "maldives"
 tier: "business"
 tierLabel: "Business"
-stars: "?????"
+stars: "★★★★★"
 location: "North Male Atoll"
 segments:
   - luxury
@@ -71,11 +71,3 @@ tags: hotel
 Hilton Maldives Amingiri Resort & Spa - удобный современный остров для семей, пар и первой поездки на Мальдивы. Быстрый трансфер делает его практичным вариантом для коротких программ.
 
 Курорт сочетает виллы с бассейнами, понятный сервис Hilton, семейную инфраструктуру, SPA и рестораны без сложной логистики.
-
-Amingiri Island, North Male Atoll
-
-по запросу
-
-скоростной катер от Velana
-
-пляжные и водные виллы с бассейнами

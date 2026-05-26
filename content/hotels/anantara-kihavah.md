@@ -4,7 +4,7 @@ slug: "anantara-kihavah"
 country: "maldives"
 tier: "premium"
 tierLabel: "Premium"
-stars: "?????"
+stars: "★★★★★"
 location: "Baa Atoll"
 segments:
   - luxury
@@ -71,11 +71,3 @@ tags: hotel
 Anantara Kihavah Maldives Villas расположен в Baa Atoll, биосферной зоне ЮНЕСКО. Это отель для гостей, которые хотят совместить пляж, дайвинг, просторные виллы с бассейнами и выразительную гастрономию.
 
 Курорт делает акцент на приватном размещении, океанских активностях, семейном отдыхе и ярких ужинах, включая подводный ресторанный сценарий SEA и атмосферные площадки над водой.
-
-Kihavah Huravalhi Island, Baa Atoll
-
-по запросу
-
-гидросамолет от Velana
-
-пляжные и водные виллы с бассейнами

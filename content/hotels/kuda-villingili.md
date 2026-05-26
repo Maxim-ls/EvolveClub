@@ -4,7 +4,7 @@ slug: "kuda-villingili"
 country: "maldives"
 tier: "business"
 tierLabel: "Business"
-stars: "?????"
+stars: "★★★★★"
 location: "North Male Atoll"
 segments:
   - luxury
@@ -71,11 +71,3 @@ tags: hotel
 Kuda Villingili Resort Maldives удобен для гостей, которым важна логистика без гидросамолета, современная инфраструктура и активный формат отдыха рядом с Мале.
 
 Курорт подходит для коротких поездок, семейного отдыха и гостей, которые хотят совместить пляж, спорт, рестораны, большой бассейн и быстрый доступ к острову.
-
-Kuda Villingili, North Male Atoll
-
-по запросу
-
-скоростной катер от Velana
-
-пляжные и водные виллы

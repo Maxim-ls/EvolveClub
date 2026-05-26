@@ -4,7 +4,7 @@ slug: "dinarobin-beachcomber"
 country: "mauritius"
 tier: "deluxe"
 tierLabel: "Deluxe"
-stars: "?????"
+stars: "★★★★★"
 location: "Le Morne"
 segments:
   - luxury
@@ -70,11 +70,3 @@ tags: hotel
 Dinarobin Beachcomber Golf Resort & Spa расположен у подножия горы Ле-Морн и подходит для спокойного пляжного отдыха, SPA, гольфа и красивых видов на океан.
 
 Отель работает для пар и семей, которым нужен элегантный, не слишком шумный курорт с большой территорией, пляжем и доступом к инфраструктуре полуострова.
-
-Le Morne Peninsula
-
-по запросу
-
-автомобиль от аэропорта
-
-сьюты и виллы

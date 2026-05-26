@@ -4,7 +4,7 @@ slug: "raffles-seychelles"
 country: "seychelles"
 tier: "premium"
 tierLabel: "Premium"
-stars: "?????"
+stars: "★★★★★"
 location: "Праслин"
 segments:
   - luxury
@@ -70,11 +70,3 @@ tags: hotel
 Raffles Seychelles расположен на Праслине и подходит гостям, которым нужны просторные виллы, виды на океан и удобная база для знакомства с островом.
 
 Отель хорошо сочетает пляж, SPA, рестораны, семейную инфраструктуру и маршруты к Valle de Mai и соседним островам.
-
-Anse Takamaka, Praslin
-
-по запросу
-
-перелет/паром до Праслина и автомобиль
-
-виллы с бассейнами

@@ -4,7 +4,7 @@ slug: "four-seasons-resort-seychelles"
 country: "seychelles"
 tier: "premium"
 tierLabel: "Premium"
-stars: "?????"
+stars: "★★★★★"
 location: "Маэ"
 segments:
   - luxury
@@ -71,11 +71,3 @@ tags: hotel
 Four Seasons Resort Seychelles расположен на Маэ у пляжа Petite Anse: виллы поднимаются по зеленому склону и открывают виды на океан.
 
 Отель сочетает узнаваемый сервис Four Seasons, пляжный отдых, SPA, рестораны и удобную инфраструктуру для пар и семей.
-
-Petite Anse, Mahe
-
-по запросу
-
-автомобиль от аэропорта Маэ
-
-виллы и резиденции с бассейнами

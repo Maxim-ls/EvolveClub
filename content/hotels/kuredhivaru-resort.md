@@ -4,7 +4,7 @@ slug: "kuredhivaru-resort"
 country: "maldives"
 tier: "business"
 tierLabel: "Business"
-stars: "?????"
+stars: "★★★★★"
 location: "Noonu Atoll"
 segments:
   - luxury
@@ -71,11 +71,3 @@ tags: hotel
 Kuredhivaru Resort and Spa - мягкий курорт 5* в Noonu Atoll для отдыха без лишней формальности. Здесь хорошо работают классические мальдивские сценарии: вилла, океан, SPA и спокойный ритм.
 
 Отель подойдет парам и семьям, которым нужен комфорт, понятная инфраструктура, виллы у пляжа или над водой и расслабленная атмосфера острова.
-
-Kuredhivaru Island, Noonu Atoll
-
-по запросу
-
-гидросамолет от Velana
-
-пляжные и водные виллы

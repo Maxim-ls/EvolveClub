@@ -4,7 +4,7 @@ slug: "st-regis-le-morne"
 country: "mauritius"
 tier: "deluxe"
 tierLabel: "Deluxe"
-stars: "?????"
+stars: "★★★★★"
 location: "Le Morne"
 segments:
   - luxury
@@ -70,11 +70,3 @@ tags: hotel
 The St. Regis Le Morne Resort Mauritius расположен на западном побережье у Ле-Морн и сочетает пляж, сильный сервис и атмосферу колониальной элегантности.
 
 Формат подходит гостям, которым важны океан, качественный сервис, спокойная территория и удобный доступ к активностям западного побережья.
-
-Le Morne Peninsula
-
-по запросу
-
-автомобиль от аэропорта
-
-сьюты и виллы у пляжа

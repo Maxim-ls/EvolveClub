@@ -4,7 +4,7 @@ slug: "paradis-beachcomber"
 country: "mauritius"
 tier: "premium"
 tierLabel: "Premium"
-stars: "?????"
+stars: "★★★★★"
 location: "Le Morne"
 segments:
   - luxury
@@ -70,11 +70,3 @@ tags: hotel
 Paradis Beachcomber Golf Resort & Spa - универсальный курорт на полуострове Ле-Морн для семей, пар и активного отдыха.
 
 Сильные стороны - длинная пляжная линия, лагуна, гольф, водные активности, большая территория и удобный доступ к природным маршрутам юго-запада.
-
-Le Morne Peninsula
-
-по запросу
-
-автомобиль от аэропорта
-
-номера, сьюты и виллы

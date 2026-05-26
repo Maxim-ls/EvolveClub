@@ -4,7 +4,7 @@ slug: "fregate-island-private"
 country: "seychelles"
 tier: "deluxe"
 tierLabel: "Deluxe"
-stars: "?????"
+stars: "★★★★★"
 location: "Fregate Island"
 segments:
   - luxury
@@ -71,11 +71,3 @@ tags: hotel
 Fregate Island Private - редкий частный островной формат для гостей, которым важны природа, приватность и пляжи почти без посторонних.
 
 Отдых строится вокруг виллы, океана, природных маршрутов, персонального сервиса и камерной атмосферы.
-
-Fregate Island, Seychelles
-
-по запросу
-
-вертолет или катер от Маэ
-
-виллы с бассейнами

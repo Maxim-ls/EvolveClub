@@ -4,18 +4,18 @@ slug: "cheval-blanc-randheli"
 country: "maldives"
 tier: "deluxe"
 tierLabel: "Deluxe"
-stars: "?????"
+stars: "★★★★★"
 location: "Noonu Atoll"
 segments:
   - luxury
 subtitle: "Французский maison на приватном острове"
-cover: "https://images.prismic.io/lvmh-chevalblanc/Z88InRsAHJWomSkz_WebRGB-ChevalBlancRandheli-LagoonVilla-OliverFly-2024.jpg?auto=format%2Ccompress&fit=max&w=1920"
+cover: "/assets/img/hotels/optimized/09-z88inrsahjwomskz-webrgb-chevalblancrandheli-lagoonvilla-oliverfly-2024-ac305ecc.webp"
 gallery:
-  - image: "https://images.prismic.io/lvmh-chevalblanc/Z_6EL-vxEdbNPFLm_WebRGB-ChevalBlancRandheli-WaterVilla-OliverFly-March2023.jpg?auto=format%2Ccompress&fit=max&w=1280"
-  - image: "https://images.prismic.io/lvmh-chevalblanc/Z_9iZ-vxEdbNPG8C_WebRGB-ChevalBlancRandheli-IslandVilla-OliverFly-2024-10-.jpg?auto=format%2Ccompress&fit=max&w=1280"
-  - image: "https://images.prismic.io/lvmh-chevalblanc/Z_6GS-vxEdbNPFNG_WebRGB-ChevalBlancRandheli-WaterVilla-OliverFly-2024.jpg?auto=format%2Ccompress&fit=max&w=1280"
-  - image: "https://images.prismic.io/lvmh-chevalblanc/aErNsbNJEFaPX5xt_Light-ChevalBlancRandheli-1947-OliverFly-2024.jpg?auto=format%2Ccompress&fit=max&w=1280"
-  - image: "https://images.prismic.io/lvmh-chevalblanc/aEbsVrh8WN-LV5ir_ChevalBlancRandheli-ArchVincentBeaurinV2-OliverFly-2023.jpg?auto=format%2Ccompress&fit=max&w=1280"
+  - image: "/assets/img/hotels/optimized/10-z-6el-vxedbnpflm-webrgb-chevalblancrandheli-watervilla-oliverfly-march2023-866af360.webp"
+  - image: "/assets/img/hotels/optimized/12-z-9iz-vxedbnpg8c-webrgb-chevalblancrandheli-islandvilla-oliverfly-2024-10-d23bc5d9.webp"
+  - image: "/assets/img/hotels/optimized/11-z-6gs-vxedbnpfng-webrgb-chevalblancrandheli-watervilla-oliverfly-2024-bdf3c19a.webp"
+  - image: "/assets/img/hotels/optimized/14-aernsbnjefapx5xt-light-chevalblancrandheli-1947-oliverfly-2024-8ca33eb2.webp"
+  - image: "/assets/img/hotels/optimized/13-aebsvrh8wn-lv5ir-chevalblancrandheli-archvincentbeaurinv2-oliverfly-2023-8e240add.webp"
 facts:
   - label: "Адрес"
     text: "Randheli Island, Noonu Atoll"
@@ -32,23 +32,23 @@ rooms:
     type: "240-300 м²"
     description: "Виллы у белого песка с приватным бассейном длиной 12,5 м, садом, открытой обеденной перголой и прямым выходом к пляжу. Внутри - гостиная, спальня, ванная с большой ванной, двойной раковиной, душем в помещении и душем на открытом воздухе."
     images:
-      - image: "https://images.prismic.io/lvmh-chevalblanc/Z_9iZ-vxEdbNPG8C_WebRGB-ChevalBlancRandheli-IslandVilla-OliverFly-2024-10-.jpg?auto=format%2Ccompress&fit=max&w=1280"
-      - image: "https://images.prismic.io/lvmh-chevalblanc/Z_6GS-vxEdbNPFNG_WebRGB-ChevalBlancRandheli-WaterVilla-OliverFly-2024.jpg?auto=format%2Ccompress&fit=max&w=1280"
-      - image: "https://images.prismic.io/lvmh-chevalblanc/Z88InRsAHJWomSkz_WebRGB-ChevalBlancRandheli-LagoonVilla-OliverFly-2024.jpg?auto=format%2Ccompress&fit=max&w=1280"
+      - image: "/assets/img/hotels/optimized/12-z-9iz-vxedbnpg8c-webrgb-chevalblancrandheli-islandvilla-oliverfly-2024-10-d23bc5d9.webp"
+      - image: "/assets/img/hotels/optimized/11-z-6gs-vxedbnpfng-webrgb-chevalblancrandheli-watervilla-oliverfly-2024-bdf3c19a.webp"
+      - image: "/assets/img/hotels/optimized/08-z88inrsahjwomskz-webrgb-chevalblancrandheli-lagoonvilla-oliverfly-2024-fa136cc8.webp"
   - title: "Водные виллы"
     type: "240 м²"
     description: "Виллы на сваях над лагуной с приватным инфинити-бассейном, несколькими террасами, зоной отдыха, обеденным павильоном и прямым спуском к воде. Хороший формат для пары, если важны океанский вид и максимальная близость к воде."
     images:
-      - image: "https://images.prismic.io/lvmh-chevalblanc/Z_6EL-vxEdbNPFLm_WebRGB-ChevalBlancRandheli-WaterVilla-OliverFly-March2023.jpg?auto=format%2Ccompress&fit=max&w=1280"
-      - image: "https://images.prismic.io/lvmh-chevalblanc/Z_6GS-vxEdbNPFNG_WebRGB-ChevalBlancRandheli-WaterVilla-OliverFly-2024.jpg?auto=format%2Ccompress&fit=max&w=1280"
-      - image: "https://images.prismic.io/lvmh-chevalblanc/Z88InRsAHJWomSkz_WebRGB-ChevalBlancRandheli-LagoonVilla-OliverFly-2024.jpg?auto=format%2Ccompress&fit=max&w=1280"
+      - image: "/assets/img/hotels/optimized/10-z-6el-vxedbnpflm-webrgb-chevalblancrandheli-watervilla-oliverfly-march2023-866af360.webp"
+      - image: "/assets/img/hotels/optimized/11-z-6gs-vxedbnpfng-webrgb-chevalblancrandheli-watervilla-oliverfly-2024-bdf3c19a.webp"
+      - image: "/assets/img/hotels/optimized/08-z88inrsahjwomskz-webrgb-chevalblancrandheli-lagoonvilla-oliverfly-2024-fa136cc8.webp"
   - title: "Резиденции"
     type: "220-355 м² · частный остров 1 га"
     description: "Garden Water Villa объединяет сад и водную террасу, а двухспальные виллы и частный остров подходят для семей и закрытых поездок. В резиденциях больше жилых зон, несколько спален, бассейн и сценарий отдыха без привязки к общему ритму курорта."
     images:
-      - image: "https://images.prismic.io/lvmh-chevalblanc/Z88InRsAHJWomSkz_WebRGB-ChevalBlancRandheli-LagoonVilla-OliverFly-2024.jpg?auto=format%2Ccompress&fit=max&w=1280"
-      - image: "https://images.prismic.io/lvmh-chevalblanc/Z_9iZ-vxEdbNPG8C_WebRGB-ChevalBlancRandheli-IslandVilla-OliverFly-2024-10-.jpg?auto=format%2Ccompress&fit=max&w=1280"
-      - image: "https://images.prismic.io/lvmh-chevalblanc/aEbsVrh8WN-LV5ir_ChevalBlancRandheli-ArchVincentBeaurinV2-OliverFly-2023.jpg?auto=format%2Ccompress&fit=max&w=1280"
+      - image: "/assets/img/hotels/optimized/08-z88inrsahjwomskz-webrgb-chevalblancrandheli-lagoonvilla-oliverfly-2024-fa136cc8.webp"
+      - image: "/assets/img/hotels/optimized/12-z-9iz-vxedbnpg8c-webrgb-chevalblancrandheli-islandvilla-oliverfly-2024-10-d23bc5d9.webp"
+      - image: "/assets/img/hotels/optimized/13-aebsvrh8wn-lv5ir-chevalblancrandheli-archvincentbeaurinv2-oliverfly-2023-8e240add.webp"
 sections:
   - title: "Рестораны и бары"
     body: "На острове несколько ресторанных форматов: французская элегантность, японские акценты, средиземноморская кухня, пляжные обеды и приватные ужины. Вечер можно сделать камерным, семейным или торжественным - без ощущения повторения. Сильная сторона отеля - гибкость: от легкого меню у воды до гастрономического ужина с винным сопровождением. Команда аккуратно подстраивает кухню под ритм поездки и предпочтения гостей."
@@ -71,11 +71,3 @@ tags: hotel
 Cheval Blanc Randheli - один из самых камерных deluxe-курортов Мальдив: архитектура Жана-Мишеля Гати, светлые виллы, безупречная детализация и сервис Majordome, который подстраивает отдых под привычки гостей.
 
 Отель выбирают за тишину, эстетику, сильную гастрономию и отдельный остров Spa Cheval Blanc. Здесь нет ощущения большого курорта: день легко собрать из завтрака на террасе, океанской прогулки, SPA-ритуала, приватного ужина и полного отсутствия спешки.
-
-Randheli Island, Noonu Atoll
-
-+960 656 1515
-
-около 40 минут на гидросамолете от Velana
-
-46 вилл и резиденций с приватными бассейнами

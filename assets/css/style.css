@@ -1040,7 +1040,7 @@ button,
   min-height: 100vh;
   min-height: 100svh;
   display: grid;
-  align-items: start;
+  align-items: center;
   padding: calc(var(--header-height) + 38px) var(--page-x) clamp(64px, 8vw, 110px);
   background-position: center;
   background-size: cover;
@@ -1080,7 +1080,7 @@ button,
 }
 
 .country-hero h1 {
-  margin: var(--country-title-offset-y) 0 0;
+  margin: 0;
   font-family: var(--font-display);
   font-size: clamp(46px, 6.8vw, 104px);
   line-height: .95;
