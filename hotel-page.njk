@@ -5,31 +5,63 @@ pagination:
   alias: hotel
 permalink: "/hotel-test/{{ hotel.data.slug }}/"
 layout: layouts/base.njk
-title: "{{ hotel.data.title }}"
+title: "{{ hotel.data.title }} - EvolveClub"
+bodyClass: "country-page hotel-detail-page"
 ---
 
-<main style="padding: 40px;">
-  <h1>{{ hotel.data.title }}</h1>
-  <p>{{ hotel.data.subtitle }}</p>
+<main id="top">
+  <section class="hotel-detail-hero" style="--hotel-hero-image: url('{{ hotel.data.cover }}'); --hotel-next-image: url('{{ hotel.data.cover }}');">
+    <div class="hotel-detail-inner">
+      <a class="country-back" data-history-back href="/countries-test/{{ hotel.data.country }}/#hotels"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg> Назад к отелям</a>
+      <span class="hotel-stars" aria-label="Отель"><span class="hotel-rating-label">{{ hotel.data.segments | join(" / ") }}</span></span>
+      <h1>{{ hotel.data.title }}</h1>
+      <span class="hotel-location"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>{{ hotel.data.country }}</span>
+    </div>
+    <div class="hotel-hero-actions" aria-label="Заявка по отелю">
+      <a class="primary-button" href="/#request">Оставить заявку</a>
+    </div>
+  </section>
 
-  <p>
-    <strong>Страна:</strong> {{ hotel.data.country }}
-  </p>
+  <section class="hotel-detail-main">
+    <div class="hotel-meta-grid">
+      <div class="hotel-info-box">
+        <span>Страна</span>
+        <p>{{ hotel.data.country }}</p>
+      </div>
+      <div class="hotel-info-box">
+        <span>Сегменты</span>
+        <p>{{ hotel.data.segments | join(", ") }}</p>
+      </div>
+    </div>
 
-  <p>
-    <strong>Сегменты:</strong>
-    {% for segment in hotel.data.segments %}
-      {{ segment }}{% if not loop.last %}, {% endif %}
-    {% endfor %}
-  </p>
+    <section class="hotel-content-section hotel-about-feature">
+      <div>
+        <span>Об отеле</span>
+        <h2>{{ hotel.data.subtitle }}</h2>
+        {{ hotel.templateContent | safe }}
+      </div>
+      <ul class="hotel-facts">
+        {% for segment in hotel.data.segments %}
+          <li>
+            <span>{{ segment }}</span>
+            <p>Сегмент отеля</p>
+          </li>
+        {% endfor %}
+      </ul>
+    </section>
 
-  <img
-    src="{{ hotel.data.cover }}"
-    alt="{{ hotel.data.title }}"
-    style="max-width: 600px; width: 100%; height: auto;"
-  >
-
-  <div>
-    {{ hotel.templateContent | safe }}
-  </div>
+    <section class="hotel-content-section">
+      <span>Фото</span>
+      <h2>Галерея</h2>
+      <div class="hotel-photo-mosaic">
+        {% if hotel.data.gallery and hotel.data.gallery.length %}
+          {% for item in hotel.data.gallery %}
+            <img src="{{ item.image or item }}" alt="{{ hotel.data.title }}" loading="lazy">
+          {% endfor %}
+        {% else %}
+          <img src="{{ hotel.data.cover }}" alt="{{ hotel.data.title }}" loading="lazy">
+        {% endif %}
+      </div>
+    </section>
+  </section>
 </main>
