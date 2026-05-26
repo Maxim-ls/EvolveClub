@@ -42,18 +42,5 @@
     "australia": "/assets/img/destinations/travel-19.jpg",
     "newZealand": "/assets/img/destinations/travel-06.jpg"
   },
-  "islandCards": {
-    "maldives": "/assets/img/destinations/travel-35.jpg",
-    "seychelles": "/assets/img/destinations/seychelles-hero.jpg",
-    "mauritius": "/assets/img/destinations/mauritius-hero.jpg"
-  },
-  "tourCards": {
-    "classicJapan": "/assets/img/tours/classic-japan-hero-ru.jpg",
-    "autumnJapan": "/assets/img/tours/autumn-japan-hero.jpg",
-    "baikalWinter": "/assets/img/tours/baikal-winter-hero.jpg",
-    "altai": "/assets/img/destinations/travel-12.jpg",
-    "kamchatka": "/assets/img/destinations/travel-29.jpg",
-    "beautyTours": "/assets/img/destinations/travel-32.jpg"
-  },
   "request": "/assets/img/destinations/travel-20.jpg"
 }

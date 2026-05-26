@@ -286,18 +286,13 @@
           <p class="direction-text">Приватные виллы, прозрачная вода, спокойный ритм и сервис, где каждая деталь работает на ощущение уединения.</p>
         </div>
         <div class="country-rail direction-rail" id="islandsRail" aria-label="Островные направления" data-card-carousel>
-          <article class="country-card is-active" tabindex="0" data-carousel-card aria-current="true" style="background-image: url('{{ homeImages.islandCards.maldives }}');">
-            <strong>Мальдивы</strong>
-            <a class="country-card-link" href="countries/maldives.html">Смотреть <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></a>
-          </article>
-          <article class="country-card" tabindex="0" data-carousel-card style="background-image: url('{{ homeImages.islandCards.seychelles }}');">
-            <strong>Сейшелы</strong>
-            <a class="country-card-link" href="countries/seychelles.html">Смотреть <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></a>
-          </article>
-          <article class="country-card" tabindex="0" data-carousel-card style="background-image: url('{{ homeImages.islandCards.mauritius }}');">
-            <strong>Маврикий</strong>
-            <a class="country-card-link" href="countries/mauritius.html">Смотреть <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></a>
-          </article>
+          {% set islandCountries = collections.country | whereEquals("data.region", "islands") | whereTruthy("data.featured") | sortByOrder %}
+          {% for country in islandCountries %}
+            <article class="country-card{% if loop.first %} is-active{% endif %}" tabindex="0" data-carousel-card{% if loop.first %} aria-current="true"{% endif %} style="background-image: url('{{ country.data.cover }}');">
+              <strong>{{ country.data.title }}</strong>
+              <a class="country-card-link" href="/countries/{{ country.data.slug }}/">Смотреть <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></a>
+            </article>
+          {% endfor %}
         </div>
       </div>
       <div class="direction-footer" aria-label="Навигация карусели Острова">
@@ -342,30 +337,13 @@
         <p class="section-lead">Подборка маршрутов с понятной программой, логистикой и ритмом поездки.<br> Можно взять готовый тур или адаптировать его под даты, состав и уровень отелей.</p>
       </div>
       <div class="tour-grid">
-        <a class="tour-card" href="tours/classic-japan-two-weeks.html" style="background-image: url('{{ homeImages.tourCards.classicJapan }}');">
-          <span>Япония</span>
-          <h3>Классическая Япония: две недели</h3>
-        </a>
-        <a class="tour-card" href="tours/autumn-maples-japan.html" style="background-image: url('{{ homeImages.tourCards.autumnJapan }}');">
-          <span>Япония</span>
-          <h3>Осень. Клены. Япония</h3>
-        </a>
-        <a class="tour-card" href="tours/baikal-winter-drive.html" style="background-image: url('{{ homeImages.tourCards.baikalWinter }}');">
-          <span>Россия</span>
-          <h3>Озеро Байкал</h3>
-        </a>
-        <a class="tour-card" href="https://nwi-travel.ru/teletskoekatunworld2025" style="background-image: url('{{ homeImages.tourCards.altai }}');">
-          <span>Россия</span>
-          <h3>Алтай</h3>
-        </a>
-        <a class="tour-card" href="https://nwi-travel.ru/kamchatkamax" style="background-image: url('{{ homeImages.tourCards.kamchatka }}');">
-          <span>Россия</span>
-          <h3>Камчатка</h3>
-        </a>
-        <a class="tour-card" href="#request" style="background-image: url('{{ homeImages.tourCards.beautyTours }}');">
-          <span>Бьюти-туры</span>
-          <h3>Турция, Корея, Швейцария</h3>
-        </a>
+        {% set featuredTours = collections.tour | whereTruthy("data.featured") | sortByOrder %}
+        {% for tour in featuredTours %}
+          <a class="tour-card" href="/tour-test/{{ tour.data.slug }}/" style="background-image: url('{{ tour.data.cover }}');">
+            <span>{{ tour.data.destination }}</span>
+            <h3>{{ tour.data.title }}</h3>
+          </a>
+        {% endfor %}
       </div>
     </section>
 <!--

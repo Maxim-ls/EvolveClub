@@ -1,6 +1,7 @@
 ---
 title: "Мальдивы"
 slug: "maldives"
+region: "islands"
 subtitle: "Частные острова, виллы над водой и высокий уровень сервиса"
 cover: "/assets/img/destinations/maldives-hero.jpg"
 order: 1
