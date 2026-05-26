@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: Tetr31/EvolveClub
+  repo: Tetrr31/EvolveClub
   branch: main
   base_url: https://tijayvpn.site
   auth_endpoint: admin/auth/auth.php

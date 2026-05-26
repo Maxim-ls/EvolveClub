@@ -4,39 +4,31 @@ pagination:
   size: 1
   alias: tour
 permalink: "/tour-test/{{ tour.data.slug }}/"
+layout: layouts/base.njk
+title: "{{ tour.data.title }}"
 ---
 
-<!doctype html>
-<html lang="ru">
-<head>
-  <meta charset="utf-8">
-  <title>{{ tour.data.title }}</title>
-  <link rel="stylesheet" href="/assets/css/style.css">
-</head>
-<body>
-  <main style="padding: 40px;">
-    <h1>{{ tour.data.title }}</h1>
-    <p>{{ tour.data.subtitle }}</p>
+<main style="padding: 40px;">
+  <h1>{{ tour.data.title }}</h1>
+  <p>{{ tour.data.subtitle }}</p>
 
+  <p>
+    <strong>Направление:</strong> {{ tour.data.destination }}
+  </p>
+
+  {% if tour.data.duration %}
     <p>
-      <strong>Направление:</strong> {{ tour.data.destination }}
+      <strong>Длительность:</strong> {{ tour.data.duration }}
     </p>
+  {% endif %}
 
-    {% if tour.data.duration %}
-      <p>
-        <strong>Длительность:</strong> {{ tour.data.duration }}
-      </p>
-    {% endif %}
+  <img
+    src="{{ tour.data.cover }}"
+    alt="{{ tour.data.title }}"
+    style="max-width: 600px; width: 100%; height: auto;"
+  >
 
-    <img
-      src="{{ tour.data.cover }}"
-      alt="{{ tour.data.title }}"
-      style="max-width: 600px; width: 100%; height: auto;"
-    >
-
-    <div>
-      {{ tour.templateContent | safe }}
-    </div>
-  </main>
-</body>
-</html>
+  <div>
+    {{ tour.templateContent | safe }}
+  </div>
+</main>
