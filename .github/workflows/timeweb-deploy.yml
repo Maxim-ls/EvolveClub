@@ -15,8 +15,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - name: Download repository
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPOSITORY: ${{ github.repository }}
+          REF_NAME: ${{ github.ref_name }}
+        run: |
+          curl -L \
+            -H "Authorization: Bearer $GH_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/$REPOSITORY/zipball/$REF_NAME" \
+            -o repository.zip
+          unzip repository.zip
+          shopt -s dotglob
+          mv */* .
+          rm -rf repository.zip */
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
