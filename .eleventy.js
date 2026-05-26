@@ -8,6 +8,7 @@ module.exports = function (eleventyConfig) {
       input: ".",
       output: "_site"
     },
+    htmlTemplateEngine: "njk",
     ignores: [
       "node_modules/**",
       "_site/**",

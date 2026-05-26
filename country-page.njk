@@ -5,7 +5,8 @@ pagination:
   alias: country
 permalink: "/countries-test/{{ country.data.slug }}/"
 layout: layouts/base.njk
-title: "{{ country.data.title }} - EvolveClub"
+title: "{{ country.data.seo_title or country.data.title + ' - EvolveClub' }}"
+description: "{{ country.data.seo_description or country.data.subtitle }}"
 bodyClass: "country-page"
 ---
 

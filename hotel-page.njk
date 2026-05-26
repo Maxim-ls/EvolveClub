@@ -5,7 +5,8 @@ pagination:
   alias: hotel
 permalink: "/hotel-test/{{ hotel.data.slug }}/"
 layout: layouts/base.njk
-title: "{{ hotel.data.title }} - EvolveClub"
+title: "{{ hotel.data.seo_title or hotel.data.title + ' - EvolveClub' }}"
+description: "{{ hotel.data.seo_description or hotel.data.subtitle }}"
 bodyClass: "country-page hotel-detail-page"
 ---
 
@@ -63,5 +64,42 @@ bodyClass: "country-page hotel-detail-page"
         {% endif %}
       </div>
     </section>
+
+    {% if hotel.data.rooms and hotel.data.rooms.length %}
+      <section class="hotel-content-section">
+        <span>Размещение</span>
+        <h2>Номера и виллы</h2>
+        <div class="room-grid room-grid-detailed">
+          {% for room in hotel.data.rooms %}
+            {% set roomImages = [] %}
+            {% if room.images and room.images.length %}
+              {% for item in room.images %}
+                {% set roomImages = (roomImages.push(item.image or item), roomImages) %}
+              {% endfor %}
+            {% endif %}
+            {% set firstImage = roomImages[0] or hotel.data.cover %}
+            <article class="room-card">
+              <div class="room-gallery" data-room-gallery data-room-images="{{ roomImages | join('|') }}">
+                <img src="{{ firstImage }}" alt="{{ room.title }}" loading="lazy">
+                <button type="button" data-room-prev aria-label="Предыдущее фото"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button>
+                <button type="button" data-room-next aria-label="Следующее фото"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+              </div>
+              {% if room.type %}
+                <span>{{ room.type }}</span>
+              {% endif %}
+              <h3>{{ room.title }}</h3>
+              <p>{{ room.description }}</p>
+              {% if room.area or room.capacity %}
+                <p>
+                  {% if room.area %}<b>{{ room.area }}</b>{% endif %}
+                  {% if room.area and room.capacity %} · {% endif %}
+                  {% if room.capacity %}{{ room.capacity }}{% endif %}
+                </p>
+              {% endif %}
+            </article>
+          {% endfor %}
+        </div>
+      </section>
+    {% endif %}
   </section>
 </main>

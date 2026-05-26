@@ -1,0 +1,59 @@
+{
+  "hero": "/assets/img/destinations/travel-11.jpg",
+  "overview": {
+    "europe": "/assets/img/destinations/travel-16.jpg",
+    "russiaCis": "/assets/img/destinations/travel-08.jpg",
+    "asiaEast": "/assets/img/destinations/travel-21.jpg",
+    "africa": "/assets/img/destinations/travel-02.jpg",
+    "americaCaribbean": "/assets/img/destinations/travel-13.jpg",
+    "islands": "/assets/img/destinations/travel-34.jpg",
+    "oceania": "/assets/img/destinations/travel-18.jpg"
+  },
+  "directions": {
+    "europeBg": "/assets/img/destinations/bg-europe.jpg",
+    "russiaCisBg": "/assets/img/destinations/bg-russia-cis.jpg",
+    "asiaEastBg": "/assets/img/destinations/bg-asia-east.jpg",
+    "africaBg": "/assets/img/destinations/bg-africa.jpg",
+    "americaCaribbeanBg": "/assets/img/destinations/bg-america-caribbean.jpg",
+    "islandsBg": "/assets/img/destinations/bg-islands.jpg",
+    "oceaniaBg": "/assets/img/destinations/bg-oceania.jpg"
+  },
+  "directionCards": {
+    "france": "/assets/img/destinations/travel-15.jpg",
+    "spain": "/assets/img/destinations/travel-24.jpg",
+    "italy": "/assets/img/destinations/travel-26.jpg",
+    "iceland": "/assets/img/destinations/travel-17.jpg",
+    "russia": "/assets/img/destinations/travel-09.jpg",
+    "armenia": "/assets/img/destinations/travel-03.jpg",
+    "uzbekistan": "/assets/img/destinations/travel-05.jpg",
+    "china": "/assets/img/destinations/travel-23.jpg",
+    "thailand": "/assets/img/destinations/travel-22.jpg",
+    "indonesia": "/assets/img/destinations/travel-31.jpg",
+    "vietnam": "/assets/img/destinations/travel-30.jpg",
+    "japan": "/assets/img/destinations/travel-10.jpg",
+    "turkey": "/assets/img/destinations/travel-28.jpg",
+    "egypt": "/assets/img/destinations/travel-02.jpg",
+    "morocco": "/assets/img/destinations/travel-04.jpg",
+    "zanzibar": "/assets/img/destinations/travel-35.jpg",
+    "southAfrica": "/assets/img/destinations/travel-01.jpg",
+    "usa": "/assets/img/destinations/travel-14.jpg",
+    "mexico": "/assets/img/destinations/travel-25.jpg",
+    "brazil": "/assets/img/destinations/travel-07.jpg",
+    "australia": "/assets/img/destinations/travel-19.jpg",
+    "newZealand": "/assets/img/destinations/travel-06.jpg"
+  },
+  "islandCards": {
+    "maldives": "/assets/img/destinations/travel-35.jpg",
+    "seychelles": "/assets/img/destinations/seychelles-hero.jpg",
+    "mauritius": "/assets/img/destinations/mauritius-hero.jpg"
+  },
+  "tourCards": {
+    "classicJapan": "/assets/img/tours/classic-japan-hero-ru.jpg",
+    "autumnJapan": "/assets/img/tours/autumn-japan-hero.jpg",
+    "baikalWinter": "/assets/img/tours/baikal-winter-hero.jpg",
+    "altai": "/assets/img/destinations/travel-12.jpg",
+    "kamchatka": "/assets/img/destinations/travel-29.jpg",
+    "beautyTours": "/assets/img/destinations/travel-32.jpg"
+  },
+  "request": "/assets/img/destinations/travel-20.jpg"
+}

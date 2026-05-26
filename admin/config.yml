@@ -11,6 +11,81 @@ public_folder: "/assets/img/uploads"
 locale: "ru"
 
 collections:
+  - name: "settings"
+    label: "Настройки"
+    files:
+      - name: "home_images"
+        label: "Главная: изображения"
+        file: "_data/homeImages.json"
+        fields:
+          - { label: "Главный фон первого экрана", name: "hero", widget: "image" }
+          - label: "Карточки обзора направлений"
+            name: "overview"
+            widget: "object"
+            fields:
+              - { label: "Европа", name: "europe", widget: "image" }
+              - { label: "Россия и СНГ", name: "russiaCis", widget: "image" }
+              - { label: "Азия и Восток", name: "asiaEast", widget: "image" }
+              - { label: "Африка", name: "africa", widget: "image" }
+              - { label: "Америка и Карибы", name: "americaCaribbean", widget: "image" }
+              - { label: "Острова", name: "islands", widget: "image" }
+              - { label: "Австралия и Океания", name: "oceania", widget: "image" }
+          - label: "Фоны разделов направлений"
+            name: "directions"
+            widget: "object"
+            fields:
+              - { label: "Европа", name: "europeBg", widget: "image" }
+              - { label: "Россия и СНГ", name: "russiaCisBg", widget: "image" }
+              - { label: "Азия и Восток", name: "asiaEastBg", widget: "image" }
+              - { label: "Африка", name: "africaBg", widget: "image" }
+              - { label: "Америка и Карибы", name: "americaCaribbeanBg", widget: "image" }
+              - { label: "Острова", name: "islandsBg", widget: "image" }
+              - { label: "Австралия и Океания", name: "oceaniaBg", widget: "image" }
+          - label: "Карточки стран внутри направлений"
+            name: "directionCards"
+            widget: "object"
+            fields:
+              - { label: "Франция", name: "france", widget: "image" }
+              - { label: "Испания", name: "spain", widget: "image" }
+              - { label: "Италия", name: "italy", widget: "image" }
+              - { label: "Исландия", name: "iceland", widget: "image" }
+              - { label: "Россия", name: "russia", widget: "image" }
+              - { label: "Армения", name: "armenia", widget: "image" }
+              - { label: "Узбекистан", name: "uzbekistan", widget: "image" }
+              - { label: "Китай", name: "china", widget: "image" }
+              - { label: "Таиланд", name: "thailand", widget: "image" }
+              - { label: "Индонезия", name: "indonesia", widget: "image" }
+              - { label: "Вьетнам", name: "vietnam", widget: "image" }
+              - { label: "Япония", name: "japan", widget: "image" }
+              - { label: "Турция", name: "turkey", widget: "image" }
+              - { label: "Египет", name: "egypt", widget: "image" }
+              - { label: "Марокко", name: "morocco", widget: "image" }
+              - { label: "Занзибар", name: "zanzibar", widget: "image" }
+              - { label: "ЮАР", name: "southAfrica", widget: "image" }
+              - { label: "США", name: "usa", widget: "image" }
+              - { label: "Мексика", name: "mexico", widget: "image" }
+              - { label: "Бразилия", name: "brazil", widget: "image" }
+              - { label: "Австралия", name: "australia", widget: "image" }
+              - { label: "Новая Зеландия", name: "newZealand", widget: "image" }
+          - label: "Карточки островов"
+            name: "islandCards"
+            widget: "object"
+            fields:
+              - { label: "Мальдивы", name: "maldives", widget: "image" }
+              - { label: "Сейшелы", name: "seychelles", widget: "image" }
+              - { label: "Маврикий", name: "mauritius", widget: "image" }
+          - label: "Карточки туров"
+            name: "tourCards"
+            widget: "object"
+            fields:
+              - { label: "Классическая Япония", name: "classicJapan", widget: "image" }
+              - { label: "Осенняя Япония", name: "autumnJapan", widget: "image" }
+              - { label: "Байкал", name: "baikalWinter", widget: "image" }
+              - { label: "Алтай", name: "altai", widget: "image" }
+              - { label: "Камчатка", name: "kamchatka", widget: "image" }
+              - { label: "Бьюти-туры", name: "beautyTours", widget: "image" }
+          - { label: "Фон формы запроса", name: "request", widget: "image" }
+
   - name: "countries"
     label: "Направления"
     folder: "content/countries"
@@ -19,6 +94,8 @@ collections:
     fields:
       - { label: "Название", name: "title", widget: "string" }
       - { label: "Адрес страницы", name: "slug", widget: "string" }
+      - { label: "SEO title", name: "seo_title", widget: "string", required: false }
+      - { label: "SEO description", name: "seo_description", widget: "text", required: false }
       - { label: "Краткое описание", name: "subtitle", widget: "text" }
       - { label: "Обложка", name: "cover", widget: "image" }
       - { label: "Порядок", name: "order", widget: "number", default: 1 }
@@ -34,6 +111,8 @@ collections:
     fields:
       - { label: "Название", name: "title", widget: "string" }
       - { label: "Адрес страницы", name: "slug", widget: "string" }
+      - { label: "SEO title", name: "seo_title", widget: "string", required: false }
+      - { label: "SEO description", name: "seo_description", widget: "text", required: false }
       - label: "Страна"
         name: "country"
         widget: "relation"
@@ -58,6 +137,22 @@ collections:
         widget: "list"
         required: false
         field: { label: "Фото", name: "image", widget: "image" }
+      - label: "Номера и виллы"
+        name: "rooms"
+        widget: "list"
+        required: false
+        summary: "{{fields.title}}"
+        fields:
+          - { label: "Название", name: "title", widget: "string" }
+          - { label: "Тип", name: "type", widget: "string", required: false, hint: "Например: Beach Villa, Overwater Villa, Suite" }
+          - { label: "Краткое описание", name: "description", widget: "text" }
+          - { label: "Площадь", name: "area", widget: "string", required: false }
+          - { label: "Размещение", name: "capacity", widget: "string", required: false }
+          - label: "Фото интерьеров"
+            name: "images"
+            widget: "list"
+            required: false
+            field: { label: "Фото", name: "image", widget: "image" }
       - { label: "Порядок", name: "order", widget: "number", default: 1 }
       - { label: "Показывать", name: "featured", widget: "boolean", default: true }
       - { label: "Тег", name: "tags", widget: "hidden", default: "hotel" }
@@ -71,6 +166,8 @@ collections:
     fields:
       - { label: "Название", name: "title", widget: "string" }
       - { label: "Адрес страницы", name: "slug", widget: "string" }
+      - { label: "SEO title", name: "seo_title", widget: "string", required: false }
+      - { label: "SEO description", name: "seo_description", widget: "text", required: false }
       - { label: "Направление", name: "destination", widget: "string" }
       - { label: "Длительность", name: "duration", widget: "string", required: false }
       - { label: "Краткое описание", name: "subtitle", widget: "text" }
