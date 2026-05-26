@@ -14,4 +14,4 @@ featured: true
 tags: hotel
 ---
 
-Waldorf Astoria Maldives Ithaafushi — курорт для спокойного премиального отдыха, семейных поездок и приватных путешествий.
+Waldorf Astoria Maldives Ithaafushi - курорт для спокойного премиального отдыха, семейных поездок и приватных путешествий.
