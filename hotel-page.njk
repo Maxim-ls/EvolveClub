@@ -10,73 +10,63 @@ description: "{{ hotel.data.seo_description or hotel.data.subtitle }}"
 bodyClass: "country-page hotel-detail-page"
 ---
 
+{% set countryEntry = collections.country | findByData("slug", hotel.data.country) %}
+{% set countryTitle = countryEntry.data.title if countryEntry else hotel.data.country %}
+{% set heroImages = [] %}
+{% if hotel.data.cover %}
+  {% set heroImages = (heroImages.push(hotel.data.cover), heroImages) %}
+{% endif %}
+{% if hotel.data.gallery and hotel.data.gallery.length %}
+  {% for item in hotel.data.gallery %}
+    {% set heroImages = (heroImages.push(item.image or item), heroImages) %}
+  {% endfor %}
+{% endif %}
+
 <main id="top">
-  <section class="hotel-detail-hero" style="--hotel-hero-image: url('{{ hotel.data.cover }}'); --hotel-next-image: url('{{ hotel.data.cover }}');">
+  <section class="hotel-detail-hero" data-hotel-hero data-hero-images="{{ heroImages | join('|') }}" style="--hotel-hero-image: url('{{ heroImages[0] or hotel.data.cover }}'); --hotel-next-image: url('{{ heroImages[0] or hotel.data.cover }}');">
     <div class="hotel-detail-inner">
-      <a class="country-back" data-history-back href="/countries-test/{{ hotel.data.country }}/#hotels"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg> Назад к отелям</a>
-      <span class="hotel-stars" aria-label="Отель"><span class="hotel-rating-label">
-        {% for segment in hotel.data.segments %}
-          {{ segmentLabels[segment] or segment }}{% if not loop.last %} / {% endif %}
-        {% endfor %}
-      </span></span>
+      <a class="country-back" data-history-back href="/countries/{{ hotel.data.country }}/#hotels"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg> Назад к отелям</a>
+      <span class="hotel-stars" aria-label="Отель">{{ hotel.data.stars or "★★★★★" }} <span class="hotel-rating-label">{{ hotel.data.tierLabel or hotel.data.tier or "Deluxe" }}</span></span>
       <h1>{{ hotel.data.title }}</h1>
-      <span class="hotel-location"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>{{ hotel.data.country }}</span>
+      <span class="hotel-location"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>{{ countryTitle }}{% if hotel.data.location %}, {{ hotel.data.location }}{% endif %}</span>
     </div>
     <div class="hotel-hero-actions" aria-label="Заявка по отелю">
-      <a class="primary-button" href="/#request">Оставить заявку</a>
+      <button type="button" class="primary-button" data-modal-open="hotel-request">Оставить заявку</button>
     </div>
+    {% if heroImages.length > 1 %}
+      <div class="hotel-hero-controls" aria-label="Фотографии отеля">
+        <button type="button" data-hero-prev aria-label="Предыдущее фото"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button>
+        <span><b data-hero-current>01</b>/<b data-hero-total>{{ "0" if heroImages.length < 10 }}{{ heroImages.length }}</b></span>
+        <button type="button" data-hero-next aria-label="Следующее фото"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+      </div>
+    {% endif %}
   </section>
 
   <section class="hotel-detail-main">
-    <div class="hotel-meta-grid">
-      <div class="hotel-info-box">
-        <span>Страна</span>
-        <p>{{ hotel.data.country }}</p>
-      </div>
-      <div class="hotel-info-box">
-        <span>Сегменты</span>
-        <p>
-          {% for segment in hotel.data.segments %}
-            {{ segmentLabels[segment] or segment }}{% if not loop.last %}, {% endif %}
-          {% endfor %}
-        </p>
-      </div>
-    </div>
-
     <section class="hotel-content-section hotel-about-feature">
       <div>
-        <span>Об отеле</span>
         <h2>{{ hotel.data.subtitle }}</h2>
         {{ hotel.templateContent | safe }}
       </div>
-      <ul class="hotel-facts">
-        {% for segment in hotel.data.segments %}
-          <li>
-            <span>{{ segmentLabels[segment] or segment }}</span>
-            <p>Сегмент отеля</p>
-          </li>
-        {% endfor %}
-      </ul>
-    </section>
-
-    <section class="hotel-content-section">
-      <span>Фото</span>
-      <h2>Галерея</h2>
-      <div class="hotel-photo-mosaic">
-        {% if hotel.data.gallery and hotel.data.gallery.length %}
-          {% for item in hotel.data.gallery %}
-            <img src="{{ item.image or item }}" alt="{{ hotel.data.title }}" loading="lazy">
+      {% if hotel.data.facts and hotel.data.facts.length %}
+        <ul class="hotel-facts">
+          {% for fact in hotel.data.facts %}
+            <li>
+              <span>{{ fact.label }}</span>
+              <p>{{ fact.text }}</p>
+            </li>
           {% endfor %}
-        {% else %}
-          <img src="{{ hotel.data.cover }}" alt="{{ hotel.data.title }}" loading="lazy">
-        {% endif %}
-      </div>
+        </ul>
+      {% endif %}
     </section>
 
     {% if hotel.data.rooms and hotel.data.rooms.length %}
       <section class="hotel-content-section">
-        <span>Размещение</span>
-        <h2>Номера и виллы</h2>
+        <span>Проживание</span>
+        <h2>{{ hotel.data.rooms_title or "Варианты вилл" }}</h2>
+        {% if hotel.data.rooms_intro %}
+          <p>{{ hotel.data.rooms_intro }}</p>
+        {% endif %}
         <div class="room-grid room-grid-detailed">
           {% for room in hotel.data.rooms %}
             {% set roomImages = [] %}
@@ -109,5 +99,62 @@ bodyClass: "country-page hotel-detail-page"
         </div>
       </section>
     {% endif %}
+
+    {% if hotel.data.gallery and hotel.data.gallery.length %}
+      <section class="hotel-photo-mosaic" aria-label="Фотографии отеля">
+        {% for item in hotel.data.gallery %}
+          <img src="{{ item.image or item }}" alt="{{ hotel.data.title }}" loading="lazy">
+        {% endfor %}
+      </section>
+    {% endif %}
+
+    {% if hotel.data.sections and hotel.data.sections.length %}
+      {% for section in hotel.data.sections %}
+        {% if loop.index0 % 2 == 0 %}
+          <div class="hotel-two-column">
+        {% endif %}
+            <section class="hotel-content-section">
+              <h2>{{ section.title }}</h2>
+              <div>{{ section.body | markdown | safe }}</div>
+            </section>
+        {% if loop.index0 % 2 == 1 or loop.last %}
+          </div>
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+
+    <div class="hotel-bottom-action">
+      <a class="ghost-button country-ghost-button" href="#top">Наверх <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 15l-6-6-6 6"/></svg></a>
+      <button type="button" class="primary-button" data-modal-open="hotel-request">Оставить заявку</button>
+    </div>
   </section>
 </main>
+
+<div class="modal" id="hotel-request" data-modal aria-hidden="true">
+  <div class="modal-backdrop" data-modal-close></div>
+  <div class="modal-panel request-modal-panel" role="dialog" aria-modal="true" aria-labelledby="hotel-request-title">
+    <button type="button" class="modal-close" data-modal-close aria-label="Закрыть">×</button>
+    <h2 id="hotel-request-title">Оставить заявку</h2>
+    <p class="request-modal-lead">Оставьте контактные данные, и мы уточним даты поездки, состав гостей и подходящий формат размещения.</p>
+    <form class="request-form" data-request-form>
+      <label for="hotel-request-name">
+        <span>Имя</span>
+        <input type="text" id="hotel-request-name" name="name" placeholder="Ваше имя" required>
+      </label>
+      <label for="hotel-request-contact">
+        <span>Контакт</span>
+        <input type="text" id="hotel-request-contact" name="contact" placeholder="Телефон, Telegram или WhatsApp" required>
+      </label>
+      <label for="hotel-request-villa">
+        <span>Отель</span>
+        <input type="text" id="hotel-request-villa" name="hotel" value="{{ hotel.data.title }}">
+      </label>
+      <label for="hotel-request-message">
+        <span>Пожелания</span>
+        <textarea id="hotel-request-message" name="message" rows="4" placeholder="Даты, гости, бюджет и важные детали"></textarea>
+      </label>
+      <button type="submit" class="primary-button">Отправить заявку</button>
+      <p class="form-status" data-form-status></p>
+    </form>
+  </div>
+</div>

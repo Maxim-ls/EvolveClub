@@ -91,6 +91,10 @@ module.exports = function (eleventyConfig) {
     return [...(items || [])].sort((a, b) => (a.data?.order || 999) - (b.data?.order || 999));
   });
 
+  eleventyConfig.addFilter("findByData", (items, key, expected) => {
+    return (items || []).find((item) => item.data?.[key] === expected);
+  });
+
   eleventyConfig.on("eleventy.before", validateContent);
 
   return {

@@ -13,7 +13,7 @@ bodyClass: "country-page"
 <main id="top">
   <section class="country-hero" style="background-image: linear-gradient(90deg, rgba(17, 22, 21, .78), rgba(17, 22, 21, .46) 46%, rgba(17, 22, 21, .22)), linear-gradient(0deg, rgba(17, 22, 21, .78), rgba(17, 22, 21, .08) 58%), url('{{ country.data.cover }}');">
     <div class="country-hero-inner">
-      <a class="country-back" data-history-back href="/#destinations"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg> Назад</a>
+      <a class="country-back" data-history-back href="/#destinations" data-return-section="{{ country.data.region }}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg> Назад</a>
       <h1>{{ country.data.title }}</h1>
       <p>{{ country.data.subtitle }}</p>
       <div class="country-actions" aria-label="Информация о направлении">
@@ -25,35 +25,63 @@ bodyClass: "country-page"
   <section class="country-hotels" id="hotels">
     <div class="section-head">
       <div>
-        <p class="eyebrow">Отели</p>
-        <h2>{{ country.data.title }}</h2>
+        <p class="eyebrow">Наши рекомендации</p>
       </div>
-      <p class="section-lead">{{ country.templateContent | safe }}</p>
     </div>
 
-    <div class="hotel-grid">
-      {% set hasHotels = false %}
-      {% for hotel in collections.hotel %}
-        {% if hotel.data.country == country.data.slug %}
-          {% set hasHotels = true %}
-          <a class="hotel-card hotel-card-link" href="/hotels/{{ hotel.data.country }}/{{ hotel.data.slug }}/">
-            <div class="hotel-card-image" style="background-image: url('{{ hotel.data.cover }}');"></div>
-            <div class="hotel-card-body">
-              <span>
-                {% for segment in hotel.data.segments %}
-                  {{ segmentLabels[segment] or segment }}{% if not loop.last %}, {% endif %}
-                {% endfor %}
-              </span>
-              <h3>{{ hotel.data.title }}</h3>
-              <p>{{ hotel.data.subtitle }}</p>
-            </div>
-          </a>
-        {% endif %}
-      {% endfor %}
-    </div>
+    {% set tiers = [
+      { value: "deluxe", label: "Deluxe" },
+      { value: "premium", label: "Premium" },
+      { value: "business", label: "Business" }
+    ] %}
+    {% set allHotels = collections.hotel | whereEquals("data.country", country.data.slug) | whereTruthy("data.published") | sortByOrder %}
 
-    {% if not hasHotels %}
+    {% for tier in tiers %}
+      {% set tierHotels = allHotels | whereEquals("data.tier", tier.value) %}
+      {% if tierHotels.length %}
+        <div class="hotel-group">
+          <h2>{{ tier.label }}</h2>
+          <div class="hotel-grid">
+            {% for hotel in tierHotels %}
+              <a class="hotel-card hotel-card-link" href="/hotels/{{ hotel.data.country }}/{{ hotel.data.slug }}/">
+                <div class="hotel-card-image" style="background-image: url('{{ hotel.data.cover }}');"></div>
+                <div class="hotel-card-body">
+                  <span class="hotel-card-rating">{{ hotel.data.stars or "★★★★★" }}{% if hotel.data.location %} <b>{{ hotel.data.location }}</b>{% endif %}</span>
+                  <h3>{{ hotel.data.title }}</h3>
+                  <p>{{ hotel.data.subtitle }}</p>
+                </div>
+              </a>
+            {% endfor %}
+          </div>
+        </div>
+      {% endif %}
+    {% endfor %}
+
+    {% set fallbackHotels = allHotels | whereEquals("data.tier", undefined) %}
+    {% if fallbackHotels.length %}
+      <div class="hotel-group">
+        <h2>Отели</h2>
+        <div class="hotel-grid">
+          {% for hotel in fallbackHotels %}
+            <a class="hotel-card hotel-card-link" href="/hotels/{{ hotel.data.country }}/{{ hotel.data.slug }}/">
+              <div class="hotel-card-image" style="background-image: url('{{ hotel.data.cover }}');"></div>
+              <div class="hotel-card-body">
+                <span class="hotel-card-rating">{{ hotel.data.stars or "★★★★★" }}{% if hotel.data.location %} <b>{{ hotel.data.location }}</b>{% endif %}</span>
+                <h3>{{ hotel.data.title }}</h3>
+                <p>{{ hotel.data.subtitle }}</p>
+              </div>
+            </a>
+          {% endfor %}
+        </div>
+      </div>
+    {% endif %}
+
+    {% if not allHotels.length %}
       <p class="section-lead">Отели для этого направления скоро появятся.</p>
     {% endif %}
+
+    <div class="country-top-action">
+      <a class="ghost-button country-ghost-button" href="#top">Наверх <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 15l-6-6-6 6"/></svg></a>
+    </div>
   </section>
 </main>
