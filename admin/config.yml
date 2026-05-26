@@ -115,6 +115,26 @@ collections:
     folder: "content/hotels"
     create: true
     slug: "{{slug}}"
+    view_groups:
+      - label: "Мальдивы"
+        field: "country"
+        pattern: "maldives"
+      - label: "Маврикий"
+        field: "country"
+        pattern: "mauritius"
+      - label: "Сейшелы"
+        field: "country"
+        pattern: "seychelles"
+    view_filters:
+      - label: "Мальдивы"
+        field: "country"
+        pattern: "maldives"
+      - label: "Маврикий"
+        field: "country"
+        pattern: "mauritius"
+      - label: "Сейшелы"
+        field: "country"
+        pattern: "seychelles"
     fields:
       - { label: "Название", name: "title", widget: "string" }
       - { label: "Адрес страницы", name: "slug", widget: "string", hint: "Латиницей, без пробелов. Например: waldorf-astoria-ithaafushi" }
