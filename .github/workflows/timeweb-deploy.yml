@@ -21,15 +21,17 @@ jobs:
           REPOSITORY: ${{ github.repository }}
           REF_NAME: ${{ github.ref_name }}
         run: |
+          mkdir repo
           curl -L \
+            --fail \
             -H "Authorization: Bearer $GH_TOKEN" \
             -H "Accept: application/vnd.github+json" \
             "https://api.github.com/repos/$REPOSITORY/zipball/$REF_NAME" \
             -o repository.zip
-          unzip repository.zip
-          shopt -s dotglob
-          mv */* .
-          rm -rf repository.zip */
+          unzip -q repository.zip -d repo
+          extracted_dir="$(find repo -mindepth 1 -maxdepth 1 -type d | head -n 1)"
+          cp -a "$extracted_dir"/. .
+          rm -rf repository.zip repo
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
