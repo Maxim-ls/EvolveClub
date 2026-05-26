@@ -5,9 +5,10 @@ pagination:
   alias: tour
 permalink: "{% if tour.data.published !== false %}/tours/{{ tour.data.slug }}/{% else %}false{% endif %}"
 layout: layouts/base.njk
-title: "{{ tour.data.seo_title or tour.data.title + ' - EvolveClub' }}"
-description: "{{ tour.data.seo_description or tour.data.subtitle }}"
 bodyClass: "country-page tour-detail-page"
+eleventyComputed:
+  title: "{{ tour.data.seo_title or tour.data.title + ' - EvolveClub' }}"
+  description: "{{ tour.data.seo_description or tour.data.subtitle }}"
 ---
 
 <main id="top">

@@ -5,9 +5,10 @@ pagination:
   alias: hotel
 permalink: "{% if hotel.data.published !== false %}/hotels/{{ hotel.data.country }}/{{ hotel.data.slug }}/{% else %}false{% endif %}"
 layout: layouts/base.njk
-title: "{{ hotel.data.seo_title or hotel.data.title + ' - EvolveClub' }}"
-description: "{{ hotel.data.seo_description or hotel.data.subtitle }}"
 bodyClass: "country-page hotel-detail-page"
+eleventyComputed:
+  title: "{{ hotel.data.seo_title or hotel.data.title + ' - EvolveClub' }}"
+  description: "{{ hotel.data.seo_description or hotel.data.subtitle }}"
 ---
 
 {% set countryEntry = collections.country | findByData("slug", hotel.data.country) %}
@@ -115,7 +116,7 @@ bodyClass: "country-page hotel-detail-page"
         {% endif %}
             <section class="hotel-content-section">
               <h2>{{ section.title }}</h2>
-              <div>{{ section.body | markdown | safe }}</div>
+              <div><p>{{ section.body }}</p></div>
             </section>
         {% if loop.index0 % 2 == 1 or loop.last %}
           </div>
