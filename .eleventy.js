@@ -62,6 +62,61 @@ function validateContent() {
   }
 }
 
+function walkFiles(dir, extensions) {
+  if (!fs.existsSync(dir)) return [];
+
+  return fs.readdirSync(dir, { withFileTypes: true }).flatMap((entry) => {
+    const entryPath = path.join(dir, entry.name);
+    if (entry.isDirectory()) return walkFiles(entryPath, extensions);
+    if (entry.isFile() && extensions.includes(path.extname(entry.name).toLowerCase())) return [entryPath];
+    return [];
+  });
+}
+
+function collectImageRefs(filePath) {
+  const content = fs.readFileSync(filePath, "utf8");
+  const refs = new Set();
+  const imagePattern = /["'](\/?assets\/img\/[^"']+\.(?:jpe?g|png|webp|gif|svg))["']/gi;
+  let match;
+
+  while ((match = imagePattern.exec(content))) {
+    refs.add(match[1]);
+  }
+
+  return [...refs];
+}
+
+function validateImageRefs() {
+  const files = [
+    ...walkFiles(path.join(__dirname, "content"), [".md"]),
+    ...walkFiles(path.join(__dirname, "_data"), [".json"]),
+  ];
+  const errors = [];
+
+  for (const file of files) {
+    for (const ref of collectImageRefs(file)) {
+      if (/^(https?:)?\/\//.test(ref) || ref.startsWith("data:")) continue;
+
+      const normalizedRef = ref.replace(/^\/+/, "");
+      const sourcePath = path.join(__dirname, normalizedRef);
+      const optimizedPath = path.join(__dirname, optimizedImageUrl(ref).replace(/^\/+/, ""));
+
+      if (!fs.existsSync(sourcePath)) {
+        errors.push(`${path.relative(__dirname, file)}: missing image ${ref}`);
+        continue;
+      }
+
+      if (!fs.existsSync(optimizedPath)) {
+        errors.push(`${path.relative(__dirname, file)}: missing optimized image for ${ref}`);
+      }
+    }
+  }
+
+  if (errors.length) {
+    throw new Error(`Image validation failed:\n${errors.join("\n")}`);
+  }
+}
+
 function getByPath(value, keyPath) {
   return keyPath.split(".").reduce((result, key) => result?.[key], value);
 }
@@ -108,6 +163,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.ignores.add("countries/**");
   eleventyConfig.ignores.add("tours/**");
   eleventyConfig.ignores.add("hotels/**");
+  eleventyConfig.ignores.add("docs/**");
 
   eleventyConfig.addGlobalData("segmentLabels", () => {
     const data = require("./_data/segments.json");
@@ -147,6 +203,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.on("eleventy.before", () => {
     cleanOutputDirectory();
     validateContent();
+    validateImageRefs();
   });
 
   return {
@@ -163,6 +220,7 @@ module.exports = function (eleventyConfig) {
       "countries/**",
       "tours/**",
       "hotels/**",
+      "docs/**",
       "package.json",
       "package-lock.json"
     ]

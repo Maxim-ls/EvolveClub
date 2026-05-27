@@ -2368,8 +2368,8 @@ body.is-modal-open {
     --tour-body-size: 16px;
     --tour-meta-size: 14px;
     --tour-mini-title-size: 12px;
-    --tour-section-title-size: clamp(22px, 8vw, 30px);
-    --tour-hero-title-size: clamp(30px, 10vw, 44px);
+    --tour-section-title-size: 28px;
+    --tour-hero-title-size: 40px;
     overflow-x: hidden;
   }
 
@@ -2453,6 +2453,7 @@ body.is-modal-open {
   .tour-hero-facts span {
     justify-content: center;
     max-width: 100%;
+    font-size: 13px;
     overflow-wrap: anywhere;
   }
 
@@ -2506,7 +2507,7 @@ body.is-modal-open {
   .tour-day-copy dd,
   .tour-fit p,
   .tour-intro-side p {
-    font-size: 16px;
+    font-size: var(--tour-body-size);
     line-height: 1.62;
     overflow-wrap: anywhere;
   }
@@ -2732,6 +2733,11 @@ body.is-modal-open {
     --text-sm: 14px;
     --text-base: 15px;
     --text-body: 16px;
+    --mobile-title-lg: 40px;
+    --mobile-title-md: 30px;
+    --mobile-title-sm: 22px;
+    --mobile-body: 16px;
+    --mobile-meta: 13px;
   }
 
   html {
@@ -2788,19 +2794,19 @@ body.is-modal-open {
 
   .eyebrow {
     margin-bottom: 12px;
-    font-size: 11px;
+    font-size: var(--mobile-meta);
     letter-spacing: .14em;
   }
 
   .hero h1 {
-    font-size: clamp(34px, 11.5vw, 52px);
+    font-size: var(--mobile-title-lg);
     line-height: .95;
   }
 
   .hero-copy {
     max-width: 100%;
     margin: 18px 0 22px;
-    font-size: 16px;
+    font-size: var(--mobile-body);
     line-height: 1.62;
   }
 
@@ -2812,7 +2818,7 @@ body.is-modal-open {
   .ghost-button {
     min-height: 48px;
     padding: 0 20px;
-    font-size: var(--text-sm);
+    font-size: var(--mobile-meta);
   }
 
   .section {
@@ -2833,7 +2839,7 @@ body.is-modal-open {
   .tour-day-copy p,
   .tour-day-copy dd {
     max-width: none;
-    font-size: 16px;
+    font-size: var(--mobile-body);
     line-height: 1.62;
   }
 
@@ -2905,14 +2911,14 @@ body.is-modal-open {
   }
 
   .direction-copy h2 {
-    font-size: clamp(34px, 11vw, 52px);
+    font-size: var(--mobile-title-lg);
     line-height: .98;
   }
 
   .direction-text {
     max-width: none;
     margin: 16px 0 26px;
-    font-size: 16px;
+    font-size: var(--mobile-body);
     line-height: 1.62;
   }
 
@@ -2960,12 +2966,13 @@ body.is-modal-open {
   }
 
   .country-card strong {
-    font-size: 22px;
+    font-size: var(--mobile-title-sm);
+    line-height: 1.08;
   }
 
   .country-card span,
   .country-card-link {
-    font-size: var(--text-xs);
+    font-size: var(--mobile-meta);
   }
 
   .direction-footer {
@@ -2981,6 +2988,15 @@ body.is-modal-open {
 
   .tour-card {
     min-height: 245px;
+  }
+
+  .tour-card h3 {
+    font-size: var(--mobile-title-sm);
+    line-height: 1.12;
+  }
+
+  .tour-card span {
+    font-size: var(--mobile-meta);
   }
 
   .country-hero {
@@ -3003,13 +3019,14 @@ body.is-modal-open {
   }
 
   .country-hero h1 {
-    font-size: clamp(32px, 10vw, 46px);
+    font-size: var(--mobile-title-lg);
+    line-height: 1;
   }
 
   .country-hero p:not(.eyebrow) {
     max-width: none;
     margin: 18px auto 0;
-    font-size: 16px;
+    font-size: var(--mobile-body);
     line-height: 1.62;
   }
 
@@ -3053,7 +3070,8 @@ body.is-modal-open {
   .hotel-detail-hero h1 {
     margin-left: auto;
     margin-right: auto;
-    font-size: clamp(24px, 7vw, 34px);
+    font-size: var(--mobile-title-md);
+    line-height: 1.05;
   }
 
   .hotel-detail-inner {
@@ -3071,8 +3089,8 @@ body.is-modal-open {
     justify-content: center;
     align-items: center;
     max-width: none;
-    font-size: 15px;
-    line-height: 1.45;
+    font-size: 14px;
+    line-height: 1.5;
     white-space: normal;
   }
 
@@ -3196,7 +3214,7 @@ body.is-modal-open {
 
   .room-grid-detailed .room-card p {
     max-width: none;
-    font-size: 16px;
+    font-size: var(--mobile-body);
     line-height: 1.62;
   }
 
@@ -3312,4 +3330,19 @@ body.is-modal-open {
   }
 
 
+}
+
+@media (max-width: 380px) {
+  :root {
+    --mobile-title-lg: 36px;
+    --mobile-title-md: 28px;
+    --mobile-title-sm: 21px;
+    --mobile-body: 15px;
+  }
+
+  .tour-detail-page {
+    --tour-body-size: 15px;
+    --tour-section-title-size: 26px;
+    --tour-hero-title-size: 36px;
+  }
 }

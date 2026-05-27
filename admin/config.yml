@@ -87,7 +87,7 @@ collections:
         pattern: true
     fields:
       - { label: "Название", name: "title", widget: "string" }
-      - { label: "Адрес страницы", name: "slug", widget: "string", hint: "Латиницей, без пробелов. Например: maldives" }
+      - { label: "Адрес страницы", name: "slug", widget: "string", hint: "Латиницей, без пробелов. Например: maldives. После публикации лучше не менять.", pattern: ["^[a-z0-9-]+$", "Только латинские буквы, цифры и дефисы"] }
       - label: "Раздел на главной"
         name: "region"
         widget: "select"
@@ -106,9 +106,9 @@ collections:
       - { label: "Кнопка «Зачем ехать»: текст", name: "why_body", widget: "markdown", required: false }
       - { label: "Кнопка «Подробнее»: заголовок", name: "details_title", widget: "string", required: false, default: "Подробнее" }
       - { label: "Кнопка «Подробнее»: текст", name: "details_body", widget: "markdown", required: false }
-      - { label: "Порядок", name: "order", widget: "number", default: 1 }
-      - { label: "Опубликовано", name: "published", widget: "boolean", default: true }
-      - { label: "Показывать", name: "featured", widget: "boolean", default: true }
+      - { label: "Порядок показа", name: "order", widget: "number", default: 1, hint: "Чем меньше число, тем выше карточка в списке." }
+      - { label: "Опубликовано", name: "published", widget: "boolean", default: true, hint: "Выключите, если страницу нужно временно скрыть с сайта." }
+      - { label: "Показывать в списках", name: "featured", widget: "boolean", default: true, hint: "Показывает карточку на главной и в подборках. Сама страница остается доступной, если опубликована." }
       - { label: "Тег", name: "tags", widget: "hidden", default: "country" }
       - { label: "Описание", name: "body", widget: "markdown" }
 
@@ -139,7 +139,7 @@ collections:
         pattern: false
     fields:
       - { label: "Название", name: "title", widget: "string" }
-      - { label: "Адрес страницы", name: "slug", widget: "string", hint: "Латиницей, без пробелов. Например: waldorf-astoria-ithaafushi" }
+      - { label: "Адрес страницы", name: "slug", widget: "string", hint: "Латиницей, без пробелов. Например: waldorf-astoria-ithaafushi. После публикации лучше не менять.", pattern: ["^[a-z0-9-]+$", "Только латинские буквы, цифры и дефисы"] }
       - label: "Страна"
         name: "country"
         widget: "relation"
@@ -204,9 +204,9 @@ collections:
             required: false
             collapsed: true
             field: { label: "Фото", name: "image", widget: "image", hint: "Фото интерьера, номера, сьюта или виллы, желательно не тяжелее 1-2 МБ" }
-      - { label: "Порядок", name: "order", widget: "number", default: 1 }
-      - { label: "Опубликовано", name: "published", widget: "boolean", default: true }
-      - { label: "Показывать", name: "featured", widget: "boolean", default: true }
+      - { label: "Порядок показа", name: "order", widget: "number", default: 1, hint: "Чем меньше число, тем выше отель внутри своего сегмента." }
+      - { label: "Опубликовано", name: "published", widget: "boolean", default: true, hint: "Выключите, если отель нужно временно скрыть с сайта." }
+      - { label: "Показывать в списках", name: "featured", widget: "boolean", default: true, hint: "Показывает карточку в списках. Сама страница остается доступной, если опубликована." }
       - { label: "Тег", name: "tags", widget: "hidden", default: "hotel" }
 
   - name: "tours"
@@ -220,7 +220,7 @@ collections:
     sortable_fields: ["order", "title", "destination", "published", "featured"]
     fields:
       - { label: "Название", name: "title", widget: "string" }
-      - { label: "Адрес страницы", name: "slug", widget: "string", hint: "Латиницей, без пробелов. Например: classic-japan-two-weeks" }
+      - { label: "Адрес страницы", name: "slug", widget: "string", hint: "Латиницей, без пробелов. Например: classic-japan-two-weeks. После публикации лучше не менять.", pattern: ["^[a-z0-9-]+$", "Только латинские буквы, цифры и дефисы"] }
       - { label: "Направление", name: "destination", widget: "string" }
       - { label: "Длительность", name: "duration", widget: "string", required: false }
       - { label: "Краткое описание", name: "subtitle", widget: "text" }
@@ -282,8 +282,8 @@ collections:
         required: false
         collapsed: true
         field: { label: "Фото", name: "image", widget: "image", hint: "Горизонтальное фото, желательно не тяжелее 1-2 МБ" }
-      - { label: "Порядок", name: "order", widget: "number", default: 1 }
-      - { label: "Опубликовано", name: "published", widget: "boolean", default: true }
-      - { label: "Показывать", name: "featured", widget: "boolean", default: true }
+      - { label: "Порядок показа", name: "order", widget: "number", default: 1, hint: "Чем меньше число, тем выше тур в списке." }
+      - { label: "Опубликовано", name: "published", widget: "boolean", default: true, hint: "Выключите, если тур нужно временно скрыть с сайта." }
+      - { label: "Показывать в списках", name: "featured", widget: "boolean", default: true, hint: "Показывает карточку в блоке туров. Сама страница остается доступной, если опубликована." }
       - { label: "Тег", name: "tags", widget: "hidden", default: "tour" }
       - { label: "Описание", name: "body", widget: "markdown" }
