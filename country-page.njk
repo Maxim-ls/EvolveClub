@@ -18,7 +18,15 @@ eleventyComputed:
       <h1>{{ country.data.title }}</h1>
       <p>{{ country.data.subtitle }}</p>
       <div class="country-actions" aria-label="Информация о направлении">
-        <a class="primary-button" href="#hotels">Смотреть отели <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></a>
+        {% if country.data.why_body %}
+          <button type="button" class="primary-button" data-modal-open="{{ country.data.slug }}-why">Зачем ехать? <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+        {% endif %}
+        {% if country.data.details_body %}
+          <button type="button" class="ghost-button country-ghost-button" data-modal-open="{{ country.data.slug }}-details">Подробнее <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+        {% endif %}
+        {% if not country.data.why_body and not country.data.details_body %}
+          <a class="primary-button" href="#hotels">Смотреть отели <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></a>
+        {% endif %}
       </div>
     </div>
   </section>
@@ -86,3 +94,31 @@ eleventyComputed:
     </div>
   </section>
 </main>
+
+{% if country.data.why_body %}
+  <div class="modal" id="{{ country.data.slug }}-why" data-modal aria-hidden="true">
+    <div class="modal-backdrop" data-modal-close></div>
+    <section class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="{{ country.data.slug }}-why-title">
+      <button type="button" class="modal-close" data-modal-close aria-label="Закрыть">×</button>
+      <p class="eyebrow">{{ country.data.title }}</p>
+      <h2 id="{{ country.data.slug }}-why-title">{{ country.data.why_title or "Зачем ехать?" }}</h2>
+      <div class="modal-copy">
+        {{ country.data.why_body | safe }}
+      </div>
+    </section>
+  </div>
+{% endif %}
+
+{% if country.data.details_body %}
+  <div class="modal" id="{{ country.data.slug }}-details" data-modal aria-hidden="true">
+    <div class="modal-backdrop" data-modal-close></div>
+    <section class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="{{ country.data.slug }}-details-title">
+      <button type="button" class="modal-close" data-modal-close aria-label="Закрыть">×</button>
+      <p class="eyebrow">{{ country.data.details_eyebrow or "Практическая информация" }}</p>
+      <h2 id="{{ country.data.slug }}-details-title">{{ country.data.details_title or "Подробнее" }}</h2>
+      <div class="modal-copy">
+        {{ country.data.details_body | safe }}
+      </div>
+    </section>
+  </div>
+{% endif %}

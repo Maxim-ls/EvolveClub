@@ -22,18 +22,36 @@ eleventyComputed:
       <span class="tour-hero-location"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M3 6.5 9 4l6 2.5 6-2.5v13.5L15 20l-6-2.5L3 20z"/><path d="M9 4v13.5"/><path d="M15 6.5V20"/></svg>{{ tour.data.destination }}</span>
     </div>
     <div class="tour-page-actions">
-      <a class="primary-button" href="/#request">Выбрать тур</a>
+      <button type="button" class="primary-button" data-modal-open="tour-request">Выбрать тур</button>
       <a class="ghost-button country-ghost-button" href="#route">Смотреть программу</a>
     </div>
     <div class="tour-hero-facts" aria-label="Краткая информация о туре">
-      <div>
-        <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 2v4"/><path d="M16 2v4"/><path d="M3 10h18"/><rect x="3" y="4" width="18" height="18" rx="2"/></svg>Длительность</span>
-        <b>{{ tour.data.duration or "По запросу" }}</b>
-      </div>
-      <div>
-        <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>Направление</span>
-        <b>{{ tour.data.destination }}</b>
-      </div>
+      {% if tour.data.hero_facts and tour.data.hero_facts.length %}
+        {% for fact in tour.data.hero_facts %}
+          <div>
+            <span>
+              {% if loop.index == 1 %}
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11v8"/><path d="M21 11v8"/><path d="M5 11V7a3 3 0 0 1 3-3h8a3 3 0 0 1 3 3v4"/><path d="M3 15h18"/><path d="M7 11h10"/></svg>
+              {% elif loop.index == 2 %}
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3v18"/><path d="M10 3v18"/><path d="M6 9h4"/><path d="M18 3c-2 2-3 4.5-3 8h4v10"/></svg>
+              {% else %}
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 15.5V8a3 3 0 0 1 3-3h10a3 3 0 0 1 3 3v7.5"/><path d="M5 15h14"/><path d="M8 19h.01"/><path d="M16 19h.01"/><path d="M8 9h8"/></svg>
+              {% endif %}
+              {{ fact.label }}
+            </span>
+            <b>{{ fact.text }}</b>
+          </div>
+        {% endfor %}
+      {% else %}
+        <div>
+          <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 2v4"/><path d="M16 2v4"/><path d="M3 10h18"/><rect x="3" y="4" width="18" height="18" rx="2"/></svg>Длительность</span>
+          <b>{{ tour.data.duration or "По запросу" }}</b>
+        </div>
+        <div>
+          <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>Направление</span>
+          <b>{{ tour.data.destination }}</b>
+        </div>
+      {% endif %}
     </div>
   </section>
 
@@ -46,16 +64,6 @@ eleventyComputed:
       </div>
       <div class="tour-intro-side">
         <img src="{{ tour.data.intro_image or tour.data.cover }}" alt="{{ tour.data.title }}" loading="lazy">
-        <ul>
-          <li>
-            <span>Формат</span>
-            <p>{{ tour.data.format or "Готовый маршрут можно адаптировать под даты, состав гостей и уровень отелей." }}</p>
-          </li>
-          <li>
-            <span>Сопровождение</span>
-            <p>{{ tour.data.support or "Команда EvolveClub помогает с логистикой, отелями и деталями поездки." }}</p>
-          </li>
-        </ul>
       </div>
     </section>
 

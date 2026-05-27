@@ -136,6 +136,10 @@ collections:
       - { label: "SEO description", name: "seo_description", widget: "text", required: false }
       - { label: "Краткое описание", name: "subtitle", widget: "text" }
       - { label: "Обложка", name: "cover", widget: "image", hint: "Горизонтальное изображение для фона страницы" }
+      - { label: "Кнопка «Зачем ехать»: заголовок", name: "why_title", widget: "string", required: false, default: "Зачем ехать?" }
+      - { label: "Кнопка «Зачем ехать»: текст", name: "why_body", widget: "markdown", required: false }
+      - { label: "Кнопка «Подробнее»: заголовок", name: "details_title", widget: "string", required: false, default: "Подробнее" }
+      - { label: "Кнопка «Подробнее»: текст", name: "details_body", widget: "markdown", required: false }
       - { label: "Порядок", name: "order", widget: "number", default: 1 }
       - { label: "Опубликовано", name: "published", widget: "boolean", default: true }
       - { label: "Показывать", name: "featured", widget: "boolean", default: true }
@@ -234,8 +238,14 @@ collections:
       - { label: "Обложка", name: "cover", widget: "image", hint: "Горизонтальное изображение для фона страницы и карточки тура" }
       - { label: "Заголовок вводного блока", name: "intro_title", widget: "string", required: false }
       - { label: "Картинка вводного блока", name: "intro_image", widget: "image", required: false }
-      - { label: "Формат", name: "format", widget: "text", required: false }
-      - { label: "Сопровождение", name: "support", widget: "text", required: false }
+      - label: "Коротко о туре"
+        name: "hero_facts"
+        widget: "list"
+        required: false
+        summary: "{{fields.label}}"
+        fields:
+          - { label: "Заголовок", name: "label", widget: "string", hint: "Например: Проживание, Питание, Переезды" }
+          - { label: "Текст", name: "text", widget: "text" }
       - { label: "Заголовок маршрута", name: "route_title", widget: "string", required: false }
       - label: "Линия маршрута"
         name: "route"
