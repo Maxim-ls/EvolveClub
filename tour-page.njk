@@ -1,6 +1,6 @@
 ---
 pagination:
-  data: collections.tour
+  data: collections.publishedTour
   size: 1
   alias: tour
 permalink: "{% if tour.data.published !== false %}/tours/{{ tour.data.slug }}/{% else %}false{% endif %}"
@@ -23,7 +23,7 @@ eleventyComputed:
     </div>
     <div class="tour-page-actions">
       <a class="primary-button" href="/#request">Выбрать тур</a>
-      <a class="ghost-button country-ghost-button" href="#details">Подробнее</a>
+      <a class="ghost-button country-ghost-button" href="#route">Смотреть программу</a>
     </div>
     <div class="tour-hero-facts" aria-label="Краткая информация о туре">
       <div>
@@ -41,23 +41,89 @@ eleventyComputed:
     <section class="tour-intro">
       <div>
         <span>Маршрут</span>
-        <h2>{{ tour.data.subtitle }}</h2>
+        <h2>{{ tour.data.intro_title or tour.data.subtitle }}</h2>
         {{ tour.templateContent | safe }}
       </div>
       <div class="tour-intro-side">
-        <img src="{{ tour.data.cover }}" alt="{{ tour.data.title }}" loading="lazy">
+        <img src="{{ tour.data.intro_image or tour.data.cover }}" alt="{{ tour.data.title }}" loading="lazy">
         <ul>
           <li>
             <span>Формат</span>
-            <p>Готовый маршрут можно адаптировать под даты, состав гостей и уровень отелей.</p>
+            <p>{{ tour.data.format or "Готовый маршрут можно адаптировать под даты, состав гостей и уровень отелей." }}</p>
           </li>
           <li>
             <span>Сопровождение</span>
-            <p>Команда EvolveClub помогает с логистикой, отелями и деталями поездки.</p>
+            <p>{{ tour.data.support or "Команда EvolveClub помогает с логистикой, отелями и деталями поездки." }}</p>
           </li>
         </ul>
       </div>
     </section>
+
+    {% if tour.data.route and tour.data.route.length %}
+      <section class="tour-section" id="route">
+        <h2>{{ tour.data.route_title or "Основная линия поездки" }}</h2>
+        <div class="tour-route-line">
+          {% for point in tour.data.route %}
+            <div><b>{{ "0" if loop.index < 10 }}{{ loop.index }}</b><span>{{ point.title or point }}</span></div>
+          {% endfor %}
+        </div>
+      </section>
+    {% endif %}
+
+    {% if tour.data.days and tour.data.days.length %}
+      <section class="tour-section" id="program">
+        <h2>{{ tour.data.program_title or "По дням" }}</h2>
+        <div class="tour-day-list">
+          {% for day in tour.data.days %}
+            <article>
+              <div class="tour-day-copy">
+                <div class="tour-day-main">
+                  <span>{{ day.title }}</span>
+                  <p>{{ day.description }}</p>
+                </div>
+                {% if day.hotel or day.meals %}
+                  <dl>
+                    {% if day.hotel %}<div><dt>Отель</dt><dd>{{ day.hotel }}</dd></div>{% endif %}
+                    {% if day.meals %}<div><dt>Питание</dt><dd>{{ day.meals }}</dd></div>{% endif %}
+                  </dl>
+                {% endif %}
+              </div>
+              {% if day.image %}
+                <img src="{{ day.image }}" alt="{{ day.image_alt or day.title }}" loading="lazy">
+              {% endif %}
+            </article>
+          {% endfor %}
+        </div>
+      </section>
+    {% endif %}
+
+    {% if tour.data.info_sections and tour.data.info_sections.length %}
+      <div class="tour-standalone-grid">
+        {% for section in tour.data.info_sections %}
+          <section class="tour-section">
+            <h2>{{ section.title }}</h2>
+            {% if section.items and section.items.length %}
+              <ul>
+                {% for item in section.items %}
+                  <li>{{ item.text or item }}</li>
+                {% endfor %}
+              </ul>
+            {% elif section.body %}
+              <p>{{ section.body }}</p>
+            {% endif %}
+          </section>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    {% if tour.data.fit_title or tour.data.fit_body %}
+      <section class="tour-section tour-fit">
+        <div>
+          {% if tour.data.fit_title %}<h2>{{ tour.data.fit_title }}</h2>{% endif %}
+          {% if tour.data.fit_body %}<p>{{ tour.data.fit_body }}</p>{% endif %}
+        </div>
+      </section>
+    {% endif %}
 
     {% if tour.data.gallery and tour.data.gallery.length %}
       <section class="tour-section">
@@ -70,5 +136,27 @@ eleventyComputed:
         </div>
       </section>
     {% endif %}
+
+    <div class="hotel-bottom-action">
+      <a class="ghost-button country-ghost-button" href="#top">Наверх <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 15l-6-6-6 6"/></svg></a>
+      <button type="button" class="primary-button" data-modal-open="tour-request">Выбрать тур</button>
+    </div>
   </section>
 </main>
+
+<div class="modal" id="tour-request" data-modal aria-hidden="true">
+  <div class="modal-backdrop" data-modal-close></div>
+  <div class="modal-panel request-modal-panel" role="dialog" aria-modal="true" aria-labelledby="tour-request-title">
+    <button type="button" class="modal-close" data-modal-close aria-label="Закрыть">×</button>
+    <h2 id="tour-request-title">Выбрать тур</h2>
+    <p class="request-modal-lead">{{ tour.data.request_lead or "Оставьте контактные данные, и мы уточним даты, состав гостей и подходящий формат поездки." }}</p>
+    <form class="request-form" data-request-form>
+      <label for="tour-request-name"><span>Имя</span><input type="text" id="tour-request-name" name="name" placeholder="Ваше имя" required></label>
+      <label for="tour-request-contact"><span>Контакт</span><input type="text" id="tour-request-contact" name="contact" placeholder="Телефон, Telegram или WhatsApp" required></label>
+      <label for="tour-request-dates"><span>Даты</span><input type="text" id="tour-request-dates" name="dates" placeholder="Например: даты по запросу"></label>
+      <label for="tour-request-message"><span>Пожелания</span><textarea id="tour-request-message" name="message" rows="4" placeholder="Количество гостей, даты и важные детали">Интересует тур «{{ tour.data.title }}».</textarea></label>
+      <button type="submit" class="primary-button">Отправить заявку</button>
+      <p class="form-status" data-form-status></p>
+    </form>
+  </div>
+</div>

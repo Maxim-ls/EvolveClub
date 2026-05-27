@@ -1063,7 +1063,7 @@ button,
   padding: 0;
   margin-left: 0;
   border: 0;
-  background: rgba(17, 22, 21, .62);
+  background: rgba(17, 22, 21, .45);
   color: var(--muted);
   font-size: var(--text-sm);
   font-weight: 800;

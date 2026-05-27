@@ -1,6 +1,6 @@
 ---
 pagination:
-  data: collections.hotel
+  data: collections.publishedHotel
   size: 1
   alias: hotel
 permalink: "{% if hotel.data.published !== false %}/hotels/{{ hotel.data.country }}/{{ hotel.data.slug }}/{% else %}false{% endif %}"

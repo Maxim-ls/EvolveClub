@@ -79,6 +79,18 @@ module.exports = function (eleventyConfig) {
     return Object.fromEntries(data.segments.map((segment) => [segment.value, segment.label]));
   });
 
+  eleventyConfig.addCollection("publishedCountry", (collectionApi) => {
+    return collectionApi.getFilteredByTag("country").filter((item) => item.data?.published !== false);
+  });
+
+  eleventyConfig.addCollection("publishedHotel", (collectionApi) => {
+    return collectionApi.getFilteredByTag("hotel").filter((item) => item.data?.published !== false);
+  });
+
+  eleventyConfig.addCollection("publishedTour", (collectionApi) => {
+    return collectionApi.getFilteredByTag("tour").filter((item) => item.data?.published !== false);
+  });
+
   eleventyConfig.addFilter("whereEquals", (items, keyPath, expected) => {
     return (items || []).filter((item) => getByPath(item, keyPath) === expected);
   });
