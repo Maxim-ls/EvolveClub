@@ -693,7 +693,7 @@ const fillHotelRequestFromButton = (button) => {
   const details = [
     hotel ? `Отель: ${hotel}` : '',
     country ? `Страна: ${country}` : '',
-    room ? `Вилла / номер: ${room}` : '',
+    room ? `Номер / вилла: ${room}` : '',
     type ? `Тип: ${type}` : '',
     area ? `Площадь: ${area}` : '',
     capacity ? `Размещение: ${capacity}` : ''

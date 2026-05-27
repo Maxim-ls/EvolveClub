@@ -3185,6 +3185,15 @@ body.is-modal-open {
     max-width: none;
   }
 
+  .room-card-actions {
+    width: 100%;
+  }
+
+  .room-select-button {
+    width: 100%;
+    min-height: 48px;
+  }
+
   .room-gallery::after,
   .room-gallery button,
   .room-gallery-counter {

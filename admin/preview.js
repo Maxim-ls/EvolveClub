@@ -27,6 +27,11 @@
   };
 
   const text = (value, fallback = '') => value || fallback;
+  const tierLabels = {
+    deluxe: 'Deluxe',
+    premium: 'Premium',
+    business: 'Business'
+  };
 
   const hero = (props, entry, type) => {
     const cover = getAssetUrl(props, getValue(entry, ['cover']));
@@ -88,15 +93,18 @@
     render() {
       const entry = this.props.entry;
       const rooms = listToArray(getValue(entry, ['rooms']));
+      const tier = getValue(entry, ['tier']);
       return h('article', { className: 'ec-preview' },
         hero(this.props, entry, 'Отель'),
         meta([
           `Страна: ${text(getValue(entry, ['country']), 'не выбрана')}`,
-          `Сегмент: ${listToArray(getValue(entry, ['segments'])).join(', ') || 'не выбран'}`,
+          `Сегмент: ${tierLabels[tier] || tier || 'не выбран'}`,
+          `Звезды: ${text(getValue(entry, ['stars']), 'не указаны')}`,
+          `Расположение: ${text(getValue(entry, ['location']), 'не указано')}`,
           getValue(entry, ['published']) === false ? 'Черновик' : 'Опубликовано'
         ]),
         h('section', { className: 'ec-preview-body' }, this.props.widgetFor('body')),
-        h('h2', {}, 'Номера и виллы'),
+        h('h2', {}, 'Номера, сьюты и виллы'),
         rooms.length ? h('div', { className: 'ec-preview-grid' },
           rooms.slice(0, 6).map((room) => h('div', { className: 'ec-preview-card' },
             h('span', { className: 'ec-preview-label' }, room.type || room.area || 'Вариант размещения'),

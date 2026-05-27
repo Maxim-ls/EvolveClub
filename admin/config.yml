@@ -82,9 +82,13 @@ collections:
 
   - name: "countries"
     label: "Направления"
+    label_singular: "Направление"
     folder: "content/countries"
     create: true
     slug: "{{slug}}"
+    identifier_field: "title"
+    summary: "{{title}}"
+    sortable_fields: ["order", "title", "published", "featured"]
     view_filters:
       - label: "Европа"
         field: "region"
@@ -131,8 +135,6 @@ collections:
           - { label: "Америка и Карибы", value: "america-caribbean" }
           - { label: "Острова", value: "islands" }
           - { label: "Австралия и Океания", value: "oceania" }
-      - { label: "SEO title", name: "seo_title", widget: "string", required: false }
-      - { label: "SEO description", name: "seo_description", widget: "text", required: false }
       - { label: "Краткое описание", name: "subtitle", widget: "text" }
       - { label: "Обложка", name: "cover", widget: "image", hint: "Горизонтальное изображение для фона страницы" }
       - { label: "Кнопка «Зачем ехать»: заголовок", name: "why_title", widget: "string", required: false, default: "Зачем ехать?" }
@@ -147,9 +149,13 @@ collections:
 
   - name: "hotels"
     label: "Отели"
+    label_singular: "Отель"
     folder: "content/hotels"
     create: true
     slug: "{{slug}}"
+    identifier_field: "title"
+    summary: "{{title}} · {{country}}"
+    sortable_fields: ["order", "title", "country", "published", "featured"]
     view_filters:
       - label: "Мальдивы"
         field: "country"
@@ -169,8 +175,6 @@ collections:
     fields:
       - { label: "Название", name: "title", widget: "string" }
       - { label: "Адрес страницы", name: "slug", widget: "string", hint: "Латиницей, без пробелов. Например: waldorf-astoria-ithaafushi" }
-      - { label: "SEO title", name: "seo_title", widget: "string", required: false }
-      - { label: "SEO description", name: "seo_description", widget: "text", required: false }
       - label: "Страна"
         name: "country"
         widget: "relation"
@@ -178,16 +182,24 @@ collections:
         search_fields: ["title", "slug"]
         value_field: "slug"
         display_fields: ["title"]
-      - label: "Сегменты"
-        name: "segments"
+      - label: "Сегмент"
+        name: "tier"
         widget: "select"
-        multiple: true
+        default: "deluxe"
         options:
-          - { label: "Люкс", value: "luxury" }
-          - { label: "Семейный отдых", value: "family" }
-          - { label: "Романтика", value: "romantic" }
-          - { label: "Приватность", value: "private" }
-          - { label: "Wellness", value: "wellness" }
+          - { label: "Deluxe", value: "deluxe" }
+          - { label: "Premium", value: "premium" }
+          - { label: "Business", value: "business" }
+      - label: "Звезды"
+        name: "stars"
+        widget: "select"
+        default: "★★★★★"
+        options:
+          - { label: "2 звезды", value: "★★" }
+          - { label: "3 звезды", value: "★★★" }
+          - { label: "4 звезды", value: "★★★★" }
+          - { label: "5 звезд", value: "★★★★★" }
+      - { label: "Расположение", name: "location", widget: "string", required: false, hint: "Например: South Male Atoll, Праслин, Маэ" }
       - { label: "Краткое описание", name: "subtitle", widget: "text" }
       - { label: "Обложка", name: "cover", widget: "image", hint: "Горизонтальное изображение для фона страницы и карточки отеля" }
       - label: "Галерея"
@@ -195,38 +207,51 @@ collections:
         widget: "list"
         required: false
         field: { label: "Фото", name: "image", widget: "image", hint: "Горизонтальное фото, желательно не тяжелее 1-2 МБ" }
-      - label: "Номера и виллы"
+      - { label: "Заголовок описания", name: "about_title", widget: "string", required: false, hint: "Если не заполнить, будет использовано краткое описание" }
+      - { label: "Описание", name: "body", widget: "markdown" }
+      - label: "Факты в первом блоке"
+        name: "facts"
+        widget: "list"
+        required: false
+        summary: "{{fields.label}}"
+        fields:
+          - { label: "Заголовок", name: "label", widget: "string", hint: "Например: Адрес, Телефон, Трансфер, Формат" }
+          - { label: "Текст", name: "text", widget: "text" }
+      - { label: "Заголовок блока размещения", name: "rooms_title", widget: "string", required: false, default: "Варианты номеров и вилл" }
+      - { label: "Описание блока размещения", name: "rooms_intro", widget: "text", required: false }
+      - label: "Номера, сьюты и виллы"
         name: "rooms"
         widget: "list"
         required: false
         summary: "{{fields.title}}"
         fields:
           - { label: "Название", name: "title", widget: "string" }
-          - { label: "Тип", name: "type", widget: "string", required: false, hint: "Например: Beach Villa, Overwater Villa, Suite" }
+          - { label: "Тип / категория", name: "type", widget: "string", required: false, hint: "Например: номер, сьют, Beach Villa, Overwater Villa, Residence" }
           - { label: "Краткое описание", name: "description", widget: "text" }
           - { label: "Площадь", name: "area", widget: "string", required: false }
           - { label: "Размещение", name: "capacity", widget: "string", required: false }
-          - label: "Фото интерьеров"
+          - label: "Фото номера, сьюта или виллы"
             name: "images"
             widget: "list"
             required: false
-            field: { label: "Фото", name: "image", widget: "image", hint: "Фото интерьера или виллы, желательно не тяжелее 1-2 МБ" }
+            field: { label: "Фото", name: "image", widget: "image", hint: "Фото интерьера, номера, сьюта или виллы, желательно не тяжелее 1-2 МБ" }
       - { label: "Порядок", name: "order", widget: "number", default: 1 }
       - { label: "Опубликовано", name: "published", widget: "boolean", default: true }
       - { label: "Показывать", name: "featured", widget: "boolean", default: true }
       - { label: "Тег", name: "tags", widget: "hidden", default: "hotel" }
-      - { label: "Описание", name: "body", widget: "markdown" }
 
   - name: "tours"
     label: "Туры"
+    label_singular: "Тур"
     folder: "content/tours"
     create: true
     slug: "{{slug}}"
+    identifier_field: "title"
+    summary: "{{title}} · {{destination}}"
+    sortable_fields: ["order", "title", "destination", "published", "featured"]
     fields:
       - { label: "Название", name: "title", widget: "string" }
       - { label: "Адрес страницы", name: "slug", widget: "string", hint: "Латиницей, без пробелов. Например: classic-japan-two-weeks" }
-      - { label: "SEO title", name: "seo_title", widget: "string", required: false }
-      - { label: "SEO description", name: "seo_description", widget: "text", required: false }
       - { label: "Направление", name: "destination", widget: "string" }
       - { label: "Длительность", name: "duration", widget: "string", required: false }
       - { label: "Краткое описание", name: "subtitle", widget: "text" }

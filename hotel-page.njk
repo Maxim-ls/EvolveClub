@@ -13,6 +13,10 @@ eleventyComputed:
 
 {% set countryEntry = collections.country | findByData("slug", hotel.data.country) %}
 {% set countryTitle = countryEntry.data.title if countryEntry else hotel.data.country %}
+{% set tierLabel = "Deluxe" %}
+{% if hotel.data.tier == "premium" %}{% set tierLabel = "Premium" %}{% endif %}
+{% if hotel.data.tier == "business" %}{% set tierLabel = "Business" %}{% endif %}
+{% if hotel.data.tierLabel %}{% set tierLabel = hotel.data.tierLabel %}{% endif %}
 {% set heroImages = [] %}
 {% if hotel.data.cover %}
   {% set heroImages = (heroImages.push(hotel.data.cover), heroImages) %}
@@ -27,7 +31,7 @@ eleventyComputed:
   <section class="hotel-detail-hero" data-hotel-hero data-hero-images="{{ heroImages | join('|') }}" style="--hotel-hero-image: url('{{ heroImages[0] or hotel.data.cover }}'); --hotel-next-image: url('{{ heroImages[0] or hotel.data.cover }}');">
     <div class="hotel-detail-inner">
       <a class="country-back" data-history-back href="/countries/{{ hotel.data.country }}/#hotels"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg> Назад к отелям</a>
-      <span class="hotel-stars" aria-label="Отель">{{ hotel.data.stars or "★★★★★" }} <span class="hotel-rating-label">{{ hotel.data.tierLabel or hotel.data.tier or "Deluxe" }}</span></span>
+      <span class="hotel-stars" aria-label="Отель">{{ hotel.data.stars or "★★★★★" }} <span class="hotel-rating-label">{{ tierLabel }}</span></span>
       <h1>{{ hotel.data.title }}</h1>
       <span class="hotel-location"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>{{ countryTitle }}{% if hotel.data.location %}, {{ hotel.data.location }}{% endif %}</span>
     </div>
@@ -46,7 +50,7 @@ eleventyComputed:
   <section class="hotel-detail-main">
     <section class="hotel-content-section hotel-about-feature">
       <div>
-        <h2>{{ hotel.data.subtitle }}</h2>
+        <h2>{{ hotel.data.about_title or hotel.data.subtitle }}</h2>
         {{ hotel.templateContent | safe }}
       </div>
       {% if hotel.data.facts and hotel.data.facts.length %}
@@ -73,7 +77,7 @@ eleventyComputed:
     {% if hotel.data.rooms and hotel.data.rooms.length %}
       <section class="hotel-content-section">
         <span>Проживание</span>
-        <h2>{{ hotel.data.rooms_title or "Варианты вилл" }}</h2>
+        <h2>{{ hotel.data.rooms_title or "Варианты номеров и вилл" }}</h2>
         {% if hotel.data.rooms_intro %}
           <p>{{ hotel.data.rooms_intro }}</p>
         {% endif %}
@@ -172,7 +176,7 @@ eleventyComputed:
         <input type="text" id="hotel-request-contact" name="contact" placeholder="Телефон, Telegram или WhatsApp" required>
       </label>
       <label for="hotel-request-villa">
-        <span>Отель / вилла</span>
+        <span>Отель / размещение</span>
         <input type="text" id="hotel-request-villa" name="hotel" value="{{ hotel.data.title }}">
       </label>
       <label for="hotel-request-message">
