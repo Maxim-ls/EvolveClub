@@ -85,6 +85,38 @@ collections:
     folder: "content/countries"
     create: true
     slug: "{{slug}}"
+    view_groups:
+      - label: "Европа"
+        field: "region"
+        pattern: "europe"
+      - label: "Россия и СНГ"
+        field: "region"
+        pattern: "russia-cis"
+      - label: "Азия и Восток"
+        field: "region"
+        pattern: "asia-east"
+      - label: "Африка"
+        field: "region"
+        pattern: "africa"
+      - label: "Америка и Карибы"
+        field: "region"
+        pattern: "america-caribbean"
+      - label: "Острова"
+        field: "region"
+        pattern: "islands"
+      - label: "Австралия и Океания"
+        field: "region"
+        pattern: "oceania"
+    view_filters:
+      - label: "Опубликованные"
+        field: "published"
+        pattern: true
+      - label: "Черновики"
+        field: "published"
+        pattern: false
+      - label: "На главной"
+        field: "featured"
+        pattern: true
     fields:
       - { label: "Название", name: "title", widget: "string" }
       - { label: "Адрес страницы", name: "slug", widget: "string", hint: "Латиницей, без пробелов. Например: maldives" }
@@ -200,47 +232,47 @@ collections:
       - { label: "Длительность", name: "duration", widget: "string", required: false }
       - { label: "Краткое описание", name: "subtitle", widget: "text" }
       - { label: "Обложка", name: "cover", widget: "image", hint: "Горизонтальное изображение для фона страницы и карточки тура" }
-      - { label: "????????? ???????? ?????", name: "intro_title", widget: "string", required: false }
-      - { label: "???????? ???????? ?????", name: "intro_image", widget: "image", required: false }
-      - { label: "??????", name: "format", widget: "text", required: false }
-      - { label: "?????????????", name: "support", widget: "text", required: false }
-      - { label: "????????? ????????", name: "route_title", widget: "string", required: false }
-      - label: "????? ????????"
+      - { label: "Заголовок вводного блока", name: "intro_title", widget: "string", required: false }
+      - { label: "Картинка вводного блока", name: "intro_image", widget: "image", required: false }
+      - { label: "Формат", name: "format", widget: "text", required: false }
+      - { label: "Сопровождение", name: "support", widget: "text", required: false }
+      - { label: "Заголовок маршрута", name: "route_title", widget: "string", required: false }
+      - label: "Линия маршрута"
         name: "route"
         widget: "list"
         required: false
         summary: "{{fields.title}}"
         fields:
-          - { label: "????? ????????", name: "title", widget: "string" }
-      - { label: "????????? ?????????", name: "program_title", widget: "string", required: false }
-      - label: "????????? ?? ????"
+          - { label: "Точка маршрута", name: "title", widget: "string" }
+      - { label: "Заголовок программы", name: "program_title", widget: "string", required: false }
+      - label: "Программа по дням"
         name: "days"
         widget: "list"
         required: false
         summary: "{{fields.title}}"
         fields:
-          - { label: "???? ? ?????", name: "title", widget: "string", hint: "????????: 1 ???? ? ?????" }
-          - { label: "???????? ???", name: "description", widget: "text" }
-          - { label: "?????", name: "hotel", widget: "string", required: false }
-          - { label: "???????", name: "meals", widget: "string", required: false }
-          - { label: "???? ???", name: "image", widget: "image", required: false }
-          - { label: "Alt ??? ????", name: "image_alt", widget: "string", required: false }
-      - label: "????-???????"
+          - { label: "День и город", name: "title", widget: "string", hint: "Например: 1 день · Токио" }
+          - { label: "Описание дня", name: "description", widget: "text" }
+          - { label: "Отель", name: "hotel", widget: "string", required: false }
+          - { label: "Питание", name: "meals", widget: "string", required: false }
+          - { label: "Фото дня", name: "image", widget: "image", required: false }
+          - { label: "Alt для фото", name: "image_alt", widget: "string", required: false }
+      - label: "Инфо-разделы"
         name: "info_sections"
         widget: "list"
         required: false
         summary: "{{fields.title}}"
         fields:
-          - { label: "?????????", name: "title", widget: "string" }
-          - label: "??????"
+          - { label: "Заголовок", name: "title", widget: "string" }
+          - label: "Пункты"
             name: "items"
             widget: "list"
             required: false
-            field: { label: "?????", name: "text", widget: "text" }
-          - { label: "????? ??? ??????", name: "body", widget: "text", required: false }
-      - { label: "????????? ????: ?????????", name: "fit_title", widget: "string", required: false }
-      - { label: "????????? ????: ?????", name: "fit_body", widget: "text", required: false }
-      - { label: "????? ? ????????? ???? ??????", name: "request_lead", widget: "text", required: false }
+            field: { label: "Текст", name: "text", widget: "text" }
+          - { label: "Текст без списка", name: "body", widget: "text", required: false }
+      - { label: "Финальный блок: заголовок", name: "fit_title", widget: "string", required: false }
+      - { label: "Финальный блок: текст", name: "fit_body", widget: "text", required: false }
+      - { label: "Текст в модальном окне заявки", name: "request_lead", widget: "text", required: false }
       - label: "Галерея"
         name: "gallery"
         widget: "list"
