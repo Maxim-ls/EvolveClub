@@ -21,7 +21,7 @@ bodyClass: "country-page"
     <div class="hotel-grid">
       {% for country in countries %}
         <a class="hotel-card hotel-card-link" href="/countries/{{ country.data.slug }}/">
-          <div class="hotel-card-image" style="background-image: url('{{ country.data.cover }}');"></div>
+          <div class="hotel-card-image" style="background-image: url('{{ country.data.cover | optimizedImage }}');"></div>
           <div class="hotel-card-body">
             <span>{{ country.data.region }}</span>
             <h3>{{ country.data.title }}</h3>

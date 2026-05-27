@@ -66,6 +66,30 @@ function getByPath(value, keyPath) {
   return keyPath.split(".").reduce((result, key) => result?.[key], value);
 }
 
+function optimizedImageUrl(src) {
+  if (typeof src !== "string" || !src) return src;
+  if (/^(https?:)?\/\//.test(src) || src.startsWith("data:")) return src;
+
+  const cleanSrc = src.split(/[?#]/)[0];
+  const hasLeadingSlash = cleanSrc.startsWith("/");
+  const normalizedSrc = cleanSrc.replace(/^\/+/, "");
+  const ext = path.extname(normalizedSrc).toLowerCase();
+
+  if (![".jpg", ".jpeg", ".png", ".webp"].includes(ext)) return src;
+  if (!normalizedSrc.startsWith("assets/img/")) return src;
+  if (normalizedSrc.startsWith("assets/img/generated/")) return src;
+
+  const relativeImagePath = normalizedSrc.slice("assets/img/".length);
+  const parsed = path.parse(relativeImagePath);
+  const optimizedPath = path.join("assets", "img", "generated", parsed.dir, `${parsed.name}.webp`);
+  const absoluteOptimizedPath = path.join(__dirname, optimizedPath);
+
+  if (!fs.existsSync(absoluteOptimizedPath)) return src;
+
+  const webPath = optimizedPath.split(path.sep).join("/");
+  return `${hasLeadingSlash ? "/" : ""}${webPath}`;
+}
+
 module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("assets");
   eleventyConfig.addPassthroughCopy(".htaccess");
@@ -106,6 +130,8 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addFilter("findByData", (items, key, expected) => {
     return (items || []).find((item) => item.data?.[key] === expected);
   });
+
+  eleventyConfig.addFilter("optimizedImage", optimizedImageUrl);
 
   eleventyConfig.on("eleventy.before", validateContent);
 

@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "eleventy --serve",
-    "build": "eleventy"
+    "images": "node scripts/optimize-images.js",
+    "start": "npm run images && eleventy --serve",
+    "build": "npm run images && eleventy"
   },
   "repository": {
     "type": "git",

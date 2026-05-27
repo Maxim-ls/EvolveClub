@@ -19,16 +19,16 @@ eleventyComputed:
 {% if hotel.data.tierLabel %}{% set tierLabel = hotel.data.tierLabel %}{% endif %}
 {% set heroImages = [] %}
 {% if hotel.data.cover %}
-  {% set heroImages = (heroImages.push(hotel.data.cover), heroImages) %}
+  {% set heroImages = (heroImages.push(hotel.data.cover | optimizedImage), heroImages) %}
 {% endif %}
 {% if hotel.data.gallery and hotel.data.gallery.length %}
   {% for item in hotel.data.gallery %}
-    {% set heroImages = (heroImages.push(item.image or item), heroImages) %}
+    {% set heroImages = (heroImages.push((item.image or item) | optimizedImage), heroImages) %}
   {% endfor %}
 {% endif %}
 
 <main id="top">
-  <section class="hotel-detail-hero" data-hotel-hero data-hero-images="{{ heroImages | join('|') }}" style="--hotel-hero-image: url('{{ heroImages[0] or hotel.data.cover }}'); --hotel-next-image: url('{{ heroImages[0] or hotel.data.cover }}');">
+  <section class="hotel-detail-hero" data-hotel-hero data-hero-images="{{ heroImages | join('|') }}" style="--hotel-hero-image: url('{{ heroImages[0] or (hotel.data.cover | optimizedImage) }}'); --hotel-next-image: url('{{ heroImages[0] or (hotel.data.cover | optimizedImage) }}');">
     <div class="hotel-detail-inner">
       <a class="country-back" data-history-back href="/countries/{{ hotel.data.country }}/#hotels"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg> Назад к отелям</a>
       <span class="hotel-stars" aria-label="Отель">{{ hotel.data.stars or "★★★★★" }} <span class="hotel-rating-label">{{ tierLabel }}</span></span>
@@ -86,10 +86,10 @@ eleventyComputed:
             {% set roomImages = [] %}
             {% if room.images and room.images.length %}
               {% for item in room.images %}
-                {% set roomImages = (roomImages.push(item.image or item), roomImages) %}
+                {% set roomImages = (roomImages.push((item.image or item) | optimizedImage), roomImages) %}
               {% endfor %}
             {% endif %}
-            {% set firstImage = roomImages[0] or hotel.data.cover %}
+            {% set firstImage = roomImages[0] or (hotel.data.cover | optimizedImage) %}
             <article class="room-card">
               <div class="room-gallery" data-room-gallery data-room-images="{{ roomImages | join('|') }}">
                 <img src="{{ firstImage }}" alt="{{ room.title }}" loading="lazy">
@@ -133,7 +133,7 @@ eleventyComputed:
     {% if hotel.data.gallery and hotel.data.gallery.length %}
       <section class="hotel-photo-mosaic" aria-label="Фотографии отеля">
         {% for item in hotel.data.gallery %}
-          <img src="{{ item.image or item }}" alt="{{ hotel.data.title }}" loading="lazy">
+          <img src="{{ (item.image or item) | optimizedImage }}" alt="{{ hotel.data.title }}" loading="lazy">
         {% endfor %}
       </section>
     {% endif %}

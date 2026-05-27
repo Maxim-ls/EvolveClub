@@ -37,7 +37,7 @@
 
   <main id="top">
     <section class="hero" aria-labelledby="hero-title">
-      <div class="hero-bg" style="background-image: linear-gradient(90deg, rgba(17, 22, 21, .84), rgba(17, 22, 21, .54) 42%, rgba(17, 22, 21, .3)), linear-gradient(0deg, rgba(17, 22, 21, .82), rgba(17, 22, 21, .14) 42%, rgba(95, 100, 96, .42)), url('{{ homeImages.hero }}');" role="img" aria-label="Горный берег и вода"></div>
+      <div class="hero-bg" style="background-image: linear-gradient(90deg, rgba(17, 22, 21, .84), rgba(17, 22, 21, .54) 42%, rgba(17, 22, 21, .3)), linear-gradient(0deg, rgba(17, 22, 21, .82), rgba(17, 22, 21, .14) 42%, rgba(95, 100, 96, .42)), url('{{ homeImages.hero | optimizedImage }}');" role="img" aria-label="Горный берег и вода"></div>
       <div class="hero-content">
         <p class="eyebrow">EvolveClub: Искусство путешествий</p>
         <h1 id="hero-title">EVOLVECLUB</h1>
@@ -49,37 +49,37 @@
     <section class="section directions-overview" id="all-destinations" data-overview-section style="background-image: linear-gradient(90deg, rgba(17, 22, 21, .96), rgba(17, 22, 21, .82) 42%, rgba(17, 22, 21, .68)), linear-gradient(0deg, rgba(17, 22, 21, .92), rgba(37, 45, 43, .72) 55%, rgba(95, 100, 96, .5));">
       <p class="eyebrow overview-title">Страны и направления</p>
       <div class="country-rail direction-rail overview-rail" id="directionsRail" aria-label="Все направления" data-card-carousel>
-        <article class="country-card overview-card is-active" tabindex="0" data-carousel-card data-target-section="destinations" aria-current="true" style="background-image: url('{{ homeImages.overview.europe }}');">
+        <article class="country-card overview-card is-active" tabindex="0" data-carousel-card data-target-section="destinations" aria-current="true" style="background-image: url('{{ homeImages.overview.europe | optimizedImage }}');">
           <span>01</span>
           <strong>Европа</strong>
           <a class="country-card-link" href="#destinations">Смотреть <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></a>
         </article>
-        <article class="country-card overview-card" tabindex="0" data-carousel-card data-target-section="russia-cis" style="background-image: url('{{ homeImages.overview.russiaCis }}');">
+        <article class="country-card overview-card" tabindex="0" data-carousel-card data-target-section="russia-cis" style="background-image: url('{{ homeImages.overview.russiaCis | optimizedImage }}');">
           <span>02</span>
           <strong>Россия и СНГ</strong>
           <a class="country-card-link" href="#russia-cis">Смотреть <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></a>
         </article>
-        <article class="country-card overview-card" tabindex="0" data-carousel-card data-target-section="asia-east" style="background-image: url('{{ homeImages.overview.asiaEast }}');">
+        <article class="country-card overview-card" tabindex="0" data-carousel-card data-target-section="asia-east" style="background-image: url('{{ homeImages.overview.asiaEast | optimizedImage }}');">
           <span>03</span>
           <strong>Азия и Восток</strong>
           <a class="country-card-link" href="#asia-east">Смотреть <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></a>
         </article>
-        <article class="country-card overview-card" tabindex="0" data-carousel-card data-target-section="africa" style="background-image: url('{{ homeImages.overview.africa }}');">
+        <article class="country-card overview-card" tabindex="0" data-carousel-card data-target-section="africa" style="background-image: url('{{ homeImages.overview.africa | optimizedImage }}');">
           <span>04</span>
           <strong>Африка</strong>
           <a class="country-card-link" href="#africa">Смотреть <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></a>
         </article>
-        <article class="country-card overview-card" tabindex="0" data-carousel-card data-target-section="america-caribbean" style="background-image: url('{{ homeImages.overview.americaCaribbean }}');">
+        <article class="country-card overview-card" tabindex="0" data-carousel-card data-target-section="america-caribbean" style="background-image: url('{{ homeImages.overview.americaCaribbean | optimizedImage }}');">
           <span>05</span>
           <strong>Америка и Карибы</strong>
           <a class="country-card-link" href="#america-caribbean">Смотреть <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></a>
         </article>
-        <article class="country-card overview-card" tabindex="0" data-carousel-card data-target-section="islands" style="background-image: url('{{ homeImages.overview.islands }}');">
+        <article class="country-card overview-card" tabindex="0" data-carousel-card data-target-section="islands" style="background-image: url('{{ homeImages.overview.islands | optimizedImage }}');">
           <span>06</span>
           <strong>Острова</strong>
           <a class="country-card-link" href="#islands">Смотреть <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></a>
         </article>
-        <article class="country-card overview-card" tabindex="0" data-carousel-card data-target-section="oceania" style="background-image: url('{{ homeImages.overview.oceania }}');">
+        <article class="country-card overview-card" tabindex="0" data-carousel-card data-target-section="oceania" style="background-image: url('{{ homeImages.overview.oceania | optimizedImage }}');">
           <span>07</span>
           <strong>Австралия и Океания</strong>
           <a class="country-card-link" href="#oceania">Смотреть <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></a>
@@ -103,7 +103,7 @@
       <button type="button" class="direction-dot" data-direction-nav="oceania" aria-label="Австралия и Океания">07</button>
     </aside>
 
-    <section class="section direction-section" id="destinations" data-direction-section data-direction-number="01" style="background-image: linear-gradient(90deg, rgba(17, 22, 21, .88), rgba(17, 22, 21, .58) 42%, rgba(17, 22, 21, .35)), linear-gradient(0deg, rgba(17, 22, 21, .86), rgba(17, 22, 21, .18) 55%, rgba(95, 100, 96, .4)), url('{{ homeImages.directions.europeBg }}');">
+    <section class="section direction-section" id="destinations" data-direction-section data-direction-number="01" style="background-image: linear-gradient(90deg, rgba(17, 22, 21, .88), rgba(17, 22, 21, .58) 42%, rgba(17, 22, 21, .35)), linear-gradient(0deg, rgba(17, 22, 21, .86), rgba(17, 22, 21, .18) 55%, rgba(95, 100, 96, .4)), url('{{ homeImages.directions.europeBg | optimizedImage }}');">
       <span class="direction-neighbor direction-neighbor-next" aria-hidden="true">Россия и СНГ</span>
       <div class="direction-content">
         <div class="direction-copy">
@@ -113,7 +113,7 @@
         <div class="country-rail direction-rail" id="europeRail" aria-label="Страны Европы" data-card-carousel>
           {% set europeCountries = collections.country | whereEquals("data.region", "europe") | whereTruthy("data.published") | whereTruthy("data.featured") | sortByOrder %}
           {% for country in europeCountries %}
-            <article class="country-card{% if loop.first %} is-active{% endif %}" tabindex="0" data-carousel-card{% if loop.first %} aria-current="true"{% endif %} style="background-image: url('{{ country.data.cover }}');">
+            <article class="country-card{% if loop.first %} is-active{% endif %}" tabindex="0" data-carousel-card{% if loop.first %} aria-current="true"{% endif %} style="background-image: url('{{ country.data.cover | optimizedImage }}');">
               <strong>{{ country.data.title }}</strong>
               <a class="country-card-link" href="/countries/{{ country.data.slug }}/">Смотреть <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></a>
             </article>
@@ -133,7 +133,7 @@
       </div>
     </section>
 
-    <section class="section direction-section" id="russia-cis" data-direction-section data-direction-number="02" style="background-image: linear-gradient(90deg, rgba(17, 22, 21, .88), rgba(17, 22, 21, .58) 42%, rgba(17, 22, 21, .35)), linear-gradient(0deg, rgba(17, 22, 21, .86), rgba(17, 22, 21, .18) 55%, rgba(95, 100, 96, .4)), url('{{ homeImages.directions.russiaCisBg }}');">
+    <section class="section direction-section" id="russia-cis" data-direction-section data-direction-number="02" style="background-image: linear-gradient(90deg, rgba(17, 22, 21, .88), rgba(17, 22, 21, .58) 42%, rgba(17, 22, 21, .35)), linear-gradient(0deg, rgba(17, 22, 21, .86), rgba(17, 22, 21, .18) 55%, rgba(95, 100, 96, .4)), url('{{ homeImages.directions.russiaCisBg | optimizedImage }}');">
       <span class="direction-neighbor direction-neighbor-prev" aria-hidden="true">Европа</span>
       <span class="direction-neighbor direction-neighbor-next" aria-hidden="true">Азия и Восток</span>
       <div class="direction-content">
@@ -144,7 +144,7 @@
         <div class="country-rail direction-rail" id="russiaCisRail" aria-label="Страны России и СНГ" data-card-carousel>
           {% set russiaCisCountries = collections.country | whereEquals("data.region", "russia-cis") | whereTruthy("data.published") | whereTruthy("data.featured") | sortByOrder %}
           {% for country in russiaCisCountries %}
-            <article class="country-card{% if loop.first %} is-active{% endif %}" tabindex="0" data-carousel-card{% if loop.first %} aria-current="true"{% endif %} style="background-image: url('{{ country.data.cover }}');">
+            <article class="country-card{% if loop.first %} is-active{% endif %}" tabindex="0" data-carousel-card{% if loop.first %} aria-current="true"{% endif %} style="background-image: url('{{ country.data.cover | optimizedImage }}');">
               <strong>{{ country.data.title }}</strong>
               <a class="country-card-link" href="/countries/{{ country.data.slug }}/">Смотреть <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></a>
             </article>
@@ -164,7 +164,7 @@
       </div>
     </section>
 
-    <section class="section direction-section" id="asia-east" data-direction-section data-direction-number="03" style="background-image: linear-gradient(90deg, rgba(17, 22, 21, .88), rgba(17, 22, 21, .58) 42%, rgba(17, 22, 21, .35)), linear-gradient(0deg, rgba(17, 22, 21, .86), rgba(17, 22, 21, .18) 55%, rgba(95, 100, 96, .4)), url('{{ homeImages.directions.asiaEastBg }}');">
+    <section class="section direction-section" id="asia-east" data-direction-section data-direction-number="03" style="background-image: linear-gradient(90deg, rgba(17, 22, 21, .88), rgba(17, 22, 21, .58) 42%, rgba(17, 22, 21, .35)), linear-gradient(0deg, rgba(17, 22, 21, .86), rgba(17, 22, 21, .18) 55%, rgba(95, 100, 96, .4)), url('{{ homeImages.directions.asiaEastBg | optimizedImage }}');">
       <span class="direction-neighbor direction-neighbor-prev" aria-hidden="true">Россия и СНГ</span>
       <span class="direction-neighbor direction-neighbor-next" aria-hidden="true">Африка</span>
       <div class="direction-content">
@@ -175,7 +175,7 @@
         <div class="country-rail direction-rail" id="asiaEastRail" aria-label="Страны Азии и Востока" data-card-carousel>
           {% set asiaEastCountries = collections.country | whereEquals("data.region", "asia-east") | whereTruthy("data.published") | whereTruthy("data.featured") | sortByOrder %}
           {% for country in asiaEastCountries %}
-            <article class="country-card{% if loop.first %} is-active{% endif %}" tabindex="0" data-carousel-card{% if loop.first %} aria-current="true"{% endif %} style="background-image: url('{{ country.data.cover }}');">
+            <article class="country-card{% if loop.first %} is-active{% endif %}" tabindex="0" data-carousel-card{% if loop.first %} aria-current="true"{% endif %} style="background-image: url('{{ country.data.cover | optimizedImage }}');">
               <strong>{{ country.data.title }}</strong>
               <a class="country-card-link" href="/countries/{{ country.data.slug }}/">Смотреть <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></a>
             </article>
@@ -195,7 +195,7 @@
       </div>
     </section>
 
-    <section class="section direction-section" id="africa" data-direction-section data-direction-number="04" style="background-image: linear-gradient(90deg, rgba(17, 22, 21, .88), rgba(17, 22, 21, .58) 42%, rgba(17, 22, 21, .35)), linear-gradient(0deg, rgba(17, 22, 21, .86), rgba(17, 22, 21, .18) 55%, rgba(95, 100, 96, .4)), url('{{ homeImages.directions.africaBg }}');">
+    <section class="section direction-section" id="africa" data-direction-section data-direction-number="04" style="background-image: linear-gradient(90deg, rgba(17, 22, 21, .88), rgba(17, 22, 21, .58) 42%, rgba(17, 22, 21, .35)), linear-gradient(0deg, rgba(17, 22, 21, .86), rgba(17, 22, 21, .18) 55%, rgba(95, 100, 96, .4)), url('{{ homeImages.directions.africaBg | optimizedImage }}');">
       <span class="direction-neighbor direction-neighbor-prev" aria-hidden="true">Азия и Восток</span>
       <span class="direction-neighbor direction-neighbor-next" aria-hidden="true">Америка и Карибы</span>
       <div class="direction-content">
@@ -206,7 +206,7 @@
         <div class="country-rail direction-rail" id="africaRail" aria-label="Страны Африки" data-card-carousel>
           {% set africaCountries = collections.country | whereEquals("data.region", "africa") | whereTruthy("data.published") | whereTruthy("data.featured") | sortByOrder %}
           {% for country in africaCountries %}
-            <article class="country-card{% if loop.first %} is-active{% endif %}" tabindex="0" data-carousel-card{% if loop.first %} aria-current="true"{% endif %} style="background-image: url('{{ country.data.cover }}');">
+            <article class="country-card{% if loop.first %} is-active{% endif %}" tabindex="0" data-carousel-card{% if loop.first %} aria-current="true"{% endif %} style="background-image: url('{{ country.data.cover | optimizedImage }}');">
               <strong>{{ country.data.title }}</strong>
               <a class="country-card-link" href="/countries/{{ country.data.slug }}/">Смотреть <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></a>
             </article>
@@ -226,7 +226,7 @@
       </div>
     </section>
 
-    <section class="section direction-section" id="america-caribbean" data-direction-section data-direction-number="05" style="background-image: linear-gradient(90deg, rgba(17, 22, 21, .88), rgba(17, 22, 21, .58) 42%, rgba(17, 22, 21, .35)), linear-gradient(0deg, rgba(17, 22, 21, .86), rgba(17, 22, 21, .18) 55%, rgba(95, 100, 96, .4)), url('{{ homeImages.directions.americaCaribbeanBg }}');">
+    <section class="section direction-section" id="america-caribbean" data-direction-section data-direction-number="05" style="background-image: linear-gradient(90deg, rgba(17, 22, 21, .88), rgba(17, 22, 21, .58) 42%, rgba(17, 22, 21, .35)), linear-gradient(0deg, rgba(17, 22, 21, .86), rgba(17, 22, 21, .18) 55%, rgba(95, 100, 96, .4)), url('{{ homeImages.directions.americaCaribbeanBg | optimizedImage }}');">
       <span class="direction-neighbor direction-neighbor-prev" aria-hidden="true">Африка</span>
       <span class="direction-neighbor direction-neighbor-next" aria-hidden="true">Острова</span>
       <div class="direction-content">
@@ -237,7 +237,7 @@
         <div class="country-rail direction-rail" id="americaRail" aria-label="Страны Америки и Карибского бассейна" data-card-carousel>
           {% set americaCountries = collections.country | whereEquals("data.region", "america-caribbean") | whereTruthy("data.published") | whereTruthy("data.featured") | sortByOrder %}
           {% for country in americaCountries %}
-            <article class="country-card{% if loop.first %} is-active{% endif %}" tabindex="0" data-carousel-card{% if loop.first %} aria-current="true"{% endif %} style="background-image: url('{{ country.data.cover }}');">
+            <article class="country-card{% if loop.first %} is-active{% endif %}" tabindex="0" data-carousel-card{% if loop.first %} aria-current="true"{% endif %} style="background-image: url('{{ country.data.cover | optimizedImage }}');">
               <strong>{{ country.data.title }}</strong>
               <a class="country-card-link" href="/countries/{{ country.data.slug }}/">Смотреть <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></a>
             </article>
@@ -257,7 +257,7 @@
       </div>
     </section>
 
-    <section class="section direction-section" id="islands" data-direction-section data-direction-number="06" style="background-image: linear-gradient(90deg, rgba(17, 22, 21, .88), rgba(17, 22, 21, .58) 42%, rgba(17, 22, 21, .35)), linear-gradient(0deg, rgba(17, 22, 21, .86), rgba(17, 22, 21, .18) 55%, rgba(95, 100, 96, .4)), url('{{ homeImages.directions.islandsBg }}');">
+    <section class="section direction-section" id="islands" data-direction-section data-direction-number="06" style="background-image: linear-gradient(90deg, rgba(17, 22, 21, .88), rgba(17, 22, 21, .58) 42%, rgba(17, 22, 21, .35)), linear-gradient(0deg, rgba(17, 22, 21, .86), rgba(17, 22, 21, .18) 55%, rgba(95, 100, 96, .4)), url('{{ homeImages.directions.islandsBg | optimizedImage }}');">
       <span class="direction-neighbor direction-neighbor-prev" aria-hidden="true">Америка и Карибы</span>
       <span class="direction-neighbor direction-neighbor-next" aria-hidden="true">Австралия и Океания</span>
       <div class="direction-content">
@@ -268,7 +268,7 @@
         <div class="country-rail direction-rail" id="islandsRail" aria-label="Островные направления" data-card-carousel>
           {% set islandCountries = collections.country | whereEquals("data.region", "islands") | whereTruthy("data.published") | whereTruthy("data.featured") | sortByOrder %}
           {% for country in islandCountries %}
-            <article class="country-card{% if loop.first %} is-active{% endif %}" tabindex="0" data-carousel-card{% if loop.first %} aria-current="true"{% endif %} style="background-image: url('{{ country.data.cover }}');">
+            <article class="country-card{% if loop.first %} is-active{% endif %}" tabindex="0" data-carousel-card{% if loop.first %} aria-current="true"{% endif %} style="background-image: url('{{ country.data.cover | optimizedImage }}');">
               <strong>{{ country.data.title }}</strong>
               <a class="country-card-link" href="/countries/{{ country.data.slug }}/">Смотреть <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></a>
             </article>
@@ -288,7 +288,7 @@
       </div>
     </section>
 
-    <section class="section direction-section" id="oceania" data-direction-section data-direction-number="07" style="background-image: linear-gradient(90deg, rgba(17, 22, 21, .88), rgba(17, 22, 21, .58) 42%, rgba(17, 22, 21, .35)), linear-gradient(0deg, rgba(17, 22, 21, .86), rgba(17, 22, 21, .18) 55%, rgba(95, 100, 96, .4)), url('{{ homeImages.directions.oceaniaBg }}');">
+    <section class="section direction-section" id="oceania" data-direction-section data-direction-number="07" style="background-image: linear-gradient(90deg, rgba(17, 22, 21, .88), rgba(17, 22, 21, .58) 42%, rgba(17, 22, 21, .35)), linear-gradient(0deg, rgba(17, 22, 21, .86), rgba(17, 22, 21, .18) 55%, rgba(95, 100, 96, .4)), url('{{ homeImages.directions.oceaniaBg | optimizedImage }}');">
       <span class="direction-neighbor direction-neighbor-prev" aria-hidden="true">Острова</span>
       <div class="direction-content">
         <div class="direction-copy">
@@ -298,7 +298,7 @@
         <div class="country-rail direction-rail" id="oceaniaRail" aria-label="Страны Австралии и Океании" data-card-carousel>
           {% set oceaniaCountries = collections.country | whereEquals("data.region", "oceania") | whereTruthy("data.published") | whereTruthy("data.featured") | sortByOrder %}
           {% for country in oceaniaCountries %}
-            <article class="country-card{% if loop.first %} is-active{% endif %}" tabindex="0" data-carousel-card{% if loop.first %} aria-current="true"{% endif %} style="background-image: url('{{ country.data.cover }}');">
+            <article class="country-card{% if loop.first %} is-active{% endif %}" tabindex="0" data-carousel-card{% if loop.first %} aria-current="true"{% endif %} style="background-image: url('{{ country.data.cover | optimizedImage }}');">
               <strong>{{ country.data.title }}</strong>
               <a class="country-card-link" href="/countries/{{ country.data.slug }}/">Смотреть <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></a>
             </article>
@@ -328,7 +328,7 @@
       <div class="tour-grid">
         {% set featuredTours = collections.tour | whereTruthy("data.published") | whereTruthy("data.featured") | sortByOrder %}
         {% for tour in featuredTours %}
-          <a class="tour-card" href="/tours/{{ tour.data.slug }}/" style="background-image: url('{{ tour.data.cover }}');">
+          <a class="tour-card" href="/tours/{{ tour.data.slug }}/" style="background-image: url('{{ tour.data.cover | optimizedImage }}');">
             <span>{{ tour.data.destination }}</span>
             <h3>{{ tour.data.title }}</h3>
           </a>
@@ -358,7 +358,7 @@
 
 
     <section class="request-section" id="request">
-      <div class="request-visual" style="background-image: linear-gradient(90deg, rgba(17, 22, 21, .24), rgba(17, 22, 21, .8)), url('{{ homeImages.request }}');"></div>
+      <div class="request-visual" style="background-image: linear-gradient(90deg, rgba(17, 22, 21, .24), rgba(17, 22, 21, .8)), url('{{ homeImages.request | optimizedImage }}');"></div>
       <div class="request-panel" id="contacts">
         <form class="request-form" data-request-form>
           <label for="form-name">

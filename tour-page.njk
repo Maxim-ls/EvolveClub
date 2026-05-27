@@ -12,7 +12,7 @@ eleventyComputed:
 ---
 
 <main id="top">
-  <section class="tour-page-hero" style="background-image: linear-gradient(90deg, rgba(16, 21, 20, .84), rgba(16, 21, 20, .52) 48%, rgba(16, 21, 20, .2)), linear-gradient(0deg, rgba(16, 21, 20, .86), rgba(16, 21, 20, .08) 58%), url('{{ tour.data.cover }}');">
+  <section class="tour-page-hero" style="background-image: linear-gradient(90deg, rgba(16, 21, 20, .84), rgba(16, 21, 20, .52) 48%, rgba(16, 21, 20, .2)), linear-gradient(0deg, rgba(16, 21, 20, .86), rgba(16, 21, 20, .08) 58%), url('{{ tour.data.cover | optimizedImage }}');">
     <a class="country-back" data-history-back href="/#tours"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg> Назад к турам</a>
     <div class="tour-page-hero-copy">
       {% if tour.data.duration %}
@@ -63,7 +63,7 @@ eleventyComputed:
         {{ tour.templateContent | safe }}
       </div>
       <div class="tour-intro-side">
-        <img src="{{ tour.data.intro_image or tour.data.cover }}" alt="{{ tour.data.title }}" loading="lazy">
+        <img src="{{ (tour.data.intro_image or tour.data.cover) | optimizedImage }}" alt="{{ tour.data.title }}" loading="lazy">
       </div>
     </section>
 
@@ -97,7 +97,7 @@ eleventyComputed:
                 {% endif %}
               </div>
               {% if day.image %}
-                <img src="{{ day.image }}" alt="{{ day.image_alt or day.title }}" loading="lazy">
+                <img src="{{ day.image | optimizedImage }}" alt="{{ day.image_alt or day.title }}" loading="lazy">
               {% endif %}
             </article>
           {% endfor %}
@@ -139,7 +139,7 @@ eleventyComputed:
         <h2>Галерея</h2>
         <div class="hotel-photo-mosaic">
           {% for item in tour.data.gallery %}
-            <img src="{{ item.image or item }}" alt="{{ tour.data.title }}" loading="lazy">
+            <img src="{{ (item.image or item) | optimizedImage }}" alt="{{ tour.data.title }}" loading="lazy">
           {% endfor %}
         </div>
       </section>

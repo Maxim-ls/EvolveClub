@@ -12,7 +12,7 @@ eleventyComputed:
 ---
 
 <main id="top">
-  <section class="country-hero" style="background-image: linear-gradient(90deg, rgba(17, 22, 21, .78), rgba(17, 22, 21, .46) 46%, rgba(17, 22, 21, .22)), linear-gradient(0deg, rgba(17, 22, 21, .78), rgba(17, 22, 21, .08) 58%), url('{{ country.data.cover }}');">
+  <section class="country-hero" style="background-image: linear-gradient(90deg, rgba(17, 22, 21, .78), rgba(17, 22, 21, .46) 46%, rgba(17, 22, 21, .22)), linear-gradient(0deg, rgba(17, 22, 21, .78), rgba(17, 22, 21, .08) 58%), url('{{ country.data.cover | optimizedImage }}');">
     <div class="country-hero-inner">
       <a class="country-back" data-history-back href="/#destinations" data-return-section="{{ country.data.region }}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg> Назад</a>
       <h1>{{ country.data.title }}</h1>
@@ -53,7 +53,7 @@ eleventyComputed:
           <div class="hotel-grid">
             {% for hotel in tierHotels %}
               <a class="hotel-card hotel-card-link" href="/hotels/{{ hotel.data.country }}/{{ hotel.data.slug }}/">
-                <div class="hotel-card-image" style="background-image: url('{{ hotel.data.cover }}');"></div>
+                <div class="hotel-card-image" style="background-image: url('{{ hotel.data.cover | optimizedImage }}');"></div>
                 <div class="hotel-card-body">
                   <span class="hotel-card-rating">{{ hotel.data.stars or "★★★★★" }}{% if hotel.data.location %} <b>{{ hotel.data.location }}</b>{% endif %}</span>
                   <h3>{{ hotel.data.title }}</h3>
@@ -73,7 +73,7 @@ eleventyComputed:
         <div class="hotel-grid">
           {% for hotel in fallbackHotels %}
             <a class="hotel-card hotel-card-link" href="/hotels/{{ hotel.data.country }}/{{ hotel.data.slug }}/">
-              <div class="hotel-card-image" style="background-image: url('{{ hotel.data.cover }}');"></div>
+              <div class="hotel-card-image" style="background-image: url('{{ hotel.data.cover | optimizedImage }}');"></div>
               <div class="hotel-card-body">
                 <span class="hotel-card-rating">{{ hotel.data.stars or "★★★★★" }}{% if hotel.data.location %} <b>{{ hotel.data.location }}</b>{% endif %}</span>
                 <h3>{{ hotel.data.title }}</h3>
