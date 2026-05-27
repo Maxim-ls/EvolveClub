@@ -16,7 +16,18 @@
   const getAssetUrl = (props, value) => {
     if (!value) return '';
     const asset = props.getAsset(value);
-    return asset && asset.toString ? asset.toString() : value;
+    const src = asset && asset.toString ? asset.toString() : value;
+    return getOptimizedAssetUrl(src);
+  };
+
+  const getOptimizedAssetUrl = (src) => {
+    if (!src || /^(https?:)?\/\//.test(src) || src.startsWith('data:')) return src;
+    const cleanSrc = src.split(/[?#]/)[0];
+    const hasLeadingSlash = cleanSrc.startsWith('/');
+    const normalizedSrc = cleanSrc.replace(/^\/+/, '');
+    const match = normalizedSrc.match(/^assets\/img\/(.+)\.(jpe?g|png|webp)$/i);
+    if (!match || normalizedSrc.startsWith('assets/img/generated/')) return src;
+    return `${hasLeadingSlash ? '/' : ''}assets/img/generated/${match[1]}.webp`;
   };
 
   const listToArray = (value) => {

@@ -41,6 +41,11 @@ const getSnapTop = (section) => {
   return section.classList.contains('hero') ? 0 : sectionTop;
 };
 
+const getAnchorTop = (section) => {
+  const offset = window.innerWidth <= 760 ? 18 : 0;
+  return Math.max(0, getSnapTop(section) - offset);
+};
+
 const getCurrentSectionIndex = () => {
   const y = window.pageYOffset || document.documentElement.scrollTop;
   return snapSections.reduce((closestIndex, section, index) => {
@@ -204,7 +209,7 @@ const initCarousels = () => {
 
       if (href.startsWith('#')) {
         const target = document.querySelector(href);
-        if (target) window.scrollTo({ top: getSnapTop(target), behavior: 'smooth' });
+        if (target) window.scrollTo({ top: getAnchorTop(target), behavior: 'smooth' });
         return;
       }
 
@@ -398,7 +403,7 @@ const scheduleDirectionUpdate = () => {
 directionNavButtons.forEach((button) => {
   button.addEventListener('click', () => {
     const section = document.getElementById(button.dataset.directionNav);
-    if (section) window.scrollTo({ top: getSnapTop(section), behavior: 'smooth' });
+    if (section) window.scrollTo({ top: getAnchorTop(section), behavior: 'smooth' });
   });
 });
 
@@ -408,7 +413,7 @@ document.querySelectorAll('a[href^="#"]').forEach((link) => {
     const target = document.querySelector(link.getAttribute('href'));
     if (!target) return;
     event.preventDefault();
-    window.scrollTo({ top: getSnapTop(target), behavior: 'smooth' });
+    window.scrollTo({ top: getAnchorTop(target), behavior: 'smooth' });
   });
 });
 

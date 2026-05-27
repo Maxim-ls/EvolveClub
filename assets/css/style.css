@@ -2365,8 +2365,8 @@ body.is-modal-open {
 
 @media (max-width: 760px) {
   .tour-detail-page {
-    --tour-body-size: 15px;
-    --tour-meta-size: 13px;
+    --tour-body-size: 16px;
+    --tour-meta-size: 14px;
     --tour-mini-title-size: 12px;
     --tour-section-title-size: clamp(22px, 8vw, 30px);
     --tour-hero-title-size: clamp(30px, 10vw, 44px);
@@ -2457,8 +2457,8 @@ body.is-modal-open {
   }
 
   .tour-hero-facts b {
-    font-size: 14px;
-    line-height: 1.45;
+    font-size: 15px;
+    line-height: 1.5;
     overflow-wrap: anywhere;
   }
 
@@ -2506,7 +2506,8 @@ body.is-modal-open {
   .tour-day-copy dd,
   .tour-fit p,
   .tour-intro-side p {
-    line-height: 1.58;
+    font-size: 16px;
+    line-height: 1.62;
     overflow-wrap: anywhere;
   }
 
@@ -2577,7 +2578,8 @@ body.is-modal-open {
 
   .tour-section li {
     padding-left: 16px;
-    line-height: 1.58;
+    font-size: 16px;
+    line-height: 1.62;
     overflow-wrap: anywhere;
   }
 
@@ -2725,6 +2727,13 @@ body.is-modal-open {
 
 @media (max-width: 760px) {
 
+  :root {
+    --muted: rgba(246, 245, 239, .84);
+    --text-sm: 14px;
+    --text-base: 15px;
+    --text-body: 16px;
+  }
+
   html {
     scroll-behavior: auto;
   }
@@ -2791,8 +2800,8 @@ body.is-modal-open {
   .hero-copy {
     max-width: 100%;
     margin: 18px 0 22px;
-    font-size: var(--text-base);
-    line-height: 1.55;
+    font-size: 16px;
+    line-height: 1.62;
   }
 
   .hero-copy-secondary {
@@ -2824,6 +2833,8 @@ body.is-modal-open {
   .tour-day-copy p,
   .tour-day-copy dd {
     max-width: none;
+    font-size: 16px;
+    line-height: 1.62;
   }
 
   .country-rail {
@@ -2901,8 +2912,8 @@ body.is-modal-open {
   .direction-text {
     max-width: none;
     margin: 16px 0 26px;
-    font-size: var(--text-sm);
-    line-height: 1.55;
+    font-size: 16px;
+    line-height: 1.62;
   }
 
   .direction-neighbor {
@@ -2998,7 +3009,8 @@ body.is-modal-open {
   .country-hero p:not(.eyebrow) {
     max-width: none;
     margin: 18px auto 0;
-    font-size: var(--text-sm);
+    font-size: 16px;
+    line-height: 1.62;
   }
 
   .country-actions {
@@ -3059,6 +3071,7 @@ body.is-modal-open {
     justify-content: center;
     align-items: center;
     max-width: none;
+    font-size: 15px;
     line-height: 1.45;
     white-space: normal;
   }
@@ -3183,6 +3196,17 @@ body.is-modal-open {
 
   .room-grid-detailed .room-card p {
     max-width: none;
+    font-size: 16px;
+    line-height: 1.62;
+  }
+
+  .hotel-about-feature p,
+  .hotel-content-section p,
+  .hotel-card-body p,
+  .modal-copy p,
+  .modal-copy li {
+    font-size: 16px;
+    line-height: 1.62;
   }
 
   .room-card-actions {

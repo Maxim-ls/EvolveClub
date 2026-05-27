@@ -12,16 +12,17 @@ locale: "ru"
 
 collections:
   - name: "settings"
-    label: "Настройки"
+    label: "Главная и изображения"
     files:
       - name: "home_images"
-        label: "Главная: изображения"
+        label: "Главная страница"
         file: "_data/homeImages.json"
         fields:
-          - { label: "Главный фон первого экрана", name: "hero", widget: "image" }
+          - { label: "Главный фон первого экрана", name: "hero", widget: "image", hint: "Крупное горизонтальное фото. На сайт уйдет оптимизированная webp-копия." }
           - label: "Карточки обзора направлений"
             name: "overview"
             widget: "object"
+            hint: "Картинки для верхней карусели разделов: Европа, Острова, Азия и т.д."
             fields:
               - { label: "Европа", name: "europe", widget: "image" }
               - { label: "Россия и СНГ", name: "russiaCis", widget: "image" }
@@ -33,6 +34,7 @@ collections:
           - label: "Фоны разделов направлений"
             name: "directions"
             widget: "object"
+            hint: "Фоны больших блоков направлений на главной странице."
             fields:
               - { label: "Европа", name: "europeBg", widget: "image" }
               - { label: "Россия и СНГ", name: "russiaCisBg", widget: "image" }
@@ -41,44 +43,7 @@ collections:
               - { label: "Америка и Карибы", name: "americaCaribbeanBg", widget: "image" }
               - { label: "Острова", name: "islandsBg", widget: "image" }
               - { label: "Австралия и Океания", name: "oceaniaBg", widget: "image" }
-          - label: "Карточки стран внутри направлений"
-            name: "directionCards"
-            widget: "object"
-            fields:
-              - { label: "Франция", name: "france", widget: "image" }
-              - { label: "Испания", name: "spain", widget: "image" }
-              - { label: "Италия", name: "italy", widget: "image" }
-              - { label: "Исландия", name: "iceland", widget: "image" }
-              - { label: "Россия", name: "russia", widget: "image" }
-              - { label: "Армения", name: "armenia", widget: "image" }
-              - { label: "Узбекистан", name: "uzbekistan", widget: "image" }
-              - { label: "Китай", name: "china", widget: "image" }
-              - { label: "Таиланд", name: "thailand", widget: "image" }
-              - { label: "Индонезия", name: "indonesia", widget: "image" }
-              - { label: "Вьетнам", name: "vietnam", widget: "image" }
-              - { label: "Япония", name: "japan", widget: "image" }
-              - { label: "Турция", name: "turkey", widget: "image" }
-              - { label: "Египет", name: "egypt", widget: "image" }
-              - { label: "Марокко", name: "morocco", widget: "image" }
-              - { label: "Занзибар", name: "zanzibar", widget: "image" }
-              - { label: "ЮАР", name: "southAfrica", widget: "image" }
-              - { label: "США", name: "usa", widget: "image" }
-              - { label: "Мексика", name: "mexico", widget: "image" }
-              - { label: "Бразилия", name: "brazil", widget: "image" }
-              - { label: "Австралия", name: "australia", widget: "image" }
-              - { label: "Новая Зеландия", name: "newZealand", widget: "image" }
-          - { label: "Фон формы запроса", name: "request", widget: "image" }
-      - name: "segments"
-        label: "Сегменты отелей"
-        file: "_data/segments.json"
-        fields:
-          - label: "Сегменты"
-            name: "segments"
-            widget: "list"
-            summary: "{{fields.label}}"
-            fields:
-              - { label: "Название", name: "label", widget: "string" }
-              - { label: "Код", name: "value", widget: "string", hint: "Латиницей, например luxury или family" }
+          - { label: "Фон формы запроса", name: "request", widget: "image", hint: "Фон нижнего блока с формой заявки." }
 
   - name: "countries"
     label: "Направления"
@@ -206,6 +171,7 @@ collections:
         name: "gallery"
         widget: "list"
         required: false
+        collapsed: true
         field: { label: "Фото", name: "image", widget: "image", hint: "Горизонтальное фото, желательно не тяжелее 1-2 МБ" }
       - { label: "Заголовок описания", name: "about_title", widget: "string", required: false, hint: "Если не заполнить, будет использовано краткое описание" }
       - { label: "Описание", name: "body", widget: "markdown" }
@@ -213,6 +179,7 @@ collections:
         name: "facts"
         widget: "list"
         required: false
+        collapsed: true
         summary: "{{fields.label}}"
         fields:
           - { label: "Заголовок", name: "label", widget: "string", hint: "Например: Адрес, Телефон, Трансфер, Формат" }
@@ -223,6 +190,7 @@ collections:
         name: "rooms"
         widget: "list"
         required: false
+        collapsed: true
         summary: "{{fields.title}}"
         fields:
           - { label: "Название", name: "title", widget: "string" }
@@ -234,6 +202,7 @@ collections:
             name: "images"
             widget: "list"
             required: false
+            collapsed: true
             field: { label: "Фото", name: "image", widget: "image", hint: "Фото интерьера, номера, сьюта или виллы, желательно не тяжелее 1-2 МБ" }
       - { label: "Порядок", name: "order", widget: "number", default: 1 }
       - { label: "Опубликовано", name: "published", widget: "boolean", default: true }
@@ -262,6 +231,7 @@ collections:
         name: "hero_facts"
         widget: "list"
         required: false
+        collapsed: true
         summary: "{{fields.label}}"
         fields:
           - { label: "Заголовок", name: "label", widget: "string", hint: "Например: Проживание, Питание, Переезды" }
@@ -271,6 +241,7 @@ collections:
         name: "route"
         widget: "list"
         required: false
+        collapsed: true
         summary: "{{fields.title}}"
         fields:
           - { label: "Точка маршрута", name: "title", widget: "string" }
@@ -279,6 +250,7 @@ collections:
         name: "days"
         widget: "list"
         required: false
+        collapsed: true
         summary: "{{fields.title}}"
         fields:
           - { label: "День и город", name: "title", widget: "string", hint: "Например: 1 день · Токио" }
@@ -291,6 +263,7 @@ collections:
         name: "info_sections"
         widget: "list"
         required: false
+        collapsed: true
         summary: "{{fields.title}}"
         fields:
           - { label: "Заголовок", name: "title", widget: "string" }
@@ -307,6 +280,7 @@ collections:
         name: "gallery"
         widget: "list"
         required: false
+        collapsed: true
         field: { label: "Фото", name: "image", widget: "image", hint: "Горизонтальное фото, желательно не тяжелее 1-2 МБ" }
       - { label: "Порядок", name: "order", widget: "number", default: 1 }
       - { label: "Опубликовано", name: "published", widget: "boolean", default: true }

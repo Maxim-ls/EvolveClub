@@ -90,8 +90,19 @@ function optimizedImageUrl(src) {
   return `${hasLeadingSlash ? "/" : ""}${webPath}`;
 }
 
+function cleanOutputDirectory() {
+  const outputRoot = path.join(__dirname, "_site");
+  const resolvedOutputRoot = path.resolve(outputRoot);
+  const resolvedProjectRoot = path.resolve(__dirname);
+
+  if (!resolvedOutputRoot.startsWith(resolvedProjectRoot + path.sep)) return;
+  fs.rmSync(resolvedOutputRoot, { recursive: true, force: true });
+}
+
 module.exports = function (eleventyConfig) {
-  eleventyConfig.addPassthroughCopy("assets");
+  eleventyConfig.addPassthroughCopy("assets/css");
+  eleventyConfig.addPassthroughCopy("assets/js");
+  eleventyConfig.addPassthroughCopy("assets/img/generated");
   eleventyConfig.addPassthroughCopy(".htaccess");
   eleventyConfig.addPassthroughCopy("admin");
   eleventyConfig.ignores.add("countries/**");
@@ -133,7 +144,10 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addFilter("optimizedImage", optimizedImageUrl);
 
-  eleventyConfig.on("eleventy.before", validateContent);
+  eleventyConfig.on("eleventy.before", () => {
+    cleanOutputDirectory();
+    validateContent();
+  });
 
   return {
     dir: {
