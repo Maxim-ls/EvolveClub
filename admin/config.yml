@@ -85,7 +85,7 @@ collections:
     folder: "content/countries"
     create: true
     slug: "{{slug}}"
-    view_groups:
+    view_filters:
       - label: "Европа"
         field: "region"
         pattern: "europe"
@@ -107,7 +107,6 @@ collections:
       - label: "Австралия и Океания"
         field: "region"
         pattern: "oceania"
-    view_filters:
       - label: "Опубликованные"
         field: "published"
         pattern: true
@@ -151,16 +150,6 @@ collections:
     folder: "content/hotels"
     create: true
     slug: "{{slug}}"
-    view_groups:
-      - label: "Мальдивы"
-        field: "country"
-        pattern: "maldives"
-      - label: "Маврикий"
-        field: "country"
-        pattern: "mauritius"
-      - label: "Сейшелы"
-        field: "country"
-        pattern: "seychelles"
     view_filters:
       - label: "Мальдивы"
         field: "country"
@@ -171,6 +160,12 @@ collections:
       - label: "Сейшелы"
         field: "country"
         pattern: "seychelles"
+      - label: "Опубликованные"
+        field: "published"
+        pattern: true
+      - label: "Черновики"
+        field: "published"
+        pattern: false
     fields:
       - { label: "Название", name: "title", widget: "string" }
       - { label: "Адрес страницы", name: "slug", widget: "string", hint: "Латиницей, без пробелов. Например: waldorf-astoria-ithaafushi" }

@@ -668,11 +668,55 @@ const openModal = (modalId) => {
   document.body.style.width = '100%';
 };
 
+const fillHotelRequestFromButton = (button) => {
+  if (!button || button.dataset.modalOpen !== 'hotel-request') return;
+
+  const modal = document.getElementById('hotel-request');
+  if (!modal) return;
+
+  const hotel = button.dataset.requestHotel || '';
+  const country = button.dataset.requestCountry || '';
+  const room = button.dataset.requestRoom || '';
+  const type = button.dataset.requestRoomType || '';
+  const area = button.dataset.requestRoomArea || '';
+  const capacity = button.dataset.requestRoomCapacity || '';
+  const hotelInput = modal.querySelector('#hotel-request-villa');
+  const messageInput = modal.querySelector('#hotel-request-message');
+
+  if (!hotel && !room) {
+    if (hotelInput) hotelInput.value = hotelInput.defaultValue || '';
+    if (messageInput) messageInput.value = '';
+    return;
+  }
+
+  const selectedTitle = [hotel, room].filter(Boolean).join(' - ');
+  const details = [
+    hotel ? `Отель: ${hotel}` : '',
+    country ? `Страна: ${country}` : '',
+    room ? `Вилла / номер: ${room}` : '',
+    type ? `Тип: ${type}` : '',
+    area ? `Площадь: ${area}` : '',
+    capacity ? `Размещение: ${capacity}` : ''
+  ].filter(Boolean).join('\n');
+
+  if (hotelInput && selectedTitle) {
+    hotelInput.value = selectedTitle;
+  }
+
+  if (messageInput && details) {
+    messageInput.value = `${details}\n\nПожелания: `;
+  }
+};
+
 modalOpenButtons.forEach((button) => {
-  button.addEventListener('click', () => openModal(button.dataset.modalOpen));
+  button.addEventListener('click', () => {
+    fillHotelRequestFromButton(button);
+    openModal(button.dataset.modalOpen);
+  });
   button.addEventListener('keydown', (event) => {
     if (event.key === 'Enter' || event.key === ' ') {
       event.preventDefault();
+      fillHotelRequestFromButton(button);
       openModal(button.dataset.modalOpen);
     }
   });

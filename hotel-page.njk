@@ -104,6 +104,22 @@ eleventyComputed:
                   {% if room.capacity %}{{ room.capacity }}{% endif %}
                 </p>
               {% endif %}
+              <div class="room-card-actions">
+                <button
+                  type="button"
+                  class="room-select-button"
+                  data-modal-open="hotel-request"
+                  data-request-hotel="{{ hotel.data.title }}"
+                  data-request-country="{{ countryTitle }}"
+                  data-request-room="{{ room.title }}"
+                  data-request-room-type="{{ room.type or '' }}"
+                  data-request-room-area="{{ room.area or '' }}"
+                  data-request-room-capacity="{{ room.capacity or '' }}"
+                >
+                  Выбрать
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+                </button>
+              </div>
             </article>
           {% endfor %}
         </div>
@@ -156,7 +172,7 @@ eleventyComputed:
         <input type="text" id="hotel-request-contact" name="contact" placeholder="Телефон, Telegram или WhatsApp" required>
       </label>
       <label for="hotel-request-villa">
-        <span>Отель</span>
+        <span>Отель / вилла</span>
         <input type="text" id="hotel-request-villa" name="hotel" value="{{ hotel.data.title }}">
       </label>
       <label for="hotel-request-message">

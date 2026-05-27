@@ -760,6 +760,21 @@ button,
   transform: scale(1.12);
 }
 
+.country-card-placeholder {
+  border: 1px dashed rgba(246, 245, 239, .28);
+  background:
+    linear-gradient(135deg, rgba(17, 22, 21, .86), rgba(17, 22, 21, .56)),
+    radial-gradient(circle at 20% 20%, rgba(0, 191, 208, .16), rgba(0, 191, 208, 0) 34%);
+}
+
+.country-card-placeholder::before {
+  background: linear-gradient(0deg, rgba(17, 22, 21, .7), rgba(17, 22, 21, .28));
+}
+
+.country-card-placeholder strong {
+  max-width: 12em;
+}
+
 .country-card-link {
   display: inline-flex;
   align-items: center;
@@ -1690,6 +1705,52 @@ button,
 
 .room-grid-detailed .room-card p {
   margin-top: 0;
+}
+
+.room-card-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: auto;
+  padding-top: 20px;
+}
+
+.room-select-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 42px;
+  padding: 0 16px;
+  border: 1px solid rgba(0, 191, 208, .42);
+  border-radius: 0;
+  background: rgba(0, 191, 208, .1);
+  color: var(--teal-bright);
+  font-family: var(--font-ui);
+  font-size: var(--text-xs);
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background .2s ease, border-color .2s ease, color .2s ease, transform .2s ease;
+}
+
+.room-select-button svg {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.room-select-button:hover,
+.room-select-button:focus-visible {
+  border-color: var(--teal-bright);
+  background: rgba(0, 191, 208, .18);
+  color: var(--ink);
+  transform: translateY(-1px);
 }
 
 .room-links {
