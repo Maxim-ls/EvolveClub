@@ -42,8 +42,12 @@ const getSnapTop = (section) => {
 };
 
 const getAnchorTop = (section) => {
-  const offset = window.innerWidth <= 760 ? 18 : 0;
-  return Math.max(0, getSnapTop(section) - offset);
+  const isMainSection = section.matches('main > section');
+  if (isMainSection) return getSnapTop(section);
+
+  const headerHeight = header?.offsetHeight || 0;
+  const gap = window.innerWidth <= 760 ? 14 : 18;
+  return Math.max(0, getSnapTop(section) - headerHeight - gap);
 };
 
 const getCurrentSectionIndex = () => {
