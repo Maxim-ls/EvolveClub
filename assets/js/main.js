@@ -155,6 +155,10 @@ const initCarousels = () => {
     let scrollFrame = null;
     let scrollSyncFrame = 0;
     let isProgrammaticScroll = false;
+    let touchStartX = 0;
+    let touchStartY = 0;
+    let touchIsHorizontal = false;
+    let touchMoved = false;
 
     const centerActiveCard = (card, smooth) => {
       if (scrollFrame) cancelAnimationFrame(scrollFrame);
@@ -262,6 +266,54 @@ const initCarousels = () => {
     container.addEventListener('scroll', () => {
       if (scrollSyncFrame) return;
       scrollSyncFrame = requestAnimationFrame(setActiveFromScroll);
+    }, { passive: true });
+
+    container.addEventListener('touchstart', (event) => {
+      if (window.innerWidth > 760) return;
+      const touch = event.touches[0];
+      if (!touch) return;
+
+      touchStartX = touch.clientX;
+      touchStartY = touch.clientY;
+      touchIsHorizontal = false;
+      touchMoved = false;
+    }, { passive: true });
+
+    container.addEventListener('touchmove', (event) => {
+      if (window.innerWidth > 760) return;
+      const touch = event.touches[0];
+      if (!touch) return;
+
+      const deltaX = touch.clientX - touchStartX;
+      const deltaY = touch.clientY - touchStartY;
+
+      if (!touchMoved && Math.abs(deltaX) > 10) {
+        touchIsHorizontal = Math.abs(deltaX) > Math.abs(deltaY) * 1.15;
+        touchMoved = true;
+      }
+
+      if (touchIsHorizontal) {
+        event.preventDefault();
+      }
+    }, { passive: false });
+
+    container.addEventListener('touchend', (event) => {
+      if (window.innerWidth > 760) return;
+      const touch = event.changedTouches[0];
+      if (!touch) return;
+
+      const deltaX = touch.clientX - touchStartX;
+      const deltaY = touch.clientY - touchStartY;
+      const isSwipe = Math.abs(deltaX) > 44 && Math.abs(deltaX) > Math.abs(deltaY) * 1.15;
+
+      if (isSwipe) {
+        update(activeIndex + (deltaX < 0 ? 1 : -1));
+      }
+
+      touchStartX = 0;
+      touchStartY = 0;
+      touchIsHorizontal = false;
+      touchMoved = false;
     }, { passive: true });
 
     // Регистрация в глобальном реестре для кнопок-стрелок

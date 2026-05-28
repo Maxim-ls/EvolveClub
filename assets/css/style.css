@@ -41,6 +41,7 @@ html {
 
 body {
   margin: 0;
+  overflow-x: clip;
   background: var(--night);
   color: var(--ink);
   font-family: var(--font-ui);
@@ -367,6 +368,16 @@ button,
   min-height: calc(100svh - var(--header-height));
   scroll-margin-top: var(--header-height);
   background: #151a19;
+}
+
+.hero-content,
+.section-head > *,
+.direction-content > *,
+.request-panel,
+.country-card,
+.tour-card,
+.service-grid article {
+  min-width: 0;
 }
 
 .section:nth-of-type(2n + 1) {
@@ -1912,8 +1923,10 @@ button,
 }
 
 .modal-copy b,
+.modal-copy strong,
 .modal-facts b {
   color: var(--ink);
+  font-weight: 700;
 }
 
 .modal-facts {
@@ -2861,6 +2874,17 @@ body.is-modal-open {
   .services-section {
     min-height: 100vh;
     min-height: 100svh;
+    padding-top: 72px;
+    padding-bottom: 72px;
+  }
+
+  .service-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-content: start;
+  }
+
+  .service-grid article {
+    min-height: 188px;
   }
 
   .request-visual {
@@ -2931,6 +2955,7 @@ body.is-modal-open {
   .hero-content {
     position: static;
     padding-top: 0;
+    padding-bottom: 78px;
     max-width: 100%;
   }
 
@@ -2974,6 +2999,7 @@ body.is-modal-open {
   .section {
     padding-left: var(--mobile-x);
     padding-right: var(--mobile-x);
+    min-height: 0;
   }
 
   .section-head {
@@ -2996,6 +3022,7 @@ body.is-modal-open {
   .country-rail {
     grid-auto-columns: minmax(150px, 54vw);
     gap: 22px;
+    touch-action: pan-y;
   }
 
   .direction-section {
@@ -3007,10 +3034,17 @@ body.is-modal-open {
     height: auto;
     min-height: 82vh;
     min-height: 82svh;
-    padding-top: 18px;
+    align-content: start;
+    gap: 14px;
+    padding-top: 84px;
     padding-left: var(--mobile-x);
     padding-right: var(--mobile-x);
     padding-bottom: 44px;
+  }
+
+  .overview-title,
+  .overview-rail {
+    transform: none;
   }
 
   .direction-count {
@@ -3092,13 +3126,14 @@ body.is-modal-open {
   .direction-rail {
     --rail-card-width: 44vw;
     --rail-card-min: 132px;
-    --rail-card-height: 240px;
-    --rail-card-active-height: 290px;
+    --rail-card-height: 238px;
+    --rail-card-active-height: 270px;
     --rail-card-active-width: 54vw;
     --rail-card-active-min: 158px;
-    height: 310px;
+    height: 292px;
     padding-top: 24px;
     padding-bottom: 10px;
+    gap: 16px;
   }
 
   .direction-rail .country-card {
@@ -3109,6 +3144,14 @@ body.is-modal-open {
   .direction-rail .country-card.is-active {
     flex-basis: var(--rail-card-active-width);
     min-width: var(--rail-card-active-min);
+    transform: none;
+  }
+
+  .direction-rail .country-card:hover,
+  .direction-rail .country-card:focus-visible,
+  .direction-rail .country-card.is-active:hover,
+  .direction-rail .country-card.is-active:focus-visible {
+    transform: none;
   }
 
   .country-card {
@@ -3130,10 +3173,14 @@ body.is-modal-open {
   }
 
   .library-grid,
-  .service-grid,
   .tour-grid,
   .hotel-grid {
     grid-template-columns: 1fr;
+  }
+
+  .service-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
   }
 
   .tour-card {
@@ -3434,12 +3481,35 @@ body.is-modal-open {
 
   .services-section {
     min-height: 0;
-    padding-top: 76px;
-    padding-bottom: 56px;
+    padding-top: 72px;
+    padding-bottom: 60px;
   }
 
   .service-grid article {
-    min-height: auto;
+    min-height: 170px;
+    padding: 16px 12px;
+  }
+
+  .service-icon {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 12px;
+  }
+
+  .service-icon svg {
+    width: 34px;
+    height: 34px;
+  }
+
+  .service-grid h3 {
+    margin-bottom: 7px;
+    font-size: 16px;
+    line-height: 1.12;
+  }
+
+  .service-grid p {
+    font-size: 13px;
+    line-height: 1.42;
   }
 
   .request-section {

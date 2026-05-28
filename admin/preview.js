@@ -63,6 +63,19 @@
     items.filter(Boolean).map((item) => h('li', {}, item))
   );
 
+  const imageCard = (props, label, value, className = '') => {
+    const src = getAssetUrl(props, value);
+    return h('div', { className: `ec-preview-image-card ${className}`.trim() },
+      src ? h('img', { src, alt: label }) : h('div', { className: 'ec-preview-image-missing' }, 'Фото не выбрано'),
+      h('span', {}, label)
+    );
+  };
+
+  const imageGroup = (title, items) => h('section', { className: 'ec-preview-image-section' },
+    h('h2', {}, title),
+    h('div', { className: 'ec-preview-image-grid' }, items)
+  );
+
   const gallery = (props, items, title) => {
     const images = listToArray(items)
       .map((item) => getAssetUrl(props, item && (item.image || item)))
@@ -75,6 +88,46 @@
       images.map((src) => h('img', { src, alt: title || '' }))
     );
   };
+
+  const HomeImagesPreview = createClass({
+    render() {
+      const entry = this.props.entry;
+      const overview = [
+        imageCard(this.props, 'Европа', getValue(entry, ['overview', 'europe'])),
+        imageCard(this.props, 'Россия и СНГ', getValue(entry, ['overview', 'russiaCis'])),
+        imageCard(this.props, 'Азия и Восток', getValue(entry, ['overview', 'asiaEast'])),
+        imageCard(this.props, 'Африка', getValue(entry, ['overview', 'africa'])),
+        imageCard(this.props, 'Америка и Карибы', getValue(entry, ['overview', 'americaCaribbean'])),
+        imageCard(this.props, 'Острова', getValue(entry, ['overview', 'islands'])),
+        imageCard(this.props, 'Австралия и Океания', getValue(entry, ['overview', 'oceania'])),
+      ];
+      const directions = [
+        imageCard(this.props, 'Фон: Европа', getValue(entry, ['directions', 'europeBg'])),
+        imageCard(this.props, 'Фон: Россия и СНГ', getValue(entry, ['directions', 'russiaCisBg'])),
+        imageCard(this.props, 'Фон: Азия и Восток', getValue(entry, ['directions', 'asiaEastBg'])),
+        imageCard(this.props, 'Фон: Африка', getValue(entry, ['directions', 'africaBg'])),
+        imageCard(this.props, 'Фон: Америка и Карибы', getValue(entry, ['directions', 'americaCaribbeanBg'])),
+        imageCard(this.props, 'Фон: Острова', getValue(entry, ['directions', 'islandsBg'])),
+        imageCard(this.props, 'Фон: Австралия и Океания', getValue(entry, ['directions', 'oceaniaBg'])),
+      ];
+
+      return h('article', { className: 'ec-preview ec-preview-settings' },
+        h('div', { className: 'ec-preview-settings-head' },
+          h('span', { className: 'ec-preview-kicker' }, 'Главная страница'),
+          h('h1', {}, 'Изображения сайта'),
+          h('p', { className: 'ec-preview-subtitle' }, 'Компактный предпросмотр показывает, какие фото сейчас назначены для главной страницы и разделов направлений.')
+        ),
+        imageGroup('Первый экран', [
+          imageCard(this.props, 'Главный фон первого экрана', getValue(entry, ['hero']), 'ec-preview-image-wide')
+        ]),
+        imageGroup('Карточки обзора направлений', overview),
+        imageGroup('Фоны разделов направлений', directions),
+        imageGroup('Форма запроса', [
+          imageCard(this.props, 'Фон формы запроса', getValue(entry, ['request']), 'ec-preview-image-wide')
+        ])
+      );
+    }
+  });
 
   const CountryPreview = createClass({
     render() {
@@ -161,6 +214,7 @@
     }
   });
 
+  CMS.registerPreviewTemplate('settings', HomeImagesPreview);
   CMS.registerPreviewTemplate('countries', CountryPreview);
   CMS.registerPreviewTemplate('hotels', HotelPreview);
   CMS.registerPreviewTemplate('tours', TourPreview);
