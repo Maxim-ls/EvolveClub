@@ -1,5 +1,12 @@
 const fs = require("node:fs");
 const path = require("node:path");
+const MarkdownIt = require("markdown-it");
+
+const markdown = new MarkdownIt({
+  html: true,
+  breaks: false,
+  linkify: true,
+});
 
 function readFrontMatter(filePath) {
   const content = fs.readFileSync(filePath, "utf8");
@@ -199,6 +206,10 @@ module.exports = function (eleventyConfig) {
   });
 
   eleventyConfig.addFilter("optimizedImage", optimizedImageUrl);
+  eleventyConfig.addFilter("markdownify", (value) => {
+    if (typeof value !== "string" || !value.trim()) return "";
+    return markdown.render(value);
+  });
 
   eleventyConfig.on("eleventy.before", () => {
     cleanOutputDirectory();

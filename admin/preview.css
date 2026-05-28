@@ -3,6 +3,7 @@
   width: min(760px, 100%);
   margin: 0 auto;
   padding: 28px;
+  overflow: visible;
   background: #111615;
   color: #f6f5ef;
   font-family: Manrope, Arial, sans-serif;
@@ -113,11 +114,31 @@
 }
 
 .ec-preview-body {
+  max-height: none;
+  overflow: visible;
   color: rgba(246, 245, 239, .84);
 }
 
-.ec-preview-body p {
+.ec-preview-body *,
+.ec-preview-body > div {
+  max-height: none !important;
+  overflow: visible !important;
+}
+
+.ec-preview-body p,
+.ec-preview-body ul,
+.ec-preview-body ol,
+.ec-preview-body blockquote {
   margin: 0 0 12px;
+}
+
+.ec-preview-body ul,
+.ec-preview-body ol {
+  padding-left: 20px;
+}
+
+.ec-preview-body li + li {
+  margin-top: 6px;
 }
 
 .ec-preview-grid {

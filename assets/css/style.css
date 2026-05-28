@@ -890,9 +890,10 @@ button,
 }
 
 .service-grid {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   flex: 1;
   align-content: stretch;
+  gap: clamp(10px, 1.2vw, 16px);
 }
 
 .services-section {
@@ -900,35 +901,64 @@ button,
   min-height: 100svh;
   display: flex;
   flex-direction: column;
-  padding-top: clamp(84px, 7vw, 104px);
-  padding-bottom: clamp(36px, 4vw, 56px);
+  justify-content: center;
+  padding-top: clamp(74px, 7vh, 98px);
+  padding-bottom: clamp(44px, 6vh, 76px);
 }
 
 .services-section .section-head {
-  margin-bottom: 24px;
+  margin-bottom: clamp(18px, 3vh, 32px);
+  align-items: end;
 }
 
 .service-grid article {
-  min-height: clamp(132px, 15vh, 170px);
-  padding: 18px;
+  min-height: clamp(126px, 18vh, 170px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(18px, 1.8vw, 24px);
+  text-align: center;
+  transition: border-color .2s ease, background .2s ease, transform .2s ease;
 }
 
-.service-grid span {
+.service-grid article:hover {
+  border-color: rgba(0, 191, 208, .38);
+  background: rgba(246, 245, 239, .08);
+  transform: translateY(-3px);
+}
+
+.service-grid h3 {
+  margin-bottom: 10px;
+  font-size: clamp(19px, 1.45vw, 24px);
+  line-height: 1.18;
+}
+
+.service-grid p {
+  max-width: 24ch;
+  font-size: clamp(14px, 1vw, 16px);
+  line-height: 1.55;
+}
+
+.service-icon {
   display: grid;
   place-items: center;
-  width: 40px;
-  height: 40px;
-  margin-bottom: 14px;
+  width: clamp(48px, 4vw, 58px);
+  height: clamp(48px, 4vw, 58px);
+  margin-bottom: clamp(14px, 1.8vh, 18px);
   border-radius: 50%;
   background: rgba(0, 191, 208, .12);
   color: var(--teal-bright);
-  font-size: 22px;
 }
 
-.service-grid img {
-  width: 20px;
-  height: 20px;
-  filter: invert(59%) sepia(98%) saturate(2133%) hue-rotate(143deg) brightness(99%) contrast(101%);
+.service-icon svg {
+  width: clamp(38px, 3.3vw, 45px);
+  height: clamp(38px, 3.3vw, 45px);
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 .request-section {
@@ -2586,6 +2616,126 @@ body.is-modal-open {
 
   .tour-detail-page .hotel-bottom-action .primary-button {
     order: -1;
+  }
+}
+
+@media (min-width: 1061px) and (max-height: 760px) {
+  :root {
+    --header-height: 78px;
+    --page-x: clamp(32px, 7vw, 86px);
+    --section-block-space: clamp(58px, 7vw, 90px);
+  }
+
+  .site-header {
+    padding-top: 18px;
+    padding-bottom: 18px;
+  }
+
+  .site-header.is-scrolled {
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+
+  .hero {
+    min-height: 100vh;
+    min-height: 100svh;
+  }
+
+  .hero-content {
+    padding-top: clamp(18px, 5vh, 42px);
+  }
+
+  .hero h1 {
+    font-size: clamp(48px, 7vw, 96px);
+  }
+
+  .hero-copy {
+    max-width: 700px;
+    margin: 16px 0 20px;
+    font-size: clamp(14px, 1.1vw, 16px);
+    line-height: 1.55;
+  }
+
+  .direction-section {
+    padding-top: 62px;
+    padding-bottom: 62px;
+  }
+
+  .direction-content {
+    gap: clamp(24px, 4vw, 58px);
+  }
+
+  .direction-copy h2 {
+    font-size: clamp(40px, 5.8vw, 76px);
+  }
+
+  .direction-text {
+    margin: 18px 0 24px;
+    font-size: clamp(14px, 1.05vw, 16px);
+    line-height: 1.58;
+  }
+
+  .direction-rail {
+    --rail-card-height: 320px;
+    --rail-card-active-height: 420px;
+    height: 450px;
+  }
+
+  .tours-section,
+  .services-section {
+    min-height: 100vh;
+    min-height: 100svh;
+    padding-top: 66px;
+    padding-bottom: 48px;
+  }
+
+  .tours-section .section-head,
+  .services-section .section-head {
+    margin-bottom: 18px;
+  }
+
+  .section h2,
+  .request-panel h2 {
+    font-size: clamp(34px, 4.2vw, 58px);
+  }
+
+  .section-lead {
+    font-size: 14px;
+    line-height: 1.58;
+  }
+
+  .tour-card {
+    min-height: clamp(168px, 20vh, 210px);
+  }
+
+  .service-grid {
+    gap: 10px;
+  }
+
+  .service-grid article {
+    min-height: 118px;
+    padding: 14px 12px;
+  }
+
+  .service-icon {
+    width: 42px;
+    height: 42px;
+    margin-bottom: 10px;
+  }
+
+  .service-icon svg {
+    width: 33px;
+    height: 33px;
+  }
+
+  .service-grid h3 {
+    margin-bottom: 6px;
+    font-size: 17px;
+  }
+
+  .service-grid p {
+    font-size: 13.5px;
+    line-height: 1.45;
   }
 }
 

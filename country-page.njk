@@ -103,7 +103,7 @@ eleventyComputed:
       <p class="eyebrow">{{ country.data.title }}</p>
       <h2 id="{{ country.data.slug }}-why-title">{{ country.data.why_title or "Зачем ехать?" }}</h2>
       <div class="modal-copy">
-        {{ country.data.why_body | safe }}
+        {{ country.data.why_body | markdownify | safe }}
       </div>
     </section>
   </div>
@@ -117,7 +117,7 @@ eleventyComputed:
       <p class="eyebrow">{{ country.data.details_eyebrow or "Практическая информация" }}</p>
       <h2 id="{{ country.data.slug }}-details-title">{{ country.data.details_title or "Подробнее" }}</h2>
       <div class="modal-copy">
-        {{ country.data.details_body | safe }}
+        {{ country.data.details_body | markdownify | safe }}
       </div>
     </section>
   </div>
