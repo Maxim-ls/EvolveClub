@@ -1155,6 +1155,22 @@ button,
   line-height: 1.6;
 }
 
+.country-hero-description {
+  max-width: 720px;
+  margin-top: 18px;
+  color: rgba(246, 245, 239, .78);
+  font-size: clamp(15px, 1.05vw, 17px);
+  line-height: 1.65;
+}
+
+.country-hero-description p {
+  margin: 0;
+}
+
+.country-hero-description p + p {
+  margin-top: 10px;
+}
+
 .country-actions {
   position: absolute;
   left: var(--page-x);
@@ -3350,6 +3366,13 @@ body.is-modal-open {
     margin: 18px auto 0;
     font-size: var(--mobile-body);
     line-height: 1.62;
+  }
+
+  .country-hero-description {
+    max-width: none;
+    margin: 14px auto 0;
+    font-size: 15px;
+    line-height: 1.58;
   }
 
   .country-actions {

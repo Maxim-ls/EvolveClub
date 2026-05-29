@@ -101,6 +101,7 @@ collections:
           - { label: "Острова", value: "islands" }
           - { label: "Австралия и Океания", value: "oceania" }
       - { label: "Краткое описание", name: "subtitle", widget: "text" }
+      - { label: "Мини-описание под заголовком", name: "body", widget: "markdown", required: false }
       - { label: "Обложка", name: "cover", widget: "image", hint: "Горизонтальное изображение для фона страницы" }
       - { label: "Кнопка «Зачем ехать»: заголовок", name: "why_title", widget: "string", required: false, default: "Зачем ехать?" }
       - { label: "Кнопка «Зачем ехать»: текст", name: "why_body", widget: "markdown", required: false }
@@ -110,7 +111,6 @@ collections:
       - { label: "Опубликовано", name: "published", widget: "boolean", default: true, hint: "Выключите, если страницу нужно временно скрыть с сайта." }
       - { label: "Показывать в списках", name: "featured", widget: "boolean", default: true, hint: "Показывает карточку на главной и в подборках. Сама страница остается доступной, если опубликована." }
       - { label: "Тег", name: "tags", widget: "hidden", default: "country" }
-      - { label: "Описание", name: "body", widget: "markdown" }
 
   - name: "hotels"
     label: "Отели"

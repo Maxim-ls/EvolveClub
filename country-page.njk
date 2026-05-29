@@ -17,6 +17,11 @@ eleventyComputed:
       <a class="country-back" data-history-back href="/#destinations" data-return-section="{{ country.data.region }}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg> Назад</a>
       <h1>{{ country.data.title }}</h1>
       <p>{{ country.data.subtitle }}</p>
+      {% if country.templateContent %}
+        <div class="country-hero-description">
+          {{ country.templateContent | markdownify | safe }}
+        </div>
+      {% endif %}
       <div class="country-actions" aria-label="Информация о направлении">
         {% if country.data.why_body %}
           <button type="button" class="primary-button" data-modal-open="{{ country.data.slug }}-why">Зачем ехать? <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
