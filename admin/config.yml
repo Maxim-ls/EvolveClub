@@ -131,6 +131,9 @@ collections:
       - label: "Сейшелы"
         field: "country"
         pattern: "seychelles"
+      - label: "Италия"
+        field: "country"
+        pattern: "italy"
       - label: "Опубликованные"
         field: "published"
         pattern: true
