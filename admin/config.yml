@@ -134,6 +134,9 @@ collections:
       - label: "Италия"
         field: "country"
         pattern: "italy"
+      - label: "Испания"
+        field: "country"
+        pattern: "spain"
       - label: "Опубликованные"
         field: "published"
         pattern: true
