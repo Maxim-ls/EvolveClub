@@ -59,6 +59,7 @@ collections:
         label: "Контакты, соцсети и документы"
         file: "_data/site.json"
         fields:
+          - { label: "Иконка сайта во вкладке браузера", name: "favicon", widget: "image", required: false, hint: "Квадратная PNG-иконка. Лучше 512x512 или 256x256." }
           - { label: "Текст в футере", name: "footerText", widget: "text" }
           - label: "Реквизиты в футере"
             name: "legalInfo"
