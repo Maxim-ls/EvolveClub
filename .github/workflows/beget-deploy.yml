@@ -1,0 +1,59 @@
+name: Beget Deploy
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    name: Build and deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build site
+        run: npm run build
+
+      - name: Check FTP secrets
+        env:
+          FTP_SERVER: ${{ secrets.FTP_SERVER }}
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+          FTP_SERVER_DIR: ${{ secrets.FTP_SERVER_DIR }}
+        run: |
+          test -n "$FTP_SERVER" || (echo "::error::FTP_SERVER is empty" && exit 1)
+          test -n "$FTP_USERNAME" || (echo "::error::FTP_USERNAME is empty" && exit 1)
+          test -n "$FTP_PASSWORD" || (echo "::error::FTP_PASSWORD is empty" && exit 1)
+          test -n "$FTP_SERVER_DIR" || (echo "::error::FTP_SERVER_DIR is empty" && exit 1)
+
+      - name: Install FTP client
+        run: sudo apt-get update && sudo apt-get install -y lftp
+
+      - name: Deploy to Beget
+        env:
+          FTP_SERVER: ${{ secrets.FTP_SERVER }}
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+          FTP_SERVER_DIR: ${{ secrets.FTP_SERVER_DIR }}
+        run: |
+          lftp -c "
+          set ftp:ssl-allow no
+          set net:timeout 20
+          set net:max-retries 3
+          set net:reconnect-interval-base 5
+          open -u \"$FTP_USERNAME\",\"$FTP_PASSWORD\" \"$FTP_SERVER\"
+          mirror --reverse --delete --verbose --parallel=4 ./_site/ \"$FTP_SERVER_DIR\"
+          "
