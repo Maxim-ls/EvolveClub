@@ -3,6 +3,34 @@
 <head>
   <meta charset="utf-8">
   <title>Админка EvolveClub</title>
+  <style>
+    body.ec-admin-ready img[src*="/assets/img/"],
+    body.ec-admin-ready img[src*="assets/img/"],
+    body.ec-admin-ready [class*="Image"] img,
+    body.ec-admin-ready [class*="image"] img {
+      max-width: min(100%, 360px) !important;
+      max-height: 220px !important;
+      object-fit: contain !important;
+    }
+
+    body.ec-admin-ready [class*="Image"] > div,
+    body.ec-admin-ready [class*="image"] > div {
+      max-width: 100% !important;
+    }
+
+    body.ec-admin-ready [class*="WidgetPreviewContainer"],
+    body.ec-admin-ready [class*="PreviewContainer"] {
+      overflow: auto !important;
+    }
+
+    body.ec-admin-ready [class*="Field"] {
+      min-width: 0;
+    }
+
+    body.ec-admin-ready [class*="ListItemTop"] {
+      align-items: center;
+    }
+  </style>
 </head>
 <body>
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>

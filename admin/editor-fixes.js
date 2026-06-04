@@ -1,5 +1,8 @@
 (function () {
-  const IMAGE_BUTTON_TEXT = 'Выберите другое изображение';
+  const IMAGE_BUTTON_TEXTS = [
+    'Выберите другое изображение',
+    'Р’С‹Р±РµСЂРёС‚Рµ РґСЂСѓРіРѕРµ РёР·РѕР±СЂР°Р¶РµРЅРёРµ'
+  ];
   const IMAGE_BUTTON_REPLACEMENT = 'Добавить изображение';
 
   const normalizePastedText = (value) => value
@@ -13,13 +16,15 @@
     const nodes = [];
 
     while (walker.nextNode()) {
-      if (walker.currentNode.nodeValue.includes(IMAGE_BUTTON_TEXT)) {
+      if (IMAGE_BUTTON_TEXTS.some((text) => walker.currentNode.nodeValue.includes(text))) {
         nodes.push(walker.currentNode);
       }
     }
 
     nodes.forEach((node) => {
-      node.nodeValue = node.nodeValue.replaceAll(IMAGE_BUTTON_TEXT, IMAGE_BUTTON_REPLACEMENT);
+      IMAGE_BUTTON_TEXTS.forEach((text) => {
+        node.nodeValue = node.nodeValue.replaceAll(text, IMAGE_BUTTON_REPLACEMENT);
+      });
     });
   };
 
@@ -62,6 +67,7 @@
   });
 
   const start = () => {
+    document.body.classList.add('ec-admin-ready');
     replaceImageButtonLabels(document.body);
     observer.observe(document.body, { childList: true, subtree: true });
   };
