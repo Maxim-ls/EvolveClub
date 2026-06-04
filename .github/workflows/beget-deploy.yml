@@ -55,5 +55,5 @@ jobs:
           set net:max-retries 3
           set net:reconnect-interval-base 5
           open -u \"$FTP_USERNAME\",\"$FTP_PASSWORD\" \"$FTP_SERVER\"
-          mirror --reverse --delete --ignore-time --size-only --parallel=4 ./_site/ \"$FTP_SERVER_DIR\"
+          mirror --reverse --delete --ignore-time --parallel=4 ./_site/ \"$FTP_SERVER_DIR\"
           "
