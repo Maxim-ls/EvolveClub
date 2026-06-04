@@ -27,33 +27,37 @@ jobs:
       - name: Build site
         run: npm run build
 
-      - name: Check FTP secrets
+      - name: Check SSH secrets
         env:
-          FTP_SERVER: ${{ secrets.FTP_SERVER }}
-          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
-          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
-          FTP_SERVER_DIR: ${{ secrets.FTP_SERVER_DIR }}
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SSH_PORT: ${{ secrets.SSH_PORT }}
+          SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          SSH_TARGET_DIR: ${{ secrets.SSH_TARGET_DIR }}
         run: |
-          test -n "$FTP_SERVER" || (echo "::error::FTP_SERVER is empty" && exit 1)
-          test -n "$FTP_USERNAME" || (echo "::error::FTP_USERNAME is empty" && exit 1)
-          test -n "$FTP_PASSWORD" || (echo "::error::FTP_PASSWORD is empty" && exit 1)
-          test -n "$FTP_SERVER_DIR" || (echo "::error::FTP_SERVER_DIR is empty" && exit 1)
+          test -n "$SSH_HOST" || (echo "::error::SSH_HOST is empty" && exit 1)
+          test -n "$SSH_PORT" || (echo "::error::SSH_PORT is empty" && exit 1)
+          test -n "$SSH_USERNAME" || (echo "::error::SSH_USERNAME is empty" && exit 1)
+          test -n "$SSH_PRIVATE_KEY" || (echo "::error::SSH_PRIVATE_KEY is empty" && exit 1)
+          test -n "$SSH_TARGET_DIR" || (echo "::error::SSH_TARGET_DIR is empty" && exit 1)
 
-      - name: Install FTP client
-        run: sudo apt-get update && sudo apt-get install -y lftp
+      - name: Install SSH deploy tools
+        run: sudo apt-get update && sudo apt-get install -y rsync openssh-client
 
       - name: Deploy to Beget
         env:
-          FTP_SERVER: ${{ secrets.FTP_SERVER }}
-          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
-          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
-          FTP_SERVER_DIR: ${{ secrets.FTP_SERVER_DIR }}
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SSH_PORT: ${{ secrets.SSH_PORT }}
+          SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          SSH_TARGET_DIR: ${{ secrets.SSH_TARGET_DIR }}
         run: |
-          lftp -c "
-          set ftp:ssl-allow no
-          set net:timeout 20
-          set net:max-retries 3
-          set net:reconnect-interval-base 5
-          open -u \"$FTP_USERNAME\",\"$FTP_PASSWORD\" \"$FTP_SERVER\"
-          mirror --reverse --delete --ignore-time --parallel=4 ./_site/ \"$FTP_SERVER_DIR\"
-          "
+          mkdir -p ~/.ssh
+          printf '%s\n' "$SSH_PRIVATE_KEY" | tr -d '\r' > ~/.ssh/beget_deploy_key
+          chmod 600 ~/.ssh/beget_deploy_key
+          ssh-keyscan -p "$SSH_PORT" "$SSH_HOST" >> ~/.ssh/known_hosts
+
+          ssh -i ~/.ssh/beget_deploy_key -p "$SSH_PORT" "$SSH_USERNAME@$SSH_HOST" "mkdir -p '$SSH_TARGET_DIR'"
+          rsync -az --delete --checksum --itemize-changes \
+            -e "ssh -i ~/.ssh/beget_deploy_key -p $SSH_PORT" \
+            ./_site/ "$SSH_USERNAME@$SSH_HOST:$SSH_TARGET_DIR/"
