@@ -3,12 +3,26 @@
     <span class="brand-mark">EC</span>
     <span>EvolveClub</span>
   </a>
-  <p>Индивидуальные путешествия, премиальные сервисы и консьерж-сопровождение.</p>
+  <div class="footer-details">
+    <p>{{ site.footerText }}</p>
+    <p class="footer-legal-info">
+      {% if site.legalInfo.npd %}<span>НПД: {{ site.legalInfo.npd }}</span>{% endif %}
+      {% if site.legalInfo.inn %}<span>ИНН: {{ site.legalInfo.inn }}</span>{% endif %}
+      {% if site.legalInfo.mobile %}<span>Моб.: {{ site.legalInfo.mobile }}</span>{% endif %}
+    </p>
+  </div>
   <nav aria-label="Нижняя навигация">
     <a href="/#top">О нас</a>
-    <a href="/countries/">Страны</a>
+    <a href="/#destinations">Страны</a>
     <a href="/#tours">Туры</a>
     <a href="/#services">Услуги</a>
     <a href="/#contacts">Контакты</a>
   </nav>
+  {% if site.legalLinks and site.legalLinks.length %}
+    <nav class="footer-legal-links" aria-label="Юридические документы">
+      {% for item in site.legalLinks %}
+        <a href="{{ item.file or item.url or '#' }}">{{ item.label }}</a>
+      {% endfor %}
+    </nav>
+  {% endif %}
 </footer>

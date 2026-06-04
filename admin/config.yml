@@ -7,6 +7,7 @@ backend:
 
 media_folder: "assets/img/uploads"
 public_folder: "/assets/img/uploads"
+display_url: https://tijayvpn.site
 
 locale: "ru"
 
@@ -44,6 +45,46 @@ collections:
               - { label: "Острова", name: "islandsBg", widget: "image" }
               - { label: "Австралия и Океания", name: "oceaniaBg", widget: "image" }
           - { label: "Фон формы запроса", name: "request", widget: "image", hint: "Фон нижнего блока с формой заявки." }
+      - name: "home_content"
+        label: "Первый экран"
+        file: "_data/homeContent.json"
+        fields:
+          - { label: "Надзаголовок", name: "eyebrow", widget: "string" }
+          - { label: "Заголовок", name: "title", widget: "string" }
+          - { label: "Основной текст", name: "lead", widget: "text" }
+          - { label: "Второй абзац", name: "secondary", widget: "text", required: false }
+          - { label: "Текст кнопки", name: "buttonText", widget: "string" }
+          - { label: "Ссылка кнопки", name: "buttonLink", widget: "string", default: "#tours" }
+      - name: "site_settings"
+        label: "Контакты, соцсети и документы"
+        file: "_data/site.json"
+        fields:
+          - { label: "Текст в футере", name: "footerText", widget: "text" }
+          - label: "Реквизиты в футере"
+            name: "legalInfo"
+            widget: "object"
+            fields:
+              - { label: "НПД", name: "npd", widget: "string", required: false }
+              - { label: "ИНН", name: "inn", widget: "string", required: false }
+              - { label: "Моб.", name: "mobile", widget: "string", required: false }
+          - label: "Кнопки мессенджеров"
+            name: "messengers"
+            widget: "list"
+            collapsed: true
+            summary: "{{fields.label}}"
+            fields:
+              - { label: "Название", name: "label", widget: "string" }
+              - { label: "Ссылка", name: "url", widget: "string", hint: "Например: https://t.me/username, https://wa.me/79990000000, https://vk.com/club..." }
+              - { label: "Иконка Font Awesome", name: "icon", widget: "string", required: false, hint: "Telegram: fa-brands fa-telegram, WhatsApp: fa-brands fa-whatsapp, ВКонтакте: fa-brands fa-vk" }
+          - label: "Юридические ссылки и файлы"
+            name: "legalLinks"
+            widget: "list"
+            collapsed: true
+            summary: "{{fields.label}}"
+            fields:
+              - { label: "Название ссылки", name: "label", widget: "string" }
+              - { label: "Ссылка", name: "url", widget: "string", required: false, hint: "Можно указать ссылку на страницу. Если ниже выбран файл, будет использоваться файл." }
+              - { label: "Файл документа", name: "file", widget: "file", required: false, media_folder: "/assets/docs", public_folder: "/assets/docs", hint: "PDF или другой документ, который должен открываться по этой ссылке." }
 
   - name: "countries"
     label: "Направления"

@@ -14,6 +14,8 @@
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" type="image/png" href="/assets/img/EC_logo.png">
+  <link rel="apple-touch-icon" href="/assets/img/EC_logo.png">
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   <link rel="stylesheet" href="assets/css/style.css">
@@ -40,11 +42,11 @@
     <section class="hero" aria-labelledby="hero-title">
       <div class="hero-bg" style="background-image: linear-gradient(90deg, rgba(17, 22, 21, .84), rgba(17, 22, 21, .54) 42%, rgba(17, 22, 21, .3)), linear-gradient(0deg, rgba(17, 22, 21, .82), rgba(17, 22, 21, .14) 42%, rgba(95, 100, 96, .42)), url('{{ homeImages.hero | optimizedImage }}');" role="img" aria-label="Горный берег и вода"></div>
       <div class="hero-content">
-        <p class="eyebrow">Искусство путешествий</p>
-        <h1 id="hero-title">EVOLVECLUB</h1>
-        <p class="hero-copy">Каждый маршрут в EvolveClub разрабатывается с учетом ваших интересов, ритма жизни и представлений об идеальном отдыхе. Высокий уровень сервиса, внимание к деталям и полная конфиденциальность — наш стандарт на каждом этапе взаимодействия.</p>
-        <p class="hero-copy hero-copy-secondary">Мы берем на себя всю организацию: от бронирования закрытых локаций до персонального сопровождения 24/7.</p>
-        <a class="primary-button" href="#tours">Подобрать тур <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></a>
+        <p class="eyebrow">{{ homeContent.eyebrow }}</p>
+        <h1 id="hero-title">{{ homeContent.title }}</h1>
+        <p class="hero-copy">{{ homeContent.lead }}</p>
+        <p class="hero-copy hero-copy-secondary">{{ homeContent.secondary }}</p>
+        <a class="primary-button" href="{{ homeContent.buttonLink or '#tours' }}">{{ homeContent.buttonText }} <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></a>
       </div>
     </section>
     <section class="section directions-overview" id="all-destinations" data-overview-section style="background-image: linear-gradient(90deg, rgba(17, 22, 21, .96), rgba(17, 22, 21, .82) 42%, rgba(17, 22, 21, .68)), linear-gradient(0deg, rgba(17, 22, 21, .92), rgba(37, 45, 43, .72) 55%, rgba(95, 100, 96, .5));">
@@ -422,27 +424,18 @@
           <p class="form-status" data-form-status></p>
         </form>
         <div class="messenger-row">
-          <a href="https://t.me/" target="_blank" rel="noreferrer">Telegram</a>
-          <a href="https://wa.me/" target="_blank" rel="noreferrer">WhatsApp</a>
+          {% for item in site.messengers %}
+            <a href="{{ item.url }}" target="_blank" rel="noreferrer">
+              {% if item.icon %}<i class="{{ item.icon }}" aria-hidden="true"></i>{% endif %}
+              <span>{{ item.label }}</span>
+            </a>
+          {% endfor %}
         </div>
       </div>
     </section>
   </main>
 
-  <footer class="site-footer">
-    <a class="brand" href="#top">
-      <span class="brand-mark">EC</span>
-      <span>EvolveClub</span>
-    </a>
-    <p>Индивидуальные путешествия, премиальные сервисы и консьерж-сопровождение.</p>
-    <nav aria-label="Нижняя навигация">
-      <a href="#top">О нас</a>
-      <a href="#destinations">Страны</a>
-      <a href="#tours">Туры</a>
-      <a href="#services">Услуги</a>
-      <a href="#contacts">Контакты</a>
-    </nav>
-  </footer>
+  {% include "partials/footer.njk" %}
 
   <script src="assets/js/main.js"></script>
 </body>

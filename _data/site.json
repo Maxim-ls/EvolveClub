@@ -1,0 +1,52 @@
+{
+  "footerText": "Индивидуальные путешествия, премиальные сервисы и консьерж-сопровождение.",
+  "legalInfo": {
+    "npd": "",
+    "inn": "",
+    "mobile": "+7 (925) 141-50-10"
+  },
+  "messengers": [
+    {
+      "label": "Telegram",
+      "url": "https://t.me/",
+      "icon": "fa-brands fa-telegram"
+    },
+    {
+      "label": "WhatsApp",
+      "url": "https://wa.me/",
+      "icon": "fa-brands fa-whatsapp"
+    },
+    {
+      "label": "ВКонтакте",
+      "url": "https://vk.com/",
+      "icon": "fa-brands fa-vk"
+    }
+  ],
+  "legalLinks": [
+    {
+      "label": "Оферта",
+      "url": "#",
+      "file": ""
+    },
+    {
+      "label": "Политика конфиденциальности",
+      "url": "#",
+      "file": ""
+    },
+    {
+      "label": "Политика cookie",
+      "url": "#",
+      "file": ""
+    },
+    {
+      "label": "Согласие на информационную рассылку",
+      "url": "#",
+      "file": ""
+    },
+    {
+      "label": "Согласие на обработку персональных данных",
+      "url": "#",
+      "file": ""
+    }
+  ]
+}

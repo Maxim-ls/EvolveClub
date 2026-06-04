@@ -164,7 +164,12 @@ function cleanOutputDirectory() {
 module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("assets/css");
   eleventyConfig.addPassthroughCopy("assets/js");
+  eleventyConfig.addPassthroughCopy("assets/img/destinations");
+  eleventyConfig.addPassthroughCopy("assets/img/hotels");
+  eleventyConfig.addPassthroughCopy("assets/img/uploads");
   eleventyConfig.addPassthroughCopy("assets/img/generated");
+  eleventyConfig.addPassthroughCopy("assets/img/EC_logo.png");
+  eleventyConfig.addPassthroughCopy("assets/docs");
   eleventyConfig.addPassthroughCopy(".htaccess");
   eleventyConfig.addPassthroughCopy("admin");
   eleventyConfig.ignores.add("countries/**");
