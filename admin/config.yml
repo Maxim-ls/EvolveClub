@@ -1,13 +1,13 @@
 backend:
   name: github
-  repo: Tetrr31/EvolveClub
+  repo: Maxim-ls/EvolveClub
   branch: main
-  base_url: https://tijayvpn.site
+  base_url: https://evolveclub.ru
   auth_endpoint: admin/auth/auth.php
 
 media_folder: "assets/img/uploads"
 public_folder: "/assets/img/uploads"
-display_url: https://tijayvpn.site
+display_url: https://evolveclub.ru
 
 locale: "ru"
 

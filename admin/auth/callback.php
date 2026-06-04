@@ -2,6 +2,12 @@
 
 $config = require __DIR__ . '/config.php';
 
+if (empty($config['client_id']) || empty($config['client_secret']) || empty($config['redirect_uri'])) {
+    http_response_code(500);
+    echo 'CMS OAuth config is missing.';
+    exit;
+}
+
 $code = $_GET['code'] ?? '';
 $state = $_GET['state'] ?? '';
 $savedState = $_COOKIE['decap_oauth_state'] ?? '';
