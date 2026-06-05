@@ -2161,6 +2161,52 @@ button,
   min-height: 18px;
 }
 
+.request-success-panel {
+  width: min(520px, 100%);
+  display: grid;
+  justify-items: center;
+  gap: 16px;
+  text-align: center;
+  padding: clamp(30px, 5vw, 48px);
+}
+
+.request-success-icon {
+  display: grid;
+  place-items: center;
+  width: 70px;
+  height: 70px;
+  border: 1px solid rgba(0, 191, 208, .48);
+  border-radius: 50%;
+  background: rgba(0, 191, 208, .14);
+  color: var(--teal-bright);
+}
+
+.request-success-icon svg {
+  width: 34px;
+  height: 34px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.request-success-panel h2 {
+  margin: 4px 0 0;
+  padding-right: 0;
+}
+
+.request-success-panel p {
+  max-width: 360px;
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.request-success-panel .primary-button {
+  margin-top: 4px;
+}
+
 body.is-modal-open {
   overflow: hidden;
 }

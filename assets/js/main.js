@@ -407,8 +407,13 @@ const submitRequestForm = async (form, statusText) => {
       throw new Error(result.message || 'Не удалось отправить заявку.');
     }
 
-    statusText.textContent = result.message || 'Заявка отправлена. Мы свяжемся с вами в ближайшее время.';
+    statusText.textContent = '';
     form.reset();
+    if (typeof openModal === 'function') {
+      openModal('request-success');
+    } else {
+      statusText.textContent = result.message || 'Заявка отправлена. Мы свяжемся с вами в ближайшее время.';
+    }
   } catch (error) {
     statusText.textContent = error.message || 'Не удалось отправить заявку. Попробуйте позже.';
   } finally {
