@@ -25,14 +25,14 @@
 
 return [
     'mail_to' => 'mail@example.com',
-    'mail_from' => 'no-reply@evolveclub.ru',
+    'mail_from' => 'clubmail@evolveclub.ru',
     'subject_prefix' => 'EvolveClub',
 ];
 ```
 
 `mail_to` - куда приходят заявки.
 
-`mail_from` - технический отправитель. Лучше использовать адрес на домене сайта, например `no-reply@evolveclub.ru`.
+`mail_from` - технический отправитель. Лучше использовать существующий адрес на домене сайта, например `clubmail@evolveclub.ru`.
 
 ## 2. Что отправляется
 

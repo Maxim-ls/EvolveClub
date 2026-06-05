@@ -23,7 +23,7 @@ foreach ($configPaths as $path) {
 $config = $configPath ? require $configPath : [];
 
 $mailTo = trim((string)(isset($config['mail_to']) ? $config['mail_to'] : 'info@evolveclub.ru'));
-$mailFrom = trim((string)(isset($config['mail_from']) ? $config['mail_from'] : 'no-reply@evolveclub.ru'));
+$mailFrom = trim((string)(isset($config['mail_from']) ? $config['mail_from'] : 'clubmail@evolveclub.ru'));
 $mailSubjectPrefix = trim((string)(isset($config['subject_prefix']) ? $config['subject_prefix'] : 'EvolveClub'));
 
 if (!filter_var($mailTo, FILTER_VALIDATE_EMAIL) || !filter_var($mailFrom, FILTER_VALIDATE_EMAIL)) {
@@ -115,7 +115,8 @@ $headers = [
     'Content-Transfer-Encoding: 8bit',
 ];
 
-$sent = mail($mailTo, $subject, $body, implode("\n", $headers));
+$sendmailParams = '-f' . clean_header($mailFrom);
+$sent = mail($mailTo, $subject, $body, implode("\n", $headers), $sendmailParams);
 
 if (!$sent) {
     json_response(false, 'Не удалось отправить заявку. Попробуйте позже.', 500);
