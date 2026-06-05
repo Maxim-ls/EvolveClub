@@ -31,6 +31,7 @@ $smtpPort = (int)(isset($config['smtp_port']) ? $config['smtp_port'] : 465);
 $smtpSecure = trim((string)(isset($config['smtp_secure']) ? $config['smtp_secure'] : 'ssl'));
 $smtpUsername = trim((string)(isset($config['smtp_username']) ? $config['smtp_username'] : $mailFrom));
 $smtpPassword = (string)(isset($config['smtp_password']) ? $config['smtp_password'] : '');
+$debugErrors = !empty($config['debug_errors']);
 
 if (!filter_var($mailTo, FILTER_VALIDATE_EMAIL) || !filter_var($mailFrom, FILTER_VALIDATE_EMAIL)) {
     http_response_code(500);
@@ -213,6 +214,9 @@ if ($smtpEnabled) {
             'password' => $smtpPassword,
         ], $mailTo, $mailFrom, $subject, $body);
     } catch (Exception $error) {
+        if ($debugErrors) {
+            json_response(false, 'SMTP debug: ' . $error->getMessage(), 500);
+        }
         json_response(false, 'Не удалось отправить заявку. Попробуйте позже.', 500);
     }
 } else {
