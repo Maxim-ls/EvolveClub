@@ -403,7 +403,7 @@
     <section class="request-section" id="request">
       <div class="request-visual" style="background-image: linear-gradient(90deg, rgba(17, 22, 21, .24), rgba(17, 22, 21, .8)), url('{{ homeImages.request | optimizedImage }}');"></div>
       <div class="request-panel" id="contacts">
-        <form class="request-form" data-request-form>
+        <form class="request-form" action="/send-request.php" method="post" data-request-form>
           <label for="form-name">
             <span>Имя</span>
             <input type="text" id="form-name" name="name" placeholder="Ваше имя" required>

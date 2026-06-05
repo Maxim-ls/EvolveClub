@@ -171,6 +171,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("assets/img/EC_logo.png");
   eleventyConfig.addPassthroughCopy("assets/docs");
   eleventyConfig.addPassthroughCopy(".htaccess");
+  eleventyConfig.addPassthroughCopy("send-request.php");
   eleventyConfig.addPassthroughCopy("admin");
   eleventyConfig.ignores.add("countries/**");
   eleventyConfig.ignores.add("tours/**");

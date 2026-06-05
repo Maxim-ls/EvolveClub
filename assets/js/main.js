@@ -334,6 +334,59 @@ const initCarousels = () => {
 
 initCarousels();
 
+const submitRequestForm = async (form, statusText) => {
+  if (!form.querySelector('input[name="website"]')) {
+    const honeyInput = document.createElement('input');
+    honeyInput.type = 'text';
+    honeyInput.name = 'website';
+    honeyInput.tabIndex = -1;
+    honeyInput.autocomplete = 'off';
+    honeyInput.style.position = 'absolute';
+    honeyInput.style.left = '-9999px';
+    honeyInput.setAttribute('aria-hidden', 'true');
+    form.appendChild(honeyInput);
+  }
+
+  const submitButton = form.querySelector('button[type="submit"]');
+  const formData = new FormData(form);
+  formData.set('page_title', document.title);
+  formData.set('page_url', window.location.href);
+
+  statusText.textContent = 'Отправляем заявку...';
+  if (submitButton) submitButton.disabled = true;
+
+  try {
+    const endpoint = form.getAttribute('action') || '/send-request.php';
+    const response = await fetch(endpoint, {
+      method: 'POST',
+      body: formData
+    });
+    const result = await response.json().catch(() => ({}));
+
+    if (!response.ok || result.ok === false) {
+      throw new Error(result.message || 'Не удалось отправить заявку.');
+    }
+
+    statusText.textContent = result.message || 'Заявка отправлена. Мы свяжемся с вами в ближайшее время.';
+    form.reset();
+  } catch (error) {
+    statusText.textContent = error.message || 'Не удалось отправить заявку. Попробуйте позже.';
+  } finally {
+    if (submitButton) submitButton.disabled = false;
+  }
+};
+
+document.querySelectorAll('[data-request-form]').forEach((form) => {
+  const statusText = form.querySelector('[data-form-status]');
+  if (!statusText) return;
+
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    event.stopImmediatePropagation();
+    submitRequestForm(form, statusText);
+  }, true);
+});
+
 // --- Кнопки управления каруселями ---
 document.querySelectorAll('[data-scroll-next], [data-scroll-prev]').forEach((button) => {
   button.addEventListener('click', () => {
