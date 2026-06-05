@@ -359,7 +359,7 @@ const formatRuPhone = (value) => {
 document.querySelectorAll('input[name="contact"]').forEach((input) => {
   input.inputMode = 'tel';
   input.autocomplete = 'tel';
-  input.placeholder = '+7 (906) 073-73-43';
+  input.placeholder = '+7 (925) 141-50-10';
 
   input.addEventListener('focus', () => {
     if (!input.value.trim()) input.value = '+7';

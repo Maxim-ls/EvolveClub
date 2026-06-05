@@ -159,7 +159,7 @@ eleventyComputed:
     <p class="request-modal-lead">{{ tour.data.request_lead or "Оставьте контактные данные, и мы уточним даты, состав гостей и подходящий формат поездки." }}</p>
     <form class="request-form" action="/send-request" method="post" data-request-form>
       <label for="tour-request-name"><span>Имя</span><input type="text" id="tour-request-name" name="name" placeholder="Ваше имя" required></label>
-      <label for="tour-request-contact"><span>Контакт</span><input type="text" id="tour-request-contact" name="contact" placeholder="+7 (906) 073-73-43" required></label>
+      <label for="tour-request-contact"><span>Контакт</span><input type="text" id="tour-request-contact" name="contact" placeholder="+7 (925) 141-50-10" required></label>
       <label for="tour-request-dates"><span>Даты</span><input type="text" id="tour-request-dates" name="dates" placeholder="Например: даты по запросу"></label>
       <label for="tour-request-message"><span>Пожелания</span><textarea id="tour-request-message" name="message" rows="4" placeholder="Количество гостей, даты и важные детали">Интересует тур «{{ tour.data.title }}».</textarea></label>
       <button type="submit" class="primary-button">Отправить заявку</button>

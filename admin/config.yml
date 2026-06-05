@@ -12,6 +12,15 @@ display_url: https://evolveclub.ru
 locale: "ru"
 
 collections:
+  - name: "guide"
+    label: "Инструкция"
+    files:
+      - name: "admin_guide"
+        label: "Инструкция для заказчика"
+        file: "docs/ADMIN_GUIDE.md"
+        fields:
+          - { label: "Текст инструкции", name: "body", widget: "markdown" }
+
   - name: "settings"
     label: "Главная и изображения"
     files:
