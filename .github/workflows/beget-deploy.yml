@@ -54,5 +54,9 @@ jobs:
           SSH_COMMAND="ssh -i ~/.ssh/beget_deploy_key -p $SSH_PORT -o IdentitiesOnly=yes -o BatchMode=yes"
           $SSH_COMMAND "$SSH_USERNAME@$SSH_HOST" "mkdir -p '$SSH_TARGET_DIR'"
           rsync -rz --delete --checksum --itemize-changes \
+            --exclude '.ssh/' \
+            --exclude '.cache/' \
+            --exclude '.local/' \
+            --exclude '.bash_history' \
             -e "$SSH_COMMAND" \
             ./_site/ "$SSH_USERNAME@$SSH_HOST:$SSH_TARGET_DIR/"
