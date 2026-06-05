@@ -10,16 +10,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Tetrr31/EvolveClub.git"
+    "url": "git+https://github.com/Maxim-ls/EvolveClub.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
   "bugs": {
-    "url": "https://github.com/Tetrr31/EvolveClub/issues"
+    "url": "https://github.com/Maxim-ls/EvolveClub/issues"
   },
-  "homepage": "https://github.com/Tetrr31/EvolveClub#readme",
+  "homepage": "https://github.com/Maxim-ls/EvolveClub#readme",
   "devDependencies": {
     "@11ty/eleventy": "^3.1.5",
     "sharp": "^0.34.5"

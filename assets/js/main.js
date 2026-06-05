@@ -449,18 +449,6 @@ document.querySelectorAll('[data-scroll-next], [data-scroll-prev]').forEach((but
   });
 });
 
-// --- Форма запроса ---
-document.querySelectorAll('[data-request-form]').forEach((form) => {
-  const statusText = form.querySelector('[data-form-status]');
-  if (!statusText) return;
-
-  form.addEventListener('submit', (event) => {
-    event.preventDefault();
-    statusText.textContent = 'Запрос подготовлен. На следующем этапе подключим отправку в Telegram, WhatsApp или CRM.';
-    form.reset();
-  });
-});
-
 // --- Индикаторы направлений (Direction Dots) ---
 const directionSections = document.querySelectorAll('[data-direction-section]');
 const directionNavButtons = document.querySelectorAll('[data-direction-nav]');
