@@ -334,6 +334,46 @@ const initCarousels = () => {
 
 initCarousels();
 
+const formatRuPhone = (value) => {
+  let digits = String(value || '').replace(/\D/g, '');
+
+  if (digits.startsWith('8')) digits = `7${digits.slice(1)}`;
+  if (!digits.startsWith('7')) digits = `7${digits}`;
+  digits = digits.slice(0, 11);
+
+  const partA = digits.slice(1, 4);
+  const partB = digits.slice(4, 7);
+  const partC = digits.slice(7, 9);
+  const partD = digits.slice(9, 11);
+
+  let result = '+7';
+  if (partA) result += ` (${partA}`;
+  if (partA.length === 3) result += ')';
+  if (partB) result += ` ${partB}`;
+  if (partC) result += `-${partC}`;
+  if (partD) result += `-${partD}`;
+
+  return result;
+};
+
+document.querySelectorAll('input[name="contact"]').forEach((input) => {
+  input.inputMode = 'tel';
+  input.autocomplete = 'tel';
+  input.placeholder = '+7 (906) 073-73-43';
+
+  input.addEventListener('focus', () => {
+    if (!input.value.trim()) input.value = '+7';
+  });
+
+  input.addEventListener('input', () => {
+    input.value = formatRuPhone(input.value);
+  });
+
+  input.addEventListener('blur', () => {
+    if (input.value.replace(/\D/g, '') === '7') input.value = '';
+  });
+});
+
 const submitRequestForm = async (form, statusText) => {
   if (!form.querySelector('input[name="website"]')) {
     const honeyInput = document.createElement('input');
