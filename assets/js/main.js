@@ -356,7 +356,7 @@ const submitRequestForm = async (form, statusText) => {
   if (submitButton) submitButton.disabled = true;
 
   try {
-    const endpoint = form.getAttribute('action') || '/send-request.php';
+    const endpoint = form.getAttribute('action') || '/send-request';
     const response = await fetch(endpoint, {
       method: 'POST',
       body: formData
