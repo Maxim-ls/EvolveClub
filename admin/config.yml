@@ -13,10 +13,10 @@ locale: "ru"
 
 collections:
   - name: "guide"
-    label: "Инструкция"
+    label: "Контентная вычитка и наполнение"
     files:
       - name: "admin_guide"
-        label: "Инструкция для заказчика"
+        label: "Контентная вычитка и наполнение"
         file: "docs/ADMIN_GUIDE.md"
         fields:
           - { label: "Текст инструкции", name: "body", widget: "markdown" }
