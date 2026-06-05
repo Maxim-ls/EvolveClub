@@ -179,9 +179,19 @@ eleventyComputed:
         <span>Отель / размещение</span>
         <input type="text" id="hotel-request-villa" name="hotel" value="{{ hotel.data.title }}">
       </label>
+      <div class="request-date-grid">
+        <label for="hotel-request-date-start">
+          <span>Начало поездки</span>
+          <input type="date" id="hotel-request-date-start" name="date_start">
+        </label>
+        <label for="hotel-request-date-end">
+          <span>Конец поездки</span>
+          <input type="date" id="hotel-request-date-end" name="date_end">
+        </label>
+      </div>
       <label for="hotel-request-message">
         <span>Пожелания</span>
-        <textarea id="hotel-request-message" name="message" rows="4" placeholder="Даты, гости, бюджет и важные детали"></textarea>
+        <textarea id="hotel-request-message" name="message" rows="4" placeholder="Гости, бюджет и важные детали"></textarea>
       </label>
       <button type="submit" class="primary-button">Отправить заявку</button>
       <p class="form-status" data-form-status></p>

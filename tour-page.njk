@@ -160,8 +160,11 @@ eleventyComputed:
     <form class="request-form" action="/send-request" method="post" data-request-form>
       <label for="tour-request-name"><span>Имя</span><input type="text" id="tour-request-name" name="name" placeholder="Ваше имя" required></label>
       <label for="tour-request-contact"><span>Контакт</span><input type="text" id="tour-request-contact" name="contact" placeholder="+7 (925) 141-50-10" required></label>
-      <label for="tour-request-dates"><span>Даты</span><input type="text" id="tour-request-dates" name="dates" placeholder="Например: даты по запросу"></label>
-      <label for="tour-request-message"><span>Пожелания</span><textarea id="tour-request-message" name="message" rows="4" placeholder="Количество гостей, даты и важные детали">Интересует тур «{{ tour.data.title }}».</textarea></label>
+      <div class="request-date-grid">
+        <label for="tour-request-date-start"><span>Начало поездки</span><input type="date" id="tour-request-date-start" name="date_start"></label>
+        <label for="tour-request-date-end"><span>Конец поездки</span><input type="date" id="tour-request-date-end" name="date_end"></label>
+      </div>
+      <label for="tour-request-message"><span>Пожелания</span><textarea id="tour-request-message" name="message" rows="4" placeholder="Количество гостей и важные детали">Интересует тур «{{ tour.data.title }}».</textarea></label>
       <button type="submit" class="primary-button">Отправить заявку</button>
       <p class="form-status" data-form-status></p>
     </form>

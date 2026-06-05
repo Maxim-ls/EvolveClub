@@ -248,3 +248,77 @@
   border: 1px dashed rgba(246, 245, 239, .22);
   color: rgba(246, 245, 239, .62);
 }
+
+.ec-preview-text-page {
+  width: min(820px, 100%);
+}
+
+.ec-preview-panel {
+  margin-top: 18px;
+  padding: 20px;
+  border: 1px solid rgba(246, 245, 239, .14);
+  background: linear-gradient(135deg, rgba(246, 245, 239, .065), rgba(0, 191, 208, .035));
+}
+
+.ec-preview-panel h2 {
+  margin-top: 0;
+}
+
+.ec-preview-panel p {
+  margin: 10px 0 0;
+  color: rgba(246, 245, 239, .78);
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+.ec-preview-action-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.ec-preview-action-row span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 0 12px;
+  border: 1px solid rgba(0, 191, 208, .24);
+  background: rgba(0, 191, 208, .08);
+  color: rgba(246, 245, 239, .82);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.ec-preview-list {
+  display: grid;
+  gap: 10px;
+  margin: 14px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ec-preview-list li {
+  display: grid;
+  gap: 4px;
+  padding: 12px;
+  border: 1px solid rgba(246, 245, 239, .1);
+  background: rgba(17, 22, 21, .38);
+}
+
+.ec-preview-list b {
+  color: #f6f5ef;
+  font-size: 14px;
+}
+
+.ec-preview-list span {
+  color: rgba(246, 245, 239, .62);
+  font-size: 13px;
+  overflow-wrap: anywhere;
+}
+
+.ec-preview-guide-body {
+  padding: 20px;
+  border: 1px solid rgba(246, 245, 239, .14);
+  background: rgba(246, 245, 239, .045);
+}

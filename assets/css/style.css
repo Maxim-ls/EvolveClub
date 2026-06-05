@@ -148,6 +148,9 @@ button,
 }
 
 .header-action {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
   display: inline-grid;
   place-items: center;
   min-width: 78px;
@@ -156,6 +159,67 @@ button,
   border-radius: 999px;
   color: var(--muted);
   font-size: var(--text-sm);
+  transition: color .2s ease, border-color .2s ease, transform .2s ease, box-shadow .2s ease;
+}
+
+.header-action::before {
+  position: absolute;
+  inset: -1px;
+  z-index: -1;
+  border-radius: inherit;
+  background: linear-gradient(120deg, transparent 0%, rgba(0, 191, 208, .18) 34%, rgba(246, 245, 239, .14) 50%, rgba(0, 191, 208, .18) 66%, transparent 100%);
+  content: "";
+  opacity: 0;
+  transform: translateX(-72%);
+}
+
+.header-action::after {
+  position: absolute;
+  inset: 6px;
+  z-index: -1;
+  border-radius: inherit;
+  background: rgba(0, 191, 208, .08);
+  content: "";
+  opacity: 0;
+  transform: scale(.82);
+  transition: opacity .2s ease, transform .2s ease;
+}
+
+.header-action:hover,
+.header-action:focus-visible {
+  border-color: rgba(0, 191, 208, .72);
+  color: var(--ink);
+  transform: translateY(-1px);
+  box-shadow: 0 14px 34px rgba(0, 191, 208, .12);
+  outline: none;
+}
+
+.header-action:hover::before,
+.header-action:focus-visible::before {
+  opacity: 1;
+  animation: headerActionSweep 1.15s ease;
+}
+
+.header-action:hover::after,
+.header-action:focus-visible::after {
+  opacity: 1;
+  transform: scale(1);
+}
+
+@keyframes headerActionSweep {
+  from {
+    transform: translateX(-72%);
+  }
+  to {
+    transform: translateX(72%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .header-action:hover::before,
+  .header-action:focus-visible::before {
+    animation: none;
+  }
 }
 
 .header-contact-group {
@@ -242,6 +306,7 @@ button,
 .hero h1 {
   font-size: clamp(54px, 8vw, 132px);
   text-align: left;
+  transform: translateX(-.035em);
 }
 
 .hero-copy {
@@ -1019,6 +1084,12 @@ button,
   gap: 8px;
 }
 
+.request-date-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
 .request-form span {
   color: var(--muted);
   font-size: var(--text-sm);
@@ -1034,6 +1105,11 @@ button,
   color: var(--ink);
   outline: none;
   padding: 13px 16px;
+}
+
+.request-form input[type="date"] {
+  min-height: 48px;
+  color-scheme: dark;
 }
 
 .request-form input:focus,
@@ -3832,6 +3908,10 @@ body.is-modal-open {
 
   .request-form label {
     gap: 6px;
+  }
+
+  .request-date-grid {
+    grid-template-columns: 1fr;
   }
 
   .request-form input,

@@ -416,9 +416,19 @@
             <span>Направление</span>
             <input type="text" id="form-dest" name="destination" placeholder="Страна или формат отдыха">
           </label>
+          <div class="request-date-grid">
+            <label for="form-date-start">
+              <span>Начало поездки</span>
+              <input type="date" id="form-date-start" name="date_start">
+            </label>
+            <label for="form-date-end">
+              <span>Конец поездки</span>
+              <input type="date" id="form-date-end" name="date_end">
+            </label>
+          </div>
           <label>
             <span>Комментарий</span>
-            <textarea name="message" rows="3" placeholder="Даты, гости, бюджет и важные пожелания"></textarea>
+            <textarea name="message" rows="3" placeholder="Гости, бюджет и важные пожелания"></textarea>
           </label>
           <button class="primary-button" type="submit">Отправить запрос <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
           <p class="form-status" data-form-status></p>

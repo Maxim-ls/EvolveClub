@@ -164,13 +164,27 @@ $labels = [
     'contact' => 'Контакт',
     'destination' => 'Направление',
     'dates' => 'Даты',
+    'date_start' => 'Начало поездки',
+    'date_end' => 'Конец поездки',
     'hotel' => 'Отель / размещение',
     'message' => 'Комментарий',
     'page_title' => 'Страница',
     'page_url' => 'Адрес страницы',
 ];
 
-$ignored = ['website'];
+$dateStart = field_value('date_start');
+$dateEnd = field_value('date_end');
+$dateRange = 'Не определились';
+
+if ($dateStart !== '' && $dateEnd !== '') {
+    $dateRange = 'с ' . $dateStart . ' по ' . $dateEnd;
+} elseif ($dateStart !== '') {
+    $dateRange = 'с ' . $dateStart;
+} elseif ($dateEnd !== '') {
+    $dateRange = 'до ' . $dateEnd;
+}
+
+$ignored = ['website', 'date_start', 'date_end', 'dates'];
 $lines = [];
 $lines[] = 'Новая заявка с сайта EvolveClub';
 $lines[] = '';
@@ -186,6 +200,10 @@ foreach ($_POST as $key => $value) {
 
     $label = isset($labels[$cleanKey]) ? $labels[$cleanKey] : $cleanKey;
     $lines[] = $label . ': ' . $text;
+
+    if ($cleanKey === 'contact') {
+        $lines[] = 'Даты поездки: ' . $dateRange;
+    }
 }
 
 $lines[] = '';
