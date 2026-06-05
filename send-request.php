@@ -1,6 +1,4 @@
 <?php
-declare(strict_types=1);
-
 header('Content-Type: application/json; charset=utf-8');
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -24,9 +22,9 @@ foreach ($configPaths as $path) {
 
 $config = $configPath ? require $configPath : [];
 
-$mailTo = trim((string)($config['mail_to'] ?? 'info@evolveclub.ru'));
-$mailFrom = trim((string)($config['mail_from'] ?? 'no-reply@evolveclub.ru'));
-$mailSubjectPrefix = trim((string)($config['subject_prefix'] ?? 'EvolveClub'));
+$mailTo = trim((string)(isset($config['mail_to']) ? $config['mail_to'] : 'info@evolveclub.ru'));
+$mailFrom = trim((string)(isset($config['mail_from']) ? $config['mail_from'] : 'no-reply@evolveclub.ru'));
+$mailSubjectPrefix = trim((string)(isset($config['subject_prefix']) ? $config['subject_prefix'] : 'EvolveClub'));
 
 if (!filter_var($mailTo, FILTER_VALIDATE_EMAIL) || !filter_var($mailFrom, FILTER_VALIDATE_EMAIL)) {
     http_response_code(500);
@@ -34,24 +32,25 @@ if (!filter_var($mailTo, FILTER_VALIDATE_EMAIL) || !filter_var($mailFrom, FILTER
     exit;
 }
 
-function field_value(string $name): string
+function field_value($name)
 {
-    $value = $_POST[$name] ?? '';
+    $value = isset($_POST[$name]) ? $_POST[$name] : '';
     if (is_array($value)) {
         $value = implode(', ', array_map('strval', $value));
     }
 
     $value = trim((string)$value);
     $value = str_replace(["\r\n", "\r"], "\n", $value);
-    return preg_replace('/[ \t]+/', ' ', $value) ?? '';
+    $normalized = preg_replace('/[ \t]+/', ' ', $value);
+    return $normalized === null ? '' : $normalized;
 }
 
-function clean_header(string $value): string
+function clean_header($value)
 {
     return trim(str_replace(["\r", "\n"], ' ', $value));
 }
 
-function json_response(bool $ok, string $message, int $status = 200): void
+function json_response($ok, $message, $status = 200)
 {
     http_response_code($status);
     echo json_encode(['ok' => $ok, 'message' => $message], JSON_UNESCAPED_UNICODE);
@@ -94,13 +93,13 @@ foreach ($_POST as $key => $value) {
     $text = field_value($cleanKey);
     if ($text === '') continue;
 
-    $label = $labels[$cleanKey] ?? $cleanKey;
+    $label = isset($labels[$cleanKey]) ? $labels[$cleanKey] : $cleanKey;
     $lines[] = $label . ': ' . $text;
 }
 
 $lines[] = '';
-$lines[] = 'IP: ' . ($_SERVER['REMOTE_ADDR'] ?? 'unknown');
-$lines[] = 'User-Agent: ' . ($_SERVER['HTTP_USER_AGENT'] ?? 'unknown');
+$lines[] = 'IP: ' . (isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : 'unknown');
+$lines[] = 'User-Agent: ' . (isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : 'unknown');
 $lines[] = 'Дата: ' . date('Y-m-d H:i:s');
 
 $subjectParts = array_filter([$mailSubjectPrefix, 'заявка', $name]);
