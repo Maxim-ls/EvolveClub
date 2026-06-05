@@ -9,8 +9,20 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
-$configPath = dirname(__DIR__) . '/request-mail-config.php';
-$config = is_file($configPath) ? require $configPath : [];
+$configPaths = [
+    dirname(__DIR__) . '/request-mail-config.php',
+    __DIR__ . '/request-mail-config.php',
+];
+$configPath = null;
+
+foreach ($configPaths as $path) {
+    if (is_file($path)) {
+        $configPath = $path;
+        break;
+    }
+}
+
+$config = $configPath ? require $configPath : [];
 
 $mailTo = trim((string)($config['mail_to'] ?? 'info@evolveclub.ru'));
 $mailFrom = trim((string)($config['mail_from'] ?? 'no-reply@evolveclub.ru'));

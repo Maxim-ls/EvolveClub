@@ -3,6 +3,10 @@ AddType text/yaml .yaml
 AddCharset UTF-8 .yml
 AddCharset UTF-8 .yaml
 
+<Files "request-mail-config.php">
+  Require all denied
+</Files>
+
 RewriteEngine On
 
 # 1. Убираем .php из видимого URL в браузере

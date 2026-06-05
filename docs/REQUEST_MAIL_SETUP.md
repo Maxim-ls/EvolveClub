@@ -4,11 +4,19 @@
 
 ## 1. Конфиг почты на Beget
 
-Создайте файл выше каталога `public_html`:
+Если у SSH-пользователя есть права на каталог выше `public_html`, создайте файл:
 
 ```text
 /home/e/evolveclub/evolveclub/request-mail-config.php
 ```
+
+Если прав на каталог выше нет, создайте файл в корне сайта:
+
+```text
+/home/e/evolveclub/evolveclub/public_html/request-mail-config.php
+```
+
+Этот файл закрыт от прямого доступа через `.htaccess` и исключен из `rsync`-деплоя.
 
 Содержимое:
 

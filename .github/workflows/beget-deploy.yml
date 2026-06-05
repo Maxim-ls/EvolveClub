@@ -58,5 +58,6 @@ jobs:
             --exclude '.cache/' \
             --exclude '.local/' \
             --exclude '.bash_history' \
+            --exclude 'request-mail-config.php' \
             -e "$SSH_COMMAND" \
             ./_site/ "$SSH_USERNAME@$SSH_HOST:$SSH_TARGET_DIR/"
