@@ -161,6 +161,27 @@ function cleanOutputDirectory() {
   fs.rmSync(resolvedOutputRoot, { recursive: true, force: true });
 }
 
+function minifyCssContent(content) {
+  return content
+    .replace(/\/\*[\s\S]*?\*\//g, "")
+    .replace(/\s+/g, " ")
+    .replace(/\s*([{}:;,>+~])\s*/g, "$1")
+    .replace(/;}/g, "}")
+    .trim();
+}
+
+function minifyOutputCss() {
+  const cssFiles = walkFiles(path.join(__dirname, "_site", "assets", "css"), [".css"]);
+
+  for (const file of cssFiles) {
+    const original = fs.readFileSync(file, "utf8");
+    const minified = minifyCssContent(original);
+    if (minified && minified.length < original.length) {
+      fs.writeFileSync(file, minified, "utf8");
+    }
+  }
+}
+
 module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("assets/css");
   eleventyConfig.addPassthroughCopy("assets/js");
@@ -221,6 +242,10 @@ module.exports = function (eleventyConfig) {
     cleanOutputDirectory();
     validateContent();
     validateImageRefs();
+  });
+
+  eleventyConfig.on("eleventy.after", () => {
+    minifyOutputCss();
   });
 
   return {

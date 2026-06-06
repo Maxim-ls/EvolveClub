@@ -75,6 +75,13 @@
     );
   };
 
+  const emptyState = (title, textValue, action = '') => h('div', { className: 'ec-preview-empty-state' },
+    h('span', { className: 'ec-preview-empty-icon' }, '+'),
+    h('h3', {}, title),
+    h('p', {}, textValue),
+    action ? h('small', {}, action) : null
+  );
+
   const imageGroup = (title, items) => h('section', { className: 'ec-preview-image-section' },
     h('h2', {}, title),
     h('div', { className: 'ec-preview-image-grid' }, items)
@@ -88,7 +95,7 @@
 
   const linkList = (items) => {
     const links = listToArray(items).filter((item) => item && item.label);
-    if (!links.length) return h('p', { className: 'ec-preview-empty' }, 'Ссылки пока не добавлены.');
+    if (!links.length) return emptyState('Ссылки пока не добавлены', 'Добавьте название и URL для Telegram, WhatsApp, ВКонтакте или юридического документа.');
     return h('ul', { className: 'ec-preview-list' },
       links.map((item) => h('li', {},
         h('b', {}, item.label),
@@ -103,7 +110,7 @@
       .filter(Boolean)
       .slice(0, 8);
 
-    if (!images.length) return h('p', { className: 'ec-preview-empty' }, 'Фотографии пока не добавлены.');
+    if (!images.length) return emptyState('Фотографии пока не добавлены', 'Добавьте изображения в галерею, чтобы проверить композицию страницы.');
 
     return h('div', { className: 'ec-preview-gallery' },
       images.map((src) => h('img', { src, alt: title || '' }))
@@ -221,7 +228,9 @@
           getValue(entry, ['published']) === false ? 'Черновик' : 'Опубликовано',
           getValue(entry, ['featured']) === false ? 'Не на главной' : 'На главной'
         ]),
-        h('section', { className: 'ec-preview-body' }, body),
+        getValue(entry, ['body'])
+          ? h('section', { className: 'ec-preview-body' }, body)
+          : emptyState('Мини-описание пока не заполнено', 'Этот текст выводится под заголовком страны. Добавьте 1-2 абзаца с главным смыслом направления.'),
         getValue(entry, ['why_body']) ? h('section', {},
           h('h2', {}, text(getValue(entry, ['why_title']), 'Зачем ехать?')),
           h('div', { className: 'ec-preview-body' }, this.props.widgetFor('why_body'))
@@ -248,7 +257,9 @@
           `Расположение: ${text(getValue(entry, ['location']), 'не указано')}`,
           getValue(entry, ['published']) === false ? 'Черновик' : 'Опубликовано'
         ]),
-        h('section', { className: 'ec-preview-body' }, this.props.widgetFor('body')),
+        getValue(entry, ['body'])
+          ? h('section', { className: 'ec-preview-body' }, this.props.widgetFor('body'))
+          : emptyState('Описание отеля пока не заполнено', 'Добавьте основной текст: кому подойдет отель, его атмосфера, формат отдыха и сильные стороны.'),
         h('h2', {}, 'Номера, сьюты и виллы'),
         rooms.length ? h('div', { className: 'ec-preview-grid' },
           rooms.slice(0, 6).map((room) => h('div', { className: 'ec-preview-card' },
@@ -256,7 +267,7 @@
             h('h3', {}, room.title || 'Без названия'),
             room.description ? h('p', {}, room.description) : null
           ))
-        ) : h('p', { className: 'ec-preview-empty' }, 'Номера и виллы пока не добавлены.'),
+        ) : emptyState('Номера и виллы пока не добавлены', 'Добавьте варианты размещения с описанием и 2-4 фотографиями интерьера.'),
         h('h2', {}, 'Галерея'),
         gallery(this.props, getValue(entry, ['gallery']), getValue(entry, ['title']))
       );
@@ -281,14 +292,16 @@
             h('p', {}, fact.text || '')
           ))
         ) : null,
-        h('section', { className: 'ec-preview-body' }, this.props.widgetFor('body')),
+        getValue(entry, ['body'])
+          ? h('section', { className: 'ec-preview-body' }, this.props.widgetFor('body'))
+          : emptyState('Описание тура пока не заполнено', 'Добавьте вводный текст тура: кому подойдет маршрут, темп поездки и ключевые впечатления.'),
         h('h2', {}, 'Программа'),
         days.length ? h('div', { className: 'ec-preview-grid' },
           days.slice(0, 8).map((day) => h('div', { className: 'ec-preview-card' },
             h('h3', {}, day.title || 'День'),
             day.description ? h('p', {}, day.description) : null
           ))
-        ) : h('p', { className: 'ec-preview-empty' }, 'Программа пока не добавлена.'),
+        ) : emptyState('Программа пока не добавлена', 'Заполните дни маршрута, чтобы увидеть структуру тура в preview.'),
         h('h2', {}, 'Галерея'),
         gallery(this.props, getValue(entry, ['gallery']), getValue(entry, ['title']))
       );

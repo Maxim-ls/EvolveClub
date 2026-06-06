@@ -2211,12 +2211,6 @@ button,
   padding: clamp(24px, 3.5vw, 38px);
 }
 
-.request-modal-lead {
-  margin: -10px 0 2px;
-  color: var(--muted);
-  line-height: 1.55;
-}
-
 .request-modal-panel .request-form {
   gap: 9px;
   margin-top: 14px;

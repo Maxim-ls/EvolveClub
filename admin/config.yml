@@ -332,7 +332,6 @@ collections:
           - { label: "Текст без списка", name: "body", widget: "text", required: false }
       - { label: "Финальный блок: заголовок", name: "fit_title", widget: "string", required: false }
       - { label: "Финальный блок: текст", name: "fit_body", widget: "text", required: false }
-      - { label: "Текст в модальном окне заявки", name: "request_lead", widget: "text", required: false }
       - label: "Галерея"
         name: "gallery"
         widget: "list"

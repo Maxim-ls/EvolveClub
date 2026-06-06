@@ -242,11 +242,48 @@
   background: #222927;
 }
 
-.ec-preview-empty {
+.ec-preview-empty-state {
+  display: grid;
+  justify-items: start;
+  gap: 8px;
   margin: 18px 0 0;
-  padding: 18px;
-  border: 1px dashed rgba(246, 245, 239, .22);
-  color: rgba(246, 245, 239, .62);
+  padding: 22px;
+  border: 1px dashed rgba(0, 191, 208, .32);
+  background:
+    linear-gradient(135deg, rgba(0, 191, 208, .08), rgba(246, 245, 239, .035)),
+    rgba(17, 22, 21, .74);
+  color: rgba(246, 245, 239, .78);
+}
+
+.ec-preview-empty-icon {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border: 1px solid rgba(0, 191, 208, .42);
+  border-radius: 50%;
+  background: rgba(0, 191, 208, .12);
+  color: #00bfd0;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.ec-preview-empty-state h3 {
+  margin-top: 4px;
+}
+
+.ec-preview-empty-state p {
+  max-width: 42em;
+  margin: 0;
+  color: rgba(246, 245, 239, .7);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.ec-preview-empty-state small {
+  color: rgba(246, 245, 239, .52);
+  font-size: 12px;
 }
 
 .ec-preview-text-page {
