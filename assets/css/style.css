@@ -3865,12 +3865,29 @@ body.is-modal-open {
   }
 
   .modal {
+    align-items: start;
     padding: 14px;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
   .modal-panel {
+    width: 100%;
     max-height: calc(100svh - 28px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
     padding: 28px 22px;
+  }
+
+  .request-modal-panel {
+    max-height: calc(100svh - 28px);
+    overflow-y: auto;
+    padding-bottom: 34px;
+  }
+
+  .request-modal-panel .primary-button {
+    width: 100%;
   }
 
   .hotel-modal-panel {
