@@ -117,12 +117,73 @@
     );
   };
 
+  const HomeContentPreview = createClass({
+    render() {
+      const entry = this.props.entry;
+      const eyebrow = getValue(entry, ['eyebrow'], 'EvolveClub: искусство путешествий');
+      const title = getValue(entry, ['title'], 'EVOLVECLUB');
+      const lead = getValue(entry, ['lead']);
+      const secondary = getValue(entry, ['secondary']);
+      const buttonText = getValue(entry, ['buttonText'], 'Подобрать тур');
+      const buttonLink = getValue(entry, ['buttonLink'], '#tours');
+
+      return h('article', { className: 'ec-preview ec-preview-home-content' },
+        h('section', { className: 'ec-preview-home-screen' },
+          h('span', { className: 'ec-preview-kicker' }, eyebrow),
+          h('h1', {}, title),
+          lead ? h('p', {}, lead) : null,
+          secondary ? h('p', {}, secondary) : null,
+          h('a', { className: 'ec-preview-button', href: buttonLink }, buttonText)
+        )
+      );
+    }
+  });
+
+  const SiteSettingsPreview = createClass({
+    render() {
+      const entry = this.props.entry;
+      const favicon = getAssetUrl(this.props, getValue(entry, ['favicon']));
+      const footerText = getValue(entry, ['footerText']);
+
+      return h('article', { className: 'ec-preview ec-preview-site-settings' },
+        h('div', { className: 'ec-preview-settings-head' },
+          h('span', { className: 'ec-preview-kicker' }, 'Контакты, соцсети и документы'),
+          h('h1', {}, 'Футер сайта'),
+          h('p', { className: 'ec-preview-subtitle' }, 'Превью показывает, как контактная информация и юридические ссылки будут выглядеть в нижней части сайта.')
+        ),
+        h('section', { className: 'ec-preview-footer-demo' },
+          h('div', { className: 'ec-preview-brand-row' },
+            favicon ? h('img', { src: favicon, alt: 'EvolveClub' }) : h('span', { className: 'ec-preview-logo-dot' }, 'EC'),
+            h('strong', {}, 'EvolveClub')
+          ),
+          footerText ? h('p', {}, footerText) : null,
+          h('div', { className: 'ec-preview-action-row' },
+            h('span', {}, `НПД: ${text(getValue(entry, ['legalInfo', 'npd']), 'не указано')}`),
+            h('span', {}, `ИНН: ${text(getValue(entry, ['legalInfo', 'inn']), 'не указано')}`),
+            h('span', {}, `Моб.: ${text(getValue(entry, ['legalInfo', 'mobile']), 'не указано')}`)
+          )
+        ),
+        h('section', { className: 'ec-preview-panel' },
+          h('h2', {}, 'Кнопки связи'),
+          linkList(getValue(entry, ['messengers']))
+        ),
+        h('section', { className: 'ec-preview-panel' },
+          h('h2', {}, 'Юридические документы'),
+          linkList(getValue(entry, ['legalLinks']))
+        )
+      );
+    }
+  });
+
   const HomeImagesPreview = createClass({
     render() {
       const entry = this.props.entry;
       const hasImages = getValue(entry, ['hero']) || getValue(entry, ['overview']) || getValue(entry, ['directions']);
       const hasHomeText = getValue(entry, ['title']) || getValue(entry, ['lead']) || getValue(entry, ['secondary']);
       const hasSiteSettings = getValue(entry, ['footerText']) || getValue(entry, ['legalInfo']) || getValue(entry, ['messengers']) || getValue(entry, ['legalLinks']);
+
+      if (hasHomeText && !hasImages) return h(HomeContentPreview, this.props);
+      if (hasSiteSettings && !hasImages) return h(SiteSettingsPreview, this.props);
 
       if (hasHomeText && !hasImages) {
         return h('article', { className: 'ec-preview ec-preview-text-page' },
@@ -309,7 +370,11 @@
   });
 
   CMS.registerPreviewTemplate('settings', HomeImagesPreview);
+  CMS.registerPreviewTemplate('home_images', HomeImagesPreview);
+  CMS.registerPreviewTemplate('home_content', HomeContentPreview);
+  CMS.registerPreviewTemplate('site_settings', SiteSettingsPreview);
   CMS.registerPreviewTemplate('guide', GuidePreview);
+  CMS.registerPreviewTemplate('admin_guide', GuidePreview);
   CMS.registerPreviewTemplate('countries', CountryPreview);
   CMS.registerPreviewTemplate('hotels', HotelPreview);
   CMS.registerPreviewTemplate('tours', TourPreview);
