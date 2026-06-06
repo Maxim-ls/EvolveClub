@@ -128,10 +128,15 @@ if (snapSections.length) {
 
     if (Math.abs(event.deltaY) < 15) return;
 
-    const currentIndex = getCurrentSectionIndex();
     const direction = event.deltaY > 0 ? 1 : -1;
-    const nextIndex = Math.max(0, Math.min(currentIndex + direction, snapSections.length - 1));
-    if (nextIndex === currentIndex) return;
+    const currentIndex = getCurrentSectionIndex();
+    const currentTop = getSnapTop(snapSections[currentIndex]);
+    const y = window.pageYOffset || document.documentElement.scrollTop;
+    const isBelowCurrentSectionStart = y > currentTop + 24;
+    const nextIndex = direction < 0 && isBelowCurrentSectionStart
+      ? currentIndex
+      : Math.max(0, Math.min(currentIndex + direction, snapSections.length - 1));
+    if (nextIndex === currentIndex && !(direction < 0 && isBelowCurrentSectionStart)) return;
 
     event.preventDefault();
     performSnap(nextIndex);
