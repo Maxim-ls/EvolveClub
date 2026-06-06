@@ -11,6 +11,33 @@
     .replace(/[ \t]+\n/g, '\n')
     .replace(/\n{3,}/g, '\n\n');
 
+  const getGeneratedImageUrl = (src) => {
+    if (!src || src.includes('/assets/img/generated/')) return '';
+
+    try {
+      const url = new URL(src, window.location.origin);
+      const match = url.pathname.match(/^\/assets\/img\/(.+)\.(jpe?g|png|webp)$/i);
+      if (!match) return '';
+      return `${url.origin}/assets/img/generated/${match[1]}.webp`;
+    } catch {
+      const match = src.match(/^(\/?)assets\/img\/(.+)\.(jpe?g|png|webp)$/i);
+      if (!match) return '';
+      return `${match[1]}assets/img/generated/${match[2]}.webp`;
+    }
+  };
+
+  const useGeneratedImageFallback = (event) => {
+    const image = event.target;
+    if (!image || image.tagName !== 'IMG' || image.dataset.ecGeneratedFallback) return;
+
+    const fallback = getGeneratedImageUrl(image.currentSrc || image.src || image.getAttribute('src'));
+    if (!fallback) return;
+
+    image.dataset.ecGeneratedFallback = 'true';
+    image.removeAttribute('srcset');
+    image.src = fallback;
+  };
+
   const replaceImageButtonLabels = (root) => {
     const walker = document.createTreeWalker(root || document.body, NodeFilter.SHOW_TEXT);
     const nodes = [];
@@ -55,6 +82,7 @@
   };
 
   document.addEventListener('paste', pastePlainText, true);
+  document.addEventListener('error', useGeneratedImageFallback, true);
 
   const observer = new MutationObserver((mutations) => {
     mutations.forEach((mutation) => {
