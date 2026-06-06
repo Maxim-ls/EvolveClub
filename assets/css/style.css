@@ -1044,11 +1044,10 @@ button,
 .request-section {
   display: grid;
   grid-template-columns: minmax(0, .9fr) minmax(460px, 760px);
-  height: 100vh;
-  height: 100svh;
-  min-height: 0;
+  min-height: 100vh;
+  min-height: 100svh;
   scroll-margin-top: var(--header-height);
-  overflow: hidden;
+  overflow: visible;
   background: #111615;
 }
 
@@ -2202,8 +2201,8 @@ button,
 
 .request-modal-panel {
   width: min(620px, 100%);
-  max-height: none;
-  overflow: visible;
+  max-height: min(760px, calc(100svh - 32px));
+  overflow: auto;
   padding: clamp(24px, 3.5vw, 38px);
 }
 
@@ -2214,8 +2213,8 @@ button,
 }
 
 .request-modal-panel .request-form {
-  gap: 10px;
-  margin-top: 18px;
+  gap: 9px;
+  margin-top: 16px;
 }
 
 .request-modal-panel .request-form input,
@@ -2224,7 +2223,7 @@ button,
 }
 
 .request-modal-panel .request-form textarea {
-  min-height: 96px;
+  min-height: 84px;
   resize: none;
 }
 
@@ -2998,6 +2997,47 @@ body.is-modal-open {
   .service-grid p {
     font-size: 12.5px;
     line-height: 1.35;
+  }
+
+  .request-panel {
+    padding-top: 88px;
+    padding-bottom: 42px;
+  }
+
+  .request-form {
+    gap: 9px;
+    margin-top: 16px;
+  }
+
+  .request-form label {
+    gap: 6px;
+  }
+
+  .request-form input,
+  .request-form textarea {
+    padding: 11px 14px;
+  }
+
+  .request-form textarea {
+    min-height: 88px;
+  }
+
+  .messenger-row {
+    margin-top: 12px;
+  }
+
+  .request-modal-panel {
+    max-height: calc(100svh - 24px);
+    padding: 24px;
+  }
+
+  .request-modal-panel .request-form {
+    gap: 8px;
+    margin-top: 14px;
+  }
+
+  .request-modal-panel .request-form textarea {
+    min-height: 76px;
   }
 }
 
